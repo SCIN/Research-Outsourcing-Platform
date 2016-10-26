@@ -1,7 +1,16 @@
+# Ignore Play! working directory #
 .idea/
 bin/
-target/
-project/
-libexec/
-logs/
-.sbtserver/
+/db
+.eclipse
+/lib/
+/logs/
+/modules
+/project/target
+/target
+tmp/
+test-result
+server.pid
+*.eml
+/dist/
+.cache
