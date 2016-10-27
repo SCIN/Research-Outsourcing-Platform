@@ -1,14 +1,20 @@
 package controllers;
 
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Transaction;
 import play.*;
 import play.mvc.*;
 
 import views.html.*;
 import play.data.DynamicForm;
 import play.data.Form;
+import play.data.*;
+import play.data.format.*;
+import models.*;
 
 public class Application extends Controller {
 
+    private dbHandle db = new dbHandle();
     public Result index() {
         return ok(index.render());
     }
