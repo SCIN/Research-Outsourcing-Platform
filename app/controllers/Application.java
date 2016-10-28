@@ -14,7 +14,9 @@ import models.*;
 
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
+
     public Result index() {
+        //System.out.println(db.saveUser("edian","123","123","123","123"));
         return ok(index.render());
     }
     

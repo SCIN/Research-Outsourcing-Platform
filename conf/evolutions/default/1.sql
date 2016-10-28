@@ -7,6 +7,12 @@ create table user (
   id                        bigint not null,
   name                      varchar(255),
   password                  varchar(255),
+<<<<<<< HEAD
+=======
+  emial                     varchar(255),
+  secureQuestion            varchar(255),
+  secureAnswer              varchar(255),
+>>>>>>> e459ef90f474e841cda4471936b0e7b18759b577
   done                      boolean,
   constraint pk_user primary key (id))
 ;
