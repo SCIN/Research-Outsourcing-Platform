@@ -29,7 +29,7 @@ public class User extends Model {
     @Column(name = "secureAnswer")
     public String secureAnswer;
 
-    public boolean done;
+    //public boolean done;
 
 /*
     @Formats.DateTime(pattern="dd/MM/yyyy")
