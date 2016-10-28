@@ -14,9 +14,7 @@ import models.*;
 
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
-
     public Result index() {
-        //System.out.println(db.saveUser("edian","123","123","123","123"));
         return ok(index.render());
     }
     
@@ -52,8 +50,7 @@ public class Application extends Controller {
             String question = form.get("question");
             String answer = form.get("answer");
             try {
-                // boolean register = db.saveUser(userName, password, email, question, answer);
-                boolean register = true;
+                boolean register = db.saveUser(userName, password, email, question, answer);
                 if (register) {
                     return ok("Register Success");
                 } else {
