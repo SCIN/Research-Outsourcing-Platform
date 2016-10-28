@@ -13,7 +13,6 @@ import play.data.format.*;
 import models.*;
 
 public class Application extends Controller {
-
     private dbHandle db = new dbHandle();
     public Result index() {
         return ok(index.render());
@@ -27,10 +26,16 @@ public class Application extends Controller {
         DynamicForm form = Form.form().bindFromRequest();
 
         if (form.data().size() != 2) {
-            return badRequest("Bad Request!!!!!!");
+            return badRequest("Bad Login Request");
         } else {
-            String response = "Username: " + form.get("userName") + " Password: " + form.get("password");
-            return ok(response);
+            String userName = form.get("userName");
+            String password = form.get("password");
+            String dbPassword = db.getPassword(userName);
+            if (password.equals(dbPassword)) {
+                return ok("login Success");
+            } else {
+                return ok("Invalid Login");
+            }
         }
     }
     
@@ -44,8 +49,19 @@ public class Application extends Controller {
             String email = form.get("email");
             String question = form.get("question");
             String answer = form.get("answer");
-            
-            return ok("Register Success");
+            try {
+                // boolean register = db.saveUser(userName, password, email, question, answer);
+                boolean register = true;
+                if (register) {
+                    return ok("Register Success");
+                } else {
+                    return ok("User Exists");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return badRequest("Bad Register Request");
+            }
+
         }
     }
 
