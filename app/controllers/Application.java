@@ -36,11 +36,16 @@ public class Application extends Controller {
     
     public Result registerUser() {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 2) {
-            return badRequest("Bad Request!!!!!!");
+        if (form.data().size() != 5) {
+            return badRequest("Bad Register Request");
         } else {
-            String response = "Register the user: " + "Username " + form.get("userName") + " Password " + form.get("password");
-            return ok(response);
+            String userName = form.get("userName");
+            String password = form.get("password");
+            String email = form.get("email");
+            String question = form.get("question");
+            String answer = form.get("answer");
+            
+            return ok("Register Success");
         }
     }
 
