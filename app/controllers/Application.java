@@ -44,7 +44,7 @@ public class Application extends Controller {
         if (form.data().size() != 5) {
             return badRequest("Bad Register Request");
         } else {
-            String userName = form.get("userName");
+            String userName = form.get("username");
             String password = form.get("password");
             String email = form.get("email");
             String question = form.get("question");
