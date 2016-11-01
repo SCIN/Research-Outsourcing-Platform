@@ -20,7 +20,16 @@ public class User extends Model {
     @Constraints.Required
     public String password;
 
-    public boolean done;
+    @Column(name = "emial")
+    public String email;
+
+    @Column(name = "secureQuestion")
+    public String secureQuestion;
+
+    @Column(name = "secureAnswer")
+    public String secureAnswer;
+
+    //public boolean done;
 
 /*
     @Formats.DateTime(pattern="dd/MM/yyyy")
