@@ -3,7 +3,7 @@ define([], function() {
 	function registerController($scope, $http, $location){
 		$scope.user = {
 			question: 'When is your birthday? (mm:dd)',
-			anwser: '',
+			answer: '',
 			email:'',
 			username: '',
 			password:''

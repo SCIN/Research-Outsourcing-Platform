@@ -42,6 +42,7 @@ public class Application extends Controller {
     public Result registerUser() {
         DynamicForm form = Form.form().bindFromRequest();
         if (form.data().size() != 5) {
+            System.out.println(form.data());
             return badRequest("Bad Register Request");
         } else {
             String userName = form.get("username");
