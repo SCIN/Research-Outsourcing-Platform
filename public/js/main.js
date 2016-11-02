@@ -26,7 +26,8 @@ require(['angular', 'controllers/registerController','controllers/loginControlle
       config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: registerController});
         $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: loginController});
-        $routeProvider.otherwise({redirectTo: '/register'});
+        $routeProvider.when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: loginController});
+        $routeProvider.otherwise({redirectTo: '/login'});
       }]);
 
     angular.bootstrap(document, ['myApp']);

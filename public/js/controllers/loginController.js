@@ -18,7 +18,7 @@ define([], function() {
             }).success(function(data, status, headers, config) {
                 $scope.loginResult = data;
                 console.log(data);
-//                $location.path('/login');
+                $location.path('/dashboard');
                 }
 
             ).error(function (data, status, headers, config) {
