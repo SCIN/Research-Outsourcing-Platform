@@ -18,8 +18,8 @@ requirejs.config({
   }
 });
 
-require(['angular', 'controllers', 'angular-route'],
-  function(angular, controllers) {
+require(['angular', 'controllers', 'services','angular-route'],
+  function(angular, controllers, services) {
     // Declare app level module which depends on filters, and services
 
     var app = angular.module('myApp', ['ngRoute']).
@@ -33,4 +33,6 @@ require(['angular', 'controllers', 'angular-route'],
     angular.bootstrap(document, ['myApp']);
     app.controller("registerController", controllers.registerController);
     app.controller("loginController", controllers.loginController);
+
+    app.service('projectService', services.projectService);
 });
