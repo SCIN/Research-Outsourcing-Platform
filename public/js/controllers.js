@@ -2,18 +2,18 @@
 
 'use strict';
 
-define(function() {
+define([
+    'controllers/loginController','controllers/registerController'
+], function(loginController, registerController) {
 
 /* Controllers */
 
-var controllers = {};
+    var controllers = {};
 
-controllers.MyCtrl1 = function() {}
-controllers.MyCtrl1.$inject = [];
+    controllers.registerController = registerController;
 
-controllers.MyCtrl2 = function() {}
-controllers.MyCtrl2.$inject = [];
+    controllers.loginController = loginController;
 
-return controllers;
+    return controllers;
 
 });

@@ -18,19 +18,19 @@ requirejs.config({
   }
 });
 
-require(['angular', 'controllers/registerController','controllers/loginController', 'angular-route'],
-  function(angular, registerController, loginController) {
+require(['angular', 'controllers', 'angular-route'],
+  function(angular, controllers) {
     // Declare app level module which depends on filters, and services
 
     var app = angular.module('myApp', ['ngRoute']).
       config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: registerController});
-        $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: loginController});
-        $routeProvider.when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: loginController});
+        $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: controllers.registerController});
+        $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: controllers.loginController});
+        $routeProvider.when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: controllers.loginController});
         $routeProvider.otherwise({redirectTo: '/login'});
       }]);
 
     angular.bootstrap(document, ['myApp']);
-    app.controller("registerController", registerController);
-    app.controller("loginController", loginController);
+    app.controller("registerController", controllers.registerController);
+    app.controller("loginController", controllers.loginController);
 });
