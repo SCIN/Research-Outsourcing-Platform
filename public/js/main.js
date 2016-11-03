@@ -26,13 +26,24 @@ require(['angular', 'controllers', 'services','angular-route'],
       config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: controllers.registerController});
         $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: controllers.loginController});
-        $routeProvider.when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: controllers.loginController});
+        $routeProvider.when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: controllers.dashController});
         $routeProvider.otherwise({redirectTo: '/login'});
       }]);
+
+   // root scope
+    app.run(function($rootScope) {
+        $rootScope.user = {
+                userName: '',
+                password:'',
+                role:''
+        };
+    });
 
     angular.bootstrap(document, ['myApp']);
     app.controller("registerController", controllers.registerController);
     app.controller("loginController", controllers.loginController);
+    app.controller("dashController", controllers.dashController);
 
     app.service('projectService', services.projectService);
+
 });
