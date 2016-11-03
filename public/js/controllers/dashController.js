@@ -1,32 +1,48 @@
 /*global define */
 define([], function() {
 	'use strict';
-	function loginController($scope, $http, $location){
-		$scope.loginTitle = "dash bord";
-		$scope.user = {
-        			userName: '',
-        			password:''
-        };
+	function dashController($scope, $http, $location, $rootScope){
+        $scope.userName = $rootScope.user.userName;
+        $scope.role = $rootScope.user.role;
 
-        $scope.loginResult = "Please use your username and password to login";
-        // Login Function
-		$scope.login = function() {
+        // $scope.getUserInfo = function() {
+        //     $http({
+        //         method : 'GET',
+        //         url : '/users/'+ $scope.userName + '/userInfo',
+        //     }).success(function(data, status, headers, config) {
+        //             $scope.loginResult = data;
+        //             console.log(data);
+        //             $location.path('/dashboard');
+        //         }
+        //
+        //     ).error(function (data, status, headers, config) {
+        //         console.log(data);
+        //     });
+        // }
+
+        $scope.getProviderInfo = function() {
             $http({
-                method : 'POST',
-                url : '/users/login',
-                data : $scope.user
+                method : 'GET',
+                url : '/users/'+ $scope.userName + '/providerInfo',
             }).success(function(data, status, headers, config) {
-                $scope.loginResult = data;
-                console.log(data);
-                $location.path('/dashboard');
+                    $scope.loginResult = data;
+                    console.log(data);
+                    $location.path('/dashboard');
                 }
 
             ).error(function (data, status, headers, config) {
                 console.log(data);
             });
         }
-	}
-	loginController.$inject=['$scope', '$http', '$location'];
 
-	return loginController;
+        if($scope.role == 'serviceUser'){
+            // getUserInfo();
+        }
+        else{
+            getProviderInfo();
+        }
+	}
+	dashController.$inject=['$scope', '$http', '$location', '$rootScope'];
+
+	return dashController;
 });
