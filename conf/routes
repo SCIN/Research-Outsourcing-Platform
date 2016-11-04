@@ -13,3 +13,5 @@ GET        /*file                            controllers.Assets.versioned(path="
 
 POST  /users/login                           controllers.Application.loginSubmit()
 POST  /users/register                        controllers.Application.registerUser()
+
+GET   /users/:username/userInfo	             controllers.Application.getUserInfo(username: String)

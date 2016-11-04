@@ -20,7 +20,7 @@ public class dbHandle {
       return t.find.where().eq("id", id).findUnique();
     }
 
-    public User getuser(String name){
+    public User getUser(String name){
       return t.find.where().eq("name",name).findUnique();
     }
 

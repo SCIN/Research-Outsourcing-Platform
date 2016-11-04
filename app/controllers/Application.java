@@ -3,6 +3,7 @@ package controllers;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Transaction;
 import play.*;
+import play.libs.Json;
 import play.mvc.*;
 
 import views.html.*;
@@ -64,5 +65,10 @@ public class Application extends Controller {
 
         }
     }
+    
+     public Result getUserInfo(String username) {
+         User user = db.getUser(username);
+         return user == null ? notFound() : ok(Json.toJson(user));
+     }
 
 }
