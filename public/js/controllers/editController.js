@@ -1,7 +1,7 @@
 /*global define */
 define([], function() {
-	'use strict';
-	function dashController($scope, $http, $location, $rootScope){
+    'use strict';
+    function editProfileController($scope, $http, $location, $rootScope){
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
@@ -41,7 +41,18 @@ define([], function() {
             });
         }
 
-
+        $scope.updateProviderInfo = function() {
+            $http({
+                method : 'POST',
+                url : '/users/'+ $scope.userName + '/providerInfo',
+                params: providerInfo
+            }).success(function(data, status, headers, config) {
+                    console.log(data);
+                }
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        }
 
         if($scope.role == 'serviceUser'){
             // getUserInfo();
@@ -49,8 +60,8 @@ define([], function() {
         else{
             // $scope.getProviderInfo();
         }
-	}
-	dashController.$inject=['$scope', '$http', '$location', '$rootScope'];
+    }
+    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
 
-	return dashController;
+    return editProfileController;
 });
