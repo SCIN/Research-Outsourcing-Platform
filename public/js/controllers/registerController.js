@@ -22,6 +22,7 @@ define([], function() {
 					alert("Username Existed!");
 				}
 				else {
+				    alert("Register Success!");
 					$location.path('/login');
 				}
 			}).error(function (data, status, headers, config) {

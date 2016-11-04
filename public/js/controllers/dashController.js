@@ -30,7 +30,7 @@ define([], function() {
         $scope.getProviderInfo = function() {
             $http({
                 method : 'GET',
-                url : '/users/'+ $scope.userName + '/providerInfo'
+                url : '/users/'+ $scope.userName + '/providerinfo'
             }).success(function(data, status, headers, config) {
                     $scope.providerInfo = data;
                     console.log(data);

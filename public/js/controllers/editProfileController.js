@@ -5,11 +5,11 @@ define([], function() {
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
-        $scope.providerInfo = {
-            credential: "",
-            researchAreas:"",
-            publications:"",
-            professionalServices:""
+        $scope.providerinfo = {
+            credential: "NA",
+            researchAreas:"NA",
+            publications:"NA",
+            professionalServices:"NA"
         };
 
         // $scope.getUserInfo = function() {
@@ -30,9 +30,9 @@ define([], function() {
         $scope.getProviderInfo = function() {
             $http({
                 method : 'GET',
-                url : '/users/'+ $scope.userName + '/providerInfo'
+                url : '/users/'+ $scope.userName + '/providerinfo'
             }).success(function(data, status, headers, config) {
-                    $scope.providerInfo = data;
+                    $scope.providerinfo = data;
                     // console.log(data);
                 }
 
@@ -45,8 +45,8 @@ define([], function() {
             console.log(".......");
             $http({
                 method : 'POST',
-                url : '/users/'+ $scope.userName + '/providerInfo',
-                params: $scope.providerInfo
+                url : '/users/'+ $scope.userName + '/providerinfo',
+                data: $scope.providerinfo
             }).success(function(data, status, headers, config) {
                 console.log(data);
                 $location.path('/dashboard');

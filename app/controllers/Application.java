@@ -36,7 +36,7 @@ public class Application extends Controller {
             if (password.equals(dbPassword)) {
                 return ok("login Success");
             } else {
-                return ok("Invalid Login");
+                return notFound("Invalid Login");
             }
         }
     }
@@ -79,16 +79,16 @@ public class Application extends Controller {
 
     public Result updateProviderInfo(String username) {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 4) {
+        if (form.data().size() != 5) {
             System.out.println(form.data());
-            return badRequest("Bad Register Request");
+            return badRequest("Bad update length!");
         } else {
             String credential = form.get("credential");
-            String researchAreas = form.get("researchAreas");
+            String researchArea = form.get("researchArea");
             String publications = form.get("publications");
             String professionalServices = form.get("professionalServices");
             try {
-                boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices);
+                boolean register = db.updateProviderInfo(username, credential, researchArea, publications, professionalServices);
                 if (register) {
                     return ok("Update Success");
                 } else {
@@ -96,7 +96,7 @@ public class Application extends Controller {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                return badRequest("Bad Register Request");
+                return badRequest("Bad update Request");
             }
         }
     }
