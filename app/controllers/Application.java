@@ -15,7 +15,6 @@ import models.*;
 
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
-
     public Result index() {
         return ok(index.render());
     }
@@ -75,7 +74,7 @@ public class Application extends Controller {
 
     public Result getProviderInfo(String username) {
         ServicePublications provider = db.getProviderInfo(username);
-        return provider == null ? notFound() : ok(Json.toJson(provider));
+        return (provider == null) ? notFound() : ok(Json.toJson(provider));
     }
 
     public Result updateProviderInfo(String username) {

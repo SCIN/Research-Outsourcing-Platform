@@ -67,9 +67,9 @@ public class dbHandle {
     public ServicePublications getProviderInfo(String username){
       try{
         ServicePublications spublications = sp.find.where().eq("username",username).findUnique();
-        if(spublications==null) return null;
+        if(spublications == null) return null;
         return spublications;
-      }catch(Exception e){
+      } catch (Exception e) {
         e.printStackTrace();
       }
       return null;
