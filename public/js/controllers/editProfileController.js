@@ -47,7 +47,8 @@ define([], function() {
                 url : '/users/'+ $scope.userName + '/providerInfo',
                 params: providerInfo
             }).success(function(data, status, headers, config) {
-                    console.log(data);
+                console.log(data);
+                $location.path('/dashboard');
                 }
             ).error(function (data, status, headers, config) {
                 console.log(data);
