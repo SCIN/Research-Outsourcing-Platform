@@ -9,18 +9,19 @@ import play.data.validation.*;
 
 @Entity
 public class User extends Model {
-
+/*
     @Id
     @Constraints.Min(10)
-    public Long id;
+    public Long id;*/
 
+    @Id
     @Constraints.Required
     public String name;
 
     @Constraints.Required
     public String password;
 
-    @Column(name = "emial")
+    @Column(name = "email")
     public String email;
 
     @Column(name = "secureQuestion")
@@ -35,7 +36,7 @@ public class User extends Model {
     @Formats.DateTime(pattern="dd/MM/yyyy")
     public Date dueDate = new Date();*/
 
-    public static Finder<Long, User> find = new Finder<Long,User>(User.class);
+    public static Finder<String, User> find = new Finder<String,User>(User.class);
 
 
 }
