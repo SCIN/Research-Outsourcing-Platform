@@ -79,7 +79,7 @@ public class Application extends Controller {
 
     public Result updateProviderInfo(String username) {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 4) {
+        if (form.data().size() != 5) {
             System.out.println(form.data());
             return badRequest("Bad update length!");
         } else {

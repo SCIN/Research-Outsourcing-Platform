@@ -5,7 +5,7 @@ define([], function() {
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
-        $scope.providerInfo = {
+        $scope.providerinfo = {
             credential: "",
             researchAreas:"",
             publications:"",
@@ -32,7 +32,7 @@ define([], function() {
                 method : 'GET',
                 url : '/users/'+ $scope.userName + '/providerinfo'
             }).success(function(data, status, headers, config) {
-                    $scope.providerInfo = data;
+                    $scope.providerinfo = data;
                     console.log(data);
                 }
 
