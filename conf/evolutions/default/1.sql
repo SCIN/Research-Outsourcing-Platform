@@ -26,7 +26,7 @@ create table rates (
 create table service_publications (
   username                  varchar(255) not null,
   credential                varchar(255),
-  researchArea              varchar(255),
+  researchAreas             varchar(255),
   publications              varchar(255),
   professionalServices      varchar(255),
   constraint pk_service_publications primary key (username))
