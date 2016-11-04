@@ -47,7 +47,7 @@ define([], function() {
             // getUserInfo();
         }
         else{
-            // $scope.getProviderInfo();
+            $scope.getProviderInfo();
         }
 	}
 	dashController.$inject=['$scope', '$http', '$location', '$rootScope'];

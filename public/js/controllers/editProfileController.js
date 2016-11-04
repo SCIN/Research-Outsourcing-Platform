@@ -33,11 +33,11 @@ define([], function() {
                 url : '/users/'+ $scope.userName + '/providerInfo'
             }).success(function(data, status, headers, config) {
                     $scope.providerInfo = data;
-                    console.log(data);
+                    // console.log(data);
                 }
 
             ).error(function (data, status, headers, config) {
-                console.log(data);
+                // console.log(data);
             });
         }
 
@@ -46,7 +46,7 @@ define([], function() {
             $http({
                 method : 'POST',
                 url : '/users/'+ $scope.userName + '/providerInfo',
-                params: providerInfo
+                params: $scope.providerInfo
             }).success(function(data, status, headers, config) {
                 console.log(data);
                 $location.path('/dashboard');
@@ -60,7 +60,7 @@ define([], function() {
             // getUserInfo();
         }
         else{
-            // $scope.getProviderInfo();
+            $scope.getProviderInfo();
         }
     }
     editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
