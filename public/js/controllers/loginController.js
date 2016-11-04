@@ -1,12 +1,13 @@
 /*global define */
 define([], function() {
 	'use strict';
-	function loginController($scope, $http, $location){
+	function loginController($scope, $http, $location, $rootScope){
 		$scope.loginTitle = "Login";
 		$scope.user = {
         			userName: '',
         			password:''
         		};
+        $scope.role = '';
 
         $scope.loginResult = "Please use your username and password to login";
         // Login Function
@@ -17,8 +18,12 @@ define([], function() {
                 data : $scope.user
             }).success(function(data, status, headers, config) {
                 $scope.loginResult = data;
-                console.log(data);
-//                $location.path('/login');
+
+                $rootScope.user.userName = $scope.user.userName;
+                $rootScope.user.role = $scope.role;
+                console.log($rootScope.user.role);
+
+                $location.path('/dashboard');
                 }
 
             ).error(function (data, status, headers, config) {
@@ -26,7 +31,7 @@ define([], function() {
             });
         }
 	}
-	loginController.$inject=['$scope', '$http', '$location'];
+	loginController.$inject=['$scope', '$http', '$location', '$rootScope'];
 
 	return loginController;
 });

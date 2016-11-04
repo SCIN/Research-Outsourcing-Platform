@@ -18,11 +18,15 @@ define([], function() {
 				data : $scope.user
 			}).success(function(data, status, headers, config) {
 				console.log(data);
-				$location.path('/login');
+				if (data == 'User Exists') {
+					alert("Username Existed!");
 				}
-
-			).error(function (data, status, headers, config) {
+				else {
+					$location.path('/login');
+				}
+			}).error(function (data, status, headers, config) {
 				console.log(data);
+				alert("Failer!");
 			});
 		}
 	}
