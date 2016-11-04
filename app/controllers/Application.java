@@ -12,9 +12,11 @@ import play.data.*;
 import play.data.format.*;
 import models.*;
 
+
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
     public Result index() {
+        db.updateProviderInfo("abc","abc","abc","abc","abc");
         return ok(index.render());
     }
     
@@ -26,7 +28,7 @@ public class Application extends Controller {
         DynamicForm form = Form.form().bindFromRequest();
 
         if (form.data().size() != 2) {
-            return badRequest("Bad Login Request");
+            return badRequest(String.valueOf(form.data().size()));
         } else {
             String userName = form.get("userName");
             String password = form.get("password");
