@@ -14,13 +14,6 @@ import java.util.*;
 public class dbHandle {
     private User t = new User();
     private ServicePublications sp = new ServicePublications();
-    public List<User> all(){
-      return t.find.where().findList();
-    }
-
-    public List<User> all() {
-        return t.find.where().findList();
-    }
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();

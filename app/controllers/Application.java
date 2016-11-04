@@ -74,7 +74,7 @@ public class Application extends Controller {
     }
 
     public Result getProviderInfo(String username) {
-        Provider provider = db.getProviderInfo(username);
+        ServicePublications provider = db.getProviderInfo(username);
         return provider == null ? notFound() : ok(Json.toJson(provider));
     }
 
