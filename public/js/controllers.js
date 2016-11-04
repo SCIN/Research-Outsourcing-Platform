@@ -3,8 +3,8 @@
 'use strict';
 
 define([
-    'controllers/loginController','controllers/registerController'
-], function(loginController, registerController) {
+    'controllers/loginController','controllers/registerController','controllers/dashController'
+], function(loginController, registerController,dashController) {
 
 /* Controllers */
 
@@ -13,6 +13,8 @@ define([
     controllers.registerController = registerController;
 
     controllers.loginController = loginController;
+
+    controllers.dashController = dashController;
 
     return controllers;
 

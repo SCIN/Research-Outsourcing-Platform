@@ -4,6 +4,13 @@ define([], function() {
 	function dashController($scope, $http, $location, $rootScope){
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
+        // console.log($rootScope.user.role);
+        $scope.providerInfo = {
+            credential: "",
+            researchAreas:"",
+            publications:"",
+            professionalServices:""
+        };
 
         // $scope.getUserInfo = function() {
         //     $http({
@@ -23,13 +30,25 @@ define([], function() {
         $scope.getProviderInfo = function() {
             $http({
                 method : 'GET',
-                url : '/users/'+ $scope.userName + '/providerInfo',
+                url : '/users/'+ $scope.userName + '/providerInfo'
             }).success(function(data, status, headers, config) {
-                    $scope.loginResult = data;
+                    $scope.providerInfo = data;
                     console.log(data);
-                    $location.path('/dashboard');
                 }
 
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        }
+
+        $scope.updateProviderInfo = function() {
+            $http({
+                method : 'POST',
+                url : '/users/'+ $scope.userName + '/providerInfo',
+                params: providerInfo
+            }).success(function(data, status, headers, config) {
+                    console.log(data);
+                }
             ).error(function (data, status, headers, config) {
                 console.log(data);
             });
@@ -39,7 +58,7 @@ define([], function() {
             // getUserInfo();
         }
         else{
-            getProviderInfo();
+            // $scope.getProviderInfo();
         }
 	}
 	dashController.$inject=['$scope', '$http', '$location', '$rootScope'];
