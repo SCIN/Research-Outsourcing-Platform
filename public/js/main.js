@@ -18,18 +18,33 @@ requirejs.config({
   }
 });
 
-require(['angular', 'controllers/registerController','controllers/loginController', 'angular-route'],
-  function(angular, registerController, loginController) {
+require(['angular', 'controllers', 'services','angular-route'],
+  function(angular, controllers, services) {
     // Declare app level module which depends on filters, and services
 
     var app = angular.module('myApp', ['ngRoute']).
       config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: registerController});
-        $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: loginController});
-        $routeProvider.otherwise({redirectTo: '/register'});
+        $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: controllers.registerController});
+        $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: controllers.loginController});
+        $routeProvider.when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: controllers.dashController});
+        $routeProvider.when('/editService', {templateUrl: 'partials/editService.html', controller: controllers.editProfileController});
+        $routeProvider.otherwise({redirectTo: '/login'});
       }]);
 
+   // root scope
+    app.run(function($rootScope) {
+        $rootScope.user = {
+                userName: '',
+                password:'',
+                role:''
+        };
+    });
+
     angular.bootstrap(document, ['myApp']);
-    app.controller("registerController", registerController);
-    app.controller("loginController", loginController);
+    app.controller("registerController", controllers.registerController);
+    app.controller("loginController", controllers.loginController);
+    app.controller("dashController", controllers.dashController);
+    app.controller("editProfileController", controllers.editProfileController);
+    app.service('projectService', services.projectService);
+
 });
