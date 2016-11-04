@@ -15,13 +15,15 @@ import models.*;
 
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
+
     public Result index() {
         return ok(index.render());
     }
-    
+
     public Result getName() {
         return ok(index.render());
     }
+
     public Result loginSubmit() {
 
         DynamicForm form = Form.form().bindFromRequest();
@@ -39,7 +41,7 @@ public class Application extends Controller {
             }
         }
     }
-    
+
     public Result registerUser() {
         DynamicForm form = Form.form().bindFromRequest();
         if (form.data().size() != 5) {
@@ -65,10 +67,38 @@ public class Application extends Controller {
 
         }
     }
-    
-     public Result getUserInfo(String username) {
-         User user = db.getUser(username);
-         return user == null ? notFound() : ok(Json.toJson(user));
-     }
 
+    public Result getUserInfo(String username) {
+        User user = db.getUser(username);
+        return user == null ? notFound() : ok(Json.toJson(user));
+    }
+
+    public Result getProviderInfo(String username) {
+        Provider provider = db.getProviderInfo(username);
+        return provider == null ? notFound() : ok(Json.toJson(provider));
+    }
+
+    public Result updateProviderInfo(String username) {
+        DynamicForm form = Form.form().bindFromRequest();
+        if (form.data().size() != 4) {
+            System.out.println(form.data());
+            return badRequest("Bad Register Request");
+        } else {
+            String credential = form.get("credential");
+            String researchAreas = form.get("researchAreas");
+            String publications = form.get("publications");
+            String professionalServices = form.get("professionalServices");
+            try {
+                boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices);
+                if (register) {
+                    return ok("Update Success");
+                } else {
+                    return ok("Update Failure");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return badRequest("Bad Register Request");
+            }
+        }
+    }
 }
