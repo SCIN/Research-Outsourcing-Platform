@@ -10,7 +10,6 @@ Yiting Shen: ---- Service provider Info page:
 
 Feature Implemented:
 1.    Login: Provide a log in page, for service users and service provider (a role selection):
-
      Login as a service user
      Login as a service provider
 
