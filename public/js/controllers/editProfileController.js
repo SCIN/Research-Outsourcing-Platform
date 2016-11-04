@@ -42,6 +42,7 @@ define([], function() {
         }
 
         $scope.updateProviderInfo = function() {
+            console.log(".......");
             $http({
                 method : 'POST',
                 url : '/users/'+ $scope.userName + '/providerInfo',
