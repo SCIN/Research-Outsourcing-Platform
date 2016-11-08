@@ -2,14 +2,15 @@
 define([], function() {
     'use strict';
     function editProfileController($scope, $http, $location, $rootScope){
+        console.log("publish Project.......");
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
         $scope.providerinfo = {
-            credential: "NA",
-            researchAreas:"NA",
-            publications:"NA",
-            professionalServices:"NA"
+            credential: "",
+            researchAreas:"",
+            publications:"",
+            professionalServices:""
         };
 
         // $scope.getUserInfo = function() {
