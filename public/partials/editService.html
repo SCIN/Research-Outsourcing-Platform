@@ -6,7 +6,7 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="panel panel-info">
+                        <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div class="panel-title">Information</div>
                             </div>
@@ -19,30 +19,32 @@
                     </div>
                 </div>
 
-                <div class="panel panel-info">
-                    <div class="panel-heading">Publication</div>
-                    <div class="panel-body">
-                        <input class="form-control" type="text" placeholder="Input your Publication" ng-model = "providerinfo.publications">
-                    </div>
-                </div>
-
-                <div class="panel panel-info">
-                    <div class="panel-heading">Professional Services</div>
-                    <div class="panel-body">
-
-                        <div class="btn-group" role="group" aria-label="...">
-                            <input class="form-control" type="text" placeholder="Input your professional Services" ng-model = "providerinfo.professionalServices">
-                            <!--<button type="button" class="btn btn-default">consultant</button>-->
-                            <!--<button type="button" class="btn btn-default">design</button>-->
-                            <!--<button type="button" class="btn btn-default">development</button>-->
-                            <!--<button type="button" class="btn btn-default">proof-reading</button>-->
+                <div class="sub-info">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Publication</div>
+                        <div class="panel-body">
+                            <input class="form-control" type="text" placeholder="Input your Publication" ng-model = "providerinfo.publications">
                         </div>
+                    </div>
 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Professional Services</div>
+                        <div class="panel-body">
+
+                            <div class="btn-group" role="group" aria-label="...">
+                                <input class="form-control" type="text" placeholder="Input your professional Services" ng-model = "providerinfo.professionalServices">
+                                <!--<button type="button" class="btn btn-default">consultant</button>-->
+                                <!--<button type="button" class="btn btn-default">design</button>-->
+                                <!--<button type="button" class="btn btn-default">development</button>-->
+                                <!--<button type="button" class="btn btn-default">proof-reading</button>-->
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-default" ng-click = "updateProviderInfo()">Save</button>
+                <div class = "editButton">
+                    <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click = "updateProviderInfo()">Save</button>
                 </div>
             </div>
 
