@@ -1,0 +1,63 @@
+<div class="page-content">
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-2" ng-include="'partials/sidebar.html'"></div>
+
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">Basic Info</div>
+                            </div>
+                            <div class="panel-body">
+                                <p class="sec-title">Project name:</p>
+                                <input class="form-control" type="text" placeholder="Project Name" ng-model = "userName"><br>
+                                <p class="sec-title">Brief descriptions:</p>
+                                <input class="form-control" type="text" placeholder="Brief descriptions" ng-model = "providerinfo.publications">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sub-info">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Required expertise</div>
+                        <div class="panel-body">
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default">consultant</button>
+                                <button type="button" class="btn btn-default">design</button>
+                                <button type="button" class="btn btn-default">development</button>
+                                <button type="button" class="btn btn-default">proof-reading</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Time frame requirements</div>
+                        <div class="panel-body">
+                            <input class="form-control" type="text" placeholder="Input your Publication" ng-model = "providerinfo.publications">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Offered price</div>
+                        <div class="panel-body">
+                            <input class="form-control" type="text" placeholder="Input your Publication" ng-model = "providerinfo.publications">
+                        </div>
+                    </div>
+                </div>
+
+                <div class = "editButton">
+                    <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click = "updateProviderInfo()"> Publish </button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<div ng-include="'partials/footer.html'"></div>
