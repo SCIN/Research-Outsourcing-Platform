@@ -23,11 +23,23 @@ public class Projects extends Model {
     @Constraints.Required
     public String status;
 
-    @Column(name = "description")
-    public String description;
+    @Column(name = "projectDescription")
+    public String projectDescription;
 
-    @Column(name = "rate")
-    public Double rate;
+    @Column(name = "requiredExpertise")
+    public String requiredExpertise;
+
+    @Column(name = "begintime")
+    public String begintime;
+
+    @Column(name = "endtime")
+    public String endtime;
+
+    @Column(name = "price")
+    public String price;
+
+   // @Column(name = "rate")
+    //public Double rate;
 
 
     //public boolean done;
