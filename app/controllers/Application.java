@@ -15,7 +15,6 @@ import models.*;
 
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
-
     public Result index() {
         return ok(index.render());
     }
