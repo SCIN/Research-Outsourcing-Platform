@@ -12,9 +12,9 @@
                             </div>
                             <div class="panel-body">
                                 <p class="sec-title">Project name:</p>
-                                <input class="form-control" type="text" placeholder="Project Name" ng-model = "userName"><br>
+                                <input class="form-control" type="text" placeholder="Project Name" ng-model = "projectInfo.projectName"><br>
                                 <p class="sec-title">Brief descriptions:</p>
-                                <input class="form-control" type="text" placeholder="Brief descriptions" ng-model = "providerinfo.publications">
+                                <input class="form-control" type="text" placeholder="Brief descriptions" ng-model = "projectInfo.projectDescription">
                             </div>
                         </div>
                     </div>
@@ -25,10 +25,10 @@
                         <div class="panel-heading">Required expertise</div>
                         <div class="panel-body">
                             <div class="btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default">consultant</button>
-                                <button type="button" class="btn btn-default">design</button>
-                                <button type="button" class="btn btn-default">development</button>
-                                <button type="button" class="btn btn-default">proof-reading</button>
+                                <button type="button" class="btn btn-default" value = "consultant">consultant</button>
+                                <button type="button" class="btn btn-default" value = "design">design</button>
+                                <button type="button" class="btn btn-default" value = "development">development</button>
+                                <button type="button" class="btn btn-default" value = "proof-reading">proof-reading</button>
                             </div>
 
                         </div>
@@ -37,20 +37,22 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Time frame requirements</div>
                         <div class="panel-body">
-                            <input class="form-control" type="text" placeholder="Input your Publication" ng-model = "providerinfo.publications">
+                            <input class="form-control" type="text" placeholder="Input your begin Time" ng-model = "projectInfo.begintime">
+                            <br>
+                            <input class="form-control" type="text" placeholder="Input your end Time" ng-model = "projectInfo.endtime">
                         </div>
                     </div>
 
                     <div class="panel panel-default">
                         <div class="panel-heading">Offered price</div>
                         <div class="panel-body">
-                            <input class="form-control" type="text" placeholder="Input your Publication" ng-model = "providerinfo.publications">
+                            <input class="form-control" type="text" placeholder="Input your Publication" ng-model = "projectInfo.price">
                         </div>
                     </div>
                 </div>
 
                 <div class = "editButton">
-                    <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click = "updateProviderInfo()"> Publish </button>
+                    <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click = "publishProject()"> Publish </button>
                 </div>
             </div>
 
