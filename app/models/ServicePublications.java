@@ -22,8 +22,8 @@ public class ServicePublications extends Model {
     public String credential;
 
 
-    @Column(name = "researchArea")
-    public String researchArea;
+    @Column(name = "researchAreas")
+    public String researchAreas;
 
     @Column(name = "publications")
     public String publications;

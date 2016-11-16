@@ -4,6 +4,9 @@
 
 
 # Home page
+
+GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
+
 GET        /                                 controllers.Application.index()
 
 # Map the JS resource paths
@@ -14,7 +17,9 @@ GET        /*file                            controllers.Assets.versioned(path="
 POST  /users/login                           controllers.Application.loginSubmit()
 POST  /users/register                        controllers.Application.registerUser()
 
-GET   /users/:username/providerInfo          controllers.Application.getProviderInfo(username: String)
-POST  /users/:username/providerInfo          controllers.Application.updateProviderInfo(username: String)
+GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
 
-GET   /users/:username/userInfo	             controllers.Application.getUserInfo(username: String)
+POST  /users/:username/providerinfo          controllers.Application.updateProviderInfo(username: String)
+# GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
+
+GET   /users/:username/userinfo	             controllers.Application.getUserInfo(username: String)
