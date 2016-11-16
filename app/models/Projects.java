@@ -18,6 +18,9 @@ public class Projects extends Model {
     public String projectName;
 
     @Constraints.Required
+    public String publisher;
+
+    //@Constraints.Required
     public String provider;
 
     @Constraints.Required

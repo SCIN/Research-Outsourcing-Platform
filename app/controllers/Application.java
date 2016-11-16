@@ -12,6 +12,7 @@ import play.data.Form;
 import play.data.*;
 import play.data.format.*;
 import models.*;
+import java.util.*;
 
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
@@ -103,5 +104,41 @@ public class Application extends Controller {
                 return badRequest("Bad update Request");
             }
         }
+    }
+
+    public Result publishProject(String username) {
+        DynamicForm form = Form.form().bindFromRequest();
+        if (form.data().size() != 7) {
+            System.out.println(form.data());
+            return badRequest("Bad publish length!");
+        } else {
+            String projectName = form.get("projectName");
+            String projectDescription = form.get("projectDescription");
+            String requiredExpertise = form.get("requiredExpertise");
+            String begintime = form.get("begintime");
+            String endtime = form.get("endtime");
+            String price = form.get("price");
+            String status = form.get("status");
+            try {
+                boolean register = db.updateProjects(projectName, username,projectDescription, requiredExpertise, begintime, endtime, price, status);
+                if (register) {
+                    return ok("Create Success");
+                } else {
+                    return ok("Create Failure");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return badRequest("Bad update Request");
+            }
+        }
+    }
+
+    public Result getProjects() {
+        List<Projects> projects = db.getProject();
+
+        //return provider == null ? notFound() : ok(Json.toJson(provider));
+
+        return (projects == null) ? notFound() : ok(Json.toJson(projects));
+
     }
 }

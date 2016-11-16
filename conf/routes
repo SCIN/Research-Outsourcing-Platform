@@ -7,6 +7,8 @@
 
 GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
 
+GET   /users/showProjects        			controllers.Application.getProjects()
+
 GET        /                                 controllers.Application.index()
 
 # Map the JS resource paths
@@ -23,3 +25,6 @@ POST  /users/:username/providerinfo          controllers.Application.updateProvi
 # GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
 
 GET   /users/:username/userinfo	             controllers.Application.getUserInfo(username: String)
+
+POST  /users/:username/publishProject        controllers.Application.publishProject(username: String)
+GET   /users/showProjects        			controllers.Application.getProjects()

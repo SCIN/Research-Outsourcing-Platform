@@ -14,6 +14,7 @@ import java.util.*;
 public class dbHandle {
     private User t = new User();
     private ServicePublications sp = new ServicePublications();
+    private Projects projects = new Projects();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -100,6 +101,54 @@ public class dbHandle {
          e.printStackTrace();
       }
       return false;
+    }
+
+
+
+    public boolean updateProjects(String projectName, String username, String projectDescription, String requiredExpertise, String begintime, String endtime, String price, String status){
+      try{
+
+        if(projects.find.where().eq("projectName",projectName).eq("publisher",username).findUnique()!=null){
+          Projects proj= projects.find.where().eq("projectName",projectName).eq("username",username).findUnique();
+          proj.projectName = projectName;
+          proj.publisher = username;
+          proj.status = status;
+          proj.projectDescription = projectDescription;
+          proj.requiredExpertise = requiredExpertise;
+          proj.begintime = begintime;
+          proj.endtime = endtime;
+          proj.price = price;
+          proj.update();
+        }
+        else{
+          Projects proj = new Projects();
+          proj.projectName = projectName;
+          proj.publisher = username;
+          proj.status = status;
+          proj.projectDescription = projectDescription;
+          proj.requiredExpertise = requiredExpertise;
+          proj.begintime = begintime;
+          proj.endtime = endtime;
+          proj.price = price;
+          proj.save();
+        }
+
+        return true;
+      }catch(Exception e){
+         e.printStackTrace();
+      }
+      return false;
+    }
+
+    public List<Projects> getProject(){
+      try{
+        List<Projects> proj = projects.find.all();
+        if(proj == null) return null;
+        return proj;
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return null;
     }
 
 }

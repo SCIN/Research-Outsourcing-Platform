@@ -6,10 +6,14 @@
 create table projects (
   id                        bigint auto_increment not null,
   project_name              varchar(255),
+  publisher                 varchar(255),
   provider                  varchar(255),
   status                    varchar(255),
-  description               varchar(255),
-  rate                      double,
+  projectDescription        varchar(255),
+  requiredExpertise         varchar(255),
+  begintime                 varchar(255),
+  endtime                   varchar(255),
+  price                     varchar(255),
   constraint pk_projects primary key (id))
 ;
 
