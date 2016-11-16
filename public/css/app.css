@@ -96,13 +96,11 @@
     color:#262B34;
 }
 
-.datepickerdemoBasicUsage {
-   /** Demo styles for mdCalendar. */ }
-   .datepickerdemoBasicUsage md-content {
-     padding-bottom: 200px; }
-   .datepickerdemoBasicUsage .validation-messages {
-     font-size: 12px;
-     color: #dd2c00;
-     margin-left: 15px; }
+.img_project {
+    margin-left: 50px;
+    margin-right: -30px;
+    margin-top: 20px;
+}
+
 
 
