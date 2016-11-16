@@ -29,6 +29,7 @@ require(['angular', 'controllers', 'services','angular-route'],
         $routeProvider.when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: controllers.dashController});
         $routeProvider.when('/editService', {templateUrl: 'partials/editService.html', controller: controllers.editProfileController});
         $routeProvider.when('/publishProject', {templateUrl: 'partials/publishProject.html', controller: controllers.publishProjectController});
+        $routeProvider.when('/showProject', {templateUrl: 'partials/showProject.html', controller: controllers.showProjectController});
         $routeProvider.otherwise({redirectTo: '/login'});
       }]);
 
@@ -47,6 +48,7 @@ require(['angular', 'controllers', 'services','angular-route'],
     app.controller("dashController", controllers.dashController);
     app.controller("editProfileController", controllers.editProfileController);
     app.controller("publishProjectController", controllers.publishProjectController);
+    app.controller("showProjectController", controllers.showProjectController);
     app.service('projectService', services.projectService);
 
 });
