@@ -4,7 +4,6 @@ define([], function() {
     function editProfileController($scope, $http, $location, $rootScope){
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
-
         $scope.projectInfo = {
             projectName: "mock",
             projectDescription:"mock",

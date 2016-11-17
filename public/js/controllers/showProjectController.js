@@ -6,6 +6,7 @@ define([], function() {
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
+
         $scope.projectInfo = {
                     projectName: "mock",
                     projectDescription:"mock",
