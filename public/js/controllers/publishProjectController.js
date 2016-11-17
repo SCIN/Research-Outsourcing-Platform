@@ -5,17 +5,20 @@ define([], function() {
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         $scope.projectInfo = {
-            projectName: "mock",
-            projectDescription:"mock",
-            requiredExpertise:"mock",
-            begintime:"mock",
-            endtime: "mock",
-            price:"mock",
+            projectName: "",
+            projectDescription:"",
+            requiredExpertise:"",
+            begintime:"",
+            endtime: "",
+            price:"",
             status:"new"
         };
 
-        $scope.updateExpertise = function() {
-            $scope.projectInfo.requiredExpertise = "";
+        $scope.expertise = [{id:1,'name':'design'}, {id:2,'name':'development'}, {id:3,'name':'proof-reading'},{id:4,'name':'consultant'} ];
+
+        $scope.updateExpertise = function(expertise) {
+            $scope.projectInfo.requiredExpertise = expertise;
+            console.log($scope.projectInfo.requiredExpertise);
         }
 
         $scope.publishProject = function() {
