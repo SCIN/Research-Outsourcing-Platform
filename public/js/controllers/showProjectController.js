@@ -6,61 +6,40 @@ define([], function() {
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
-        $scope.providerinfo = {
-            credential: "",
-            researchAreas:"",
-            publications:"",
-            professionalServices:""
+        $scope.projectInfo = {
+                    projectName: "mock",
+                    projectDescription:"mock",
+                    requiredExpertise:"mock",
+                    begintime:"mock",
+                    endtime: "mock",
+                    price:"mock",
+                    status:"new"
         };
 
-        // $scope.getUserInfo = function() {
-        //     $http({
-        //         method : 'GET',
-        //         url : '/users/'+ $scope.userName + '/userInfo',
-        //     }).success(function(data, status, headers, config) {
-        //             $scope.loginResult = data;
-        //             console.log(data);
-        //             $location.path('/dashboard');
-        //         }
-        //
-        //     ).error(function (data, status, headers, config) {
-        //         console.log(data);
-        //     });
-        // }
+        // Test for all projects
 
-        $scope.getProviderInfo = function() {
+
+        $scope.getAllProjects = function() {
             $http({
                 method : 'GET',
-                url : '/users/'+ $scope.userName + '/providerinfo'
+                url : '/users/showProjects'
             }).success(function(data, status, headers, config) {
-                    $scope.providerinfo = data;
-                    // console.log(data);
+//                    $scope.providerinfo = data;
+                    console.log(data);
                 }
 
             ).error(function (data, status, headers, config) {
-                // console.log(data);
+                 console.log(data);
             });
         }
 
-        $scope.updateProviderInfo = function() {
-            $http({
-                method : 'POST',
-                url : '/users/'+ $scope.userName + '/providerinfo',
-                data: $scope.providerinfo
-            }).success(function(data, status, headers, config) {
-                console.log(data);
-                $location.path('/dashboard');
-                }
-            ).error(function (data, status, headers, config) {
-                console.log(data);
-            });
-        }
-
+        // TODO: Check role of users
         if($scope.role == 'serviceUser'){
             // getUserInfo();
+            $scope.getAllProjects()
         }
         else{
-            $scope.getProviderInfo();
+            $scope.getAllProjects();
         }
     }
     editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];

@@ -2,10 +2,9 @@
 define([], function() {
     'use strict';
     function editProfileController($scope, $http, $location, $rootScope){
-        console.log("publish Project.......");
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
-        // console.log($rootScope.user.role);
+
         $scope.projectInfo = {
             projectName: "mock",
             projectDescription:"mock",
@@ -28,6 +27,7 @@ define([], function() {
                 url : '/users/'+ $scope.userName + '/publishProject',
                 data: $scope.projectInfo
             }).success(function(data, status, headers, config) {
+                console.log("Create Project Success!");
                 console.log(data);
                 $location.path('/showProject');
                 }
