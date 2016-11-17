@@ -16,7 +16,34 @@ define([], function() {
                     status:"new"
         };
 
-        // Test for all projects
+        // Mock Data: Test for all projects
+        $scope.allProjects = {
+            project: [{
+              projectName: "apple",
+              projectDescription:"mock1",
+              requiredExpertise:"mock1",
+              begintime:"mock1",
+              endtime: "mock1",
+              price:"mock1",
+              status:"new1"
+            },{
+              projectName: "jacab",
+              projectDescription:"mock2",
+              requiredExpertise:"mock2",
+              begintime:"mock2",
+              endtime: "mock",
+              price:"mock2",
+              status:"new2"
+            },{
+              projectName: "Banana",
+                projectDescription:"mock3",
+                requiredExpertise:"mock3",
+                begintime:"mock3",
+                endtime: "mock3",
+                price:"mock3",
+                status:"new3"
+            }]
+          };
 
 
         $scope.getAllProjects = function() {
