@@ -29,9 +29,10 @@ define([], function() {
         $scope.provideProject = function(project){
             $http({
                 method : 'POST',
-                url : '/projects/provide'+$scope.userName,
+                url : '/projects/provide/'+$scope.userName,
                 data: {project:project}
             }).success(function(data, status, headers, config) {
+                    $scope.getAllProjects();
                     console.log(data);
                 }
 
