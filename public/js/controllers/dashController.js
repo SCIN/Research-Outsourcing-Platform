@@ -54,7 +54,7 @@ define([], function () {
                     $scope.ongoingProjects = [];
                     $timeout(function () {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].status == 'finished') {
+                            if (data[i].status == 'Finished') {
                                 $scope.finishedProjects.push(data[i]);
                             }
                             else {
@@ -79,7 +79,7 @@ define([], function () {
                     console.log(data);
                     $timeout(function () {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].status == 'finished') {
+                            if (data[i].status == 'Finished') {
                                 $scope.finishedProjects.push(data[i]);
                             }
                             else {
@@ -96,7 +96,7 @@ define([], function () {
         $scope.changeProjectStatus = function (newStatus) {
             $http({
                 method : 'POST',
-                url : '/projects/project/',
+                url : '/projects/projectname/'+newStatus.status,
                 data: newStatus
             }).success(function(data, status, headers, config) {
                     console.log(data);
