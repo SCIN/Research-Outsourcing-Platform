@@ -22,12 +22,77 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Projects</div>
+                    <div class="panel-heading">Ongoing Projects</div>
                     <div class="panel-body">
                         <!-- Table -->
                         <table class="table">
-                            <li class="list-group-item">Past</li>
-                            <li class="list-group-item">Present</li>
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+                                <thead>
+                                <tr>
+                                    <th><a ng-click="orderByField='status'; reverseSort = !reverseSort">Project Status <span ng-show="orderByField == 'status'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                    <th><a ng-click="orderByField='projectName'; reverseSort = !reverseSort">Project Name <span ng-show="orderByField == 'projectName'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                    <th>projectDescription</th>
+                                    <th>requiredExpertise</th>
+                                    <th><a ng-click="orderByField='begintime'; reverseSort = !reverseSort">beginTime <span ng-show="orderByField == 'begintime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                    <th><a ng-click="orderByField='endtime'; reverseSort = !reverseSort">endTime <span ng-show="orderByField == 'endtime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                    <th><a ng-click="orderByField='price'; reverseSort = !reverseSort">price <span ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="project in ongoingProjects|orderBy:orderByField:reverseSort">
+                                    <td>{{project.status}}</td>
+                                    <td>{{project.projectName}}</td>
+                                    <td>{{project.projectDescription}}</td>
+                                    <td>{{project.requiredExpertise}}</td>
+                                    <td>{{project.begintime}}</td>
+                                    <td>{{project.endtime}}</td>
+                                    <td>{{project.price}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Finished Projects</div>
+                    <div class="panel-body">
+                        <!-- Table -->
+                        <table class="table">
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+                                <thead>
+                                <tr>
+                                    <th><a ng-click="orderByField='status'; reverseSort = !reverseSort">Project Status <span ng-show="orderByField == 'status'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                    <th><a ng-click="orderByField='projectName'; reverseSort = !reverseSort">Project Name <span ng-show="orderByField == 'projectName'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                    <th>projectDescription</th>
+                                    <th>requiredExpertise</th>
+                                    <th><a ng-click="orderByField='begintime'; reverseSort = !reverseSort">beginTime <span ng-show="orderByField == 'begintime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                    <th><a ng-click="orderByField='endtime'; reverseSort = !reverseSort">endTime <span ng-show="orderByField == 'endtime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                    <th><a ng-click="orderByField='price'; reverseSort = !reverseSort">price <span ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                    </a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="project in finishedProjects|orderBy:orderByField:reverseSort">
+                                    <td>{{project.status}}</td>
+                                    <td>{{project.projectName}}</td>
+                                    <td>{{project.projectDescription}}</td>
+                                    <td>{{project.requiredExpertise}}</td>
+                                    <td>{{project.begintime}}</td>
+                                    <td>{{project.endtime}}</td>
+                                    <td>{{project.price}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </table>
                     </div>
                 </div>
@@ -64,12 +129,77 @@
                     </div>
 
                     <div class="panel panel-default">
-                        <div class="panel-heading">Projects</div>
+                        <div class="panel-heading">Ongoing Projects</div>
                         <div class="panel-body">
                             <!-- Table -->
                             <table class="table">
-                                <li class="list-group-item">Past</li>
-                                <li class="list-group-item">Present</li>
+                                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+                                    <thead>
+                                    <tr>
+                                        <th><a ng-click="orderByField='status'; reverseSort = !reverseSort">Project Status <span ng-show="orderByField == 'status'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                        <th><a ng-click="orderByField='projectName'; reverseSort = !reverseSort">Project Name <span ng-show="orderByField == 'projectName'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                        <th>projectDescription</th>
+                                        <th>requiredExpertise</th>
+                                        <th><a ng-click="orderByField='begintime'; reverseSort = !reverseSort">beginTime <span ng-show="orderByField == 'begintime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                        <th><a ng-click="orderByField='endtime'; reverseSort = !reverseSort">endTime <span ng-show="orderByField == 'endtime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                        <th><a ng-click="orderByField='price'; reverseSort = !reverseSort">price <span ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="project in ongoingProjects|orderBy:orderByField:reverseSort">
+                                        <td>{{project.status}}</td>
+                                        <td>{{project.projectName}}</td>
+                                        <td>{{project.projectDescription}}</td>
+                                        <td>{{project.requiredExpertise}}</td>
+                                        <td>{{project.begintime}}</td>
+                                        <td>{{project.endtime}}</td>
+                                        <td>{{project.price}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Finished Projects</div>
+                        <div class="panel-body">
+                            <!-- Table -->
+                            <table class="table">
+                                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+                                    <thead>
+                                    <tr>
+                                        <th><a ng-click="orderByField='status'; reverseSort = !reverseSort">Project Status <span ng-show="orderByField == 'status'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                        <th><a ng-click="orderByField='projectName'; reverseSort = !reverseSort">Project Name <span ng-show="orderByField == 'projectName'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                        <th>projectDescription</th>
+                                        <th>requiredExpertise</th>
+                                        <th><a ng-click="orderByField='begintime'; reverseSort = !reverseSort">beginTime <span ng-show="orderByField == 'begintime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                        <th><a ng-click="orderByField='endtime'; reverseSort = !reverseSort">endTime <span ng-show="orderByField == 'endtime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                        <th><a ng-click="orderByField='price'; reverseSort = !reverseSort">price <span ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="project in finishedProjects|orderBy:orderByField:reverseSort">
+                                        <td>{{project.status}}</td>
+                                        <td>{{project.projectName}}</td>
+                                        <td>{{project.projectDescription}}</td>
+                                        <td>{{project.requiredExpertise}}</td>
+                                        <td>{{project.begintime}}</td>
+                                        <td>{{project.endtime}}</td>
+                                        <td>{{project.price}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </table>
                         </div>
                     </div>
