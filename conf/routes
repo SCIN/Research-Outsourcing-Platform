@@ -32,5 +32,4 @@ GET   /users/:username/serviceuserinfo       controllers.Application.getServiceU
 POST  /users/:username/serviceuserinfo       controllers.Application.updateServiceUser(username: String)
 GET   /projects/publisher/:username          controllers.Application.getProjectByPublisher(username: String)
 GET   /projects/provider/:username           controllers.Application.getProjectByProvider(username: String)
-
 GET   /projects/:status                      controllers.Application.getProjectByStatus(status: String)

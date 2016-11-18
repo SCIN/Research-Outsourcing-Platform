@@ -6,6 +6,7 @@ define([], function() {
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
         $scope.providerinfo = {
+            username : "",
             credential: "",
             researchAreas:"",
             publications:"",

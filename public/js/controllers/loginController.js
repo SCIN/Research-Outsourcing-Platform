@@ -20,7 +20,6 @@ define([], function() {
                 $scope.loginResult = data;
                 $rootScope.user.userName = $scope.user.userName;
                 $rootScope.user.role = $scope.role;
-                console.log($rootScope.user.role);
                 $location.path('/dashboard');
                 }
 
