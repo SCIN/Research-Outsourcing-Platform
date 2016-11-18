@@ -11,7 +11,7 @@ define([], function() {
             begintime:"",
             endtime: "",
             price:"",
-            status:"new"
+            status:"In Market"
         };
 
         $scope.expertise = [{id:1,'name':'design'}, {id:2,'name':'development'}, {id:3,'name':'proof-reading'},{id:4,'name':'consultant'} ];

@@ -174,4 +174,20 @@ public class Application extends Controller {
         List<Projects> projects = db.getProjectByStatus(status);
         return (projects == null) ? notFound() : ok(Json.toJson(projects));
     }
+
+    public Result updateProjectProvider(String username) {
+        DynamicForm form = Form.form().bindFromRequest();
+        String project = form.get("project");
+        try {
+            boolean update = db.updateProjectProvider(username, project);
+            if (update) {
+                return ok("Update Success");
+            } else {
+                return ok("Update Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad update Request");
+        }
+    }
 }
