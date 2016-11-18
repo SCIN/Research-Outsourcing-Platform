@@ -4,14 +4,14 @@ define([], function() {
     function editProfileController($scope, $http, $location, $rootScope){
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
-        $scope.projectInfo = {
+        $scope.projectInfo =     {
             projectName: "",
             projectDescription:"",
             requiredExpertise:"",
             begintime:"",
             endtime: "",
             price:"",
-            status:"new"
+            status:"In Market"
         };
 
         $scope.expertise = [{id:1,'name':'design'}, {id:2,'name':'development'}, {id:3,'name':'proof-reading'},{id:4,'name':'consultant'} ];

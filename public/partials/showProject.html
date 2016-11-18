@@ -10,20 +10,6 @@
                         <img src="http://golfes.info/wp-content/uploads/2016/01/14762-NPRV4K123.jpg" alt="..." class="img-thumbnail">
                     </div>
 
-                    <!--<div class="col-md-8">-->
-                        <!--<div class="panel panel-default">-->
-                            <!--<div class="panel-heading">-->
-                                <!--<div class="panel-title">Basic Info</div>-->
-                            <!--</div>-->
-                            <!--<div class="panel-body">-->
-                                <!--<p class="sec-title">Project name:</p>-->
-                                <!--{{username}}-->
-                                <!--<p class="sec-title">Brief descriptions:</p>-->
-                                <!--{{username}}-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
                         <div class="col-lg-8 sub-info searchBar">
                             <div>
                                 <div class="input-group form">
@@ -57,6 +43,8 @@
                                         </a></th>
                                         <th><a ng-click="orderByField='price'; reverseSort = !reverseSort">price <span ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
                                         </a></th>
+                                        <th><a ng-click="orderByField='action'; reverseSort = !reverseSort">action <span ng-show="orderByField == 'action'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                                        </a></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,6 +56,7 @@
                                         <td>{{project.begintime}}</td>
                                         <td>{{project.endtime}}</td>
                                         <td>{{project.price}}</td>
+                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="provideProject(project.projectName)" ng-disabled="project.status != 'In Market'">Provide</button> </td>
                                     </tr>
                                 </tbody>
                             </table>
