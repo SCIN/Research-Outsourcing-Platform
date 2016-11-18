@@ -3,7 +3,37 @@
         <div class="row">
             <div class="col-md-2" ng-include="'partials/sidebar.html'"></div>
 
-            <div class="col-md-10">
+            <div class="col-md-10" ng-show="role == 'serviceUser'">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">Information</div>
+                            </div>
+                            <div class="panel-body">
+
+                                <ul class="list-group">
+                                    <li class="list-group-item">{{userName}}</li>
+                                    <li class="list-group-item">{{userinfo.keywords}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Projects</div>
+                    <div class="panel-body">
+                        <!-- Table -->
+                        <table class="table">
+                            <li class="list-group-item">Past</li>
+                            <li class="list-group-item">Present</li>
+                        </table>
+                    </div>
+                </div>
+            </div>>
+
+            <div class="col-md-10" ng-show="role == 'serviceProvider'">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="panel panel-default">

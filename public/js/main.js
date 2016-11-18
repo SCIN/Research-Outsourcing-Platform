@@ -27,7 +27,7 @@ require(['angular', 'controllers', 'services','angular-route'],
         $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: controllers.registerController});
         $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: controllers.loginController});
         $routeProvider.when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: controllers.dashController});
-        $routeProvider.when('/editService', {templateUrl: 'partials/editService.html', controller: controllers.editProfileController});
+        $routeProvider.when('/editService', {templateUrl: 'partials/editInfo.html', controller: controllers.editProfileController});
         $routeProvider.when('/publishProject', {templateUrl: 'partials/publishProject.html', controller: controllers.publishProjectController});
         $routeProvider.when('/showProject', {templateUrl: 'partials/showProject.html', controller: controllers.showProjectController});
         $routeProvider.otherwise({redirectTo: '/login'});

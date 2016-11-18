@@ -12,20 +12,23 @@ define([], function() {
             professionalServices:""
         };
 
-        // $scope.getUserInfo = function() {
-        //     $http({
-        //         method : 'GET',
-        //         url : '/users/'+ $scope.userName + '/userInfo',
-        //     }).success(function(data, status, headers, config) {
-        //             $scope.loginResult = data;
-        //             console.log(data);
-        //             $location.path('/dashboard');
-        //         }
-        //
-        //     ).error(function (data, status, headers, config) {
-        //         console.log(data);
-        //     });
-        // }
+        $scope.userinfo = {
+            keywords:""
+        };
+
+        $scope.getUserInfo = function() {
+            $http({
+                method : 'GET',
+                url : '/users/'+ $scope.userName + '/userinfo',
+            }).success(function(data, status, headers, config) {
+                    $scope.userinfo = data;
+                    // console.log(data);
+                }
+
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        }
 
         $scope.getProviderInfo = function() {
             $http({

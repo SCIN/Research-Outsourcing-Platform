@@ -11,21 +11,37 @@ define([], function() {
             publications:"NA",
             professionalServices:"NA"
         };
+        $scope.userinfo = {
+            keywords:""
+        };
 
-        // $scope.getUserInfo = function() {
-        //     $http({
-        //         method : 'GET',
-        //         url : '/users/'+ $scope.userName + '/userInfo',
-        //     }).success(function(data, status, headers, config) {
-        //             $scope.loginResult = data;
-        //             console.log(data);
-        //             $location.path('/dashboard');
-        //         }
-        //
-        //     ).error(function (data, status, headers, config) {
-        //         console.log(data);
-        //     });
-        // }
+        $scope.getUserInfo = function() {
+            $http({
+                method : 'GET',
+                url : '/users/'+ $scope.userName + '/serviceuserinfo',
+            }).success(function(data, status, headers, config) {
+                    $scope.userinfo = data;
+                    // console.log(data);
+                }
+
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        }
+
+        $scope.updateUserInfo = function() {
+            $http({
+                method : 'POST',
+                url : '/users/'+ $scope.userName + '/serviceuserinfo',
+                data: $scope.userinfo
+            }).success(function(data, status, headers, config) {
+                    console.log(data);
+                    $location.path('/dashboard');
+                }
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        }
 
         $scope.getProviderInfo = function() {
             $http({
@@ -56,7 +72,7 @@ define([], function() {
         }
 
         if($scope.role == 'serviceUser'){
-            // getUserInfo();
+            $scope.getUserInfo();
         }
         else{
             $scope.getProviderInfo();
