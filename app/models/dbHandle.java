@@ -68,9 +68,9 @@ public class dbHandle {
       return null;
     }
 
-    public Projects getProjectByPublisher(String username) {
+    public List<Projects> getProjectByPublisher(String username) {
         try{
-            Projects project = projects.find.where().eq("publisher",username).findUnique();
+            List<Projects> project = projects.find.where().eq("publisher",username).findList();
             if(project == null) return null;
             return project;
         } catch (Exception e) {
@@ -79,9 +79,9 @@ public class dbHandle {
         return null;
     }
 
-    public Projects getProjectByProvider(String username) {
+    public List<Projects> getProjectByProvider(String username) {
         try{
-            Projects project = projects.find.where().eq("provider",username).findUnique();
+            List<Projects> project = projects.find.where().eq("provider",username).findList();
             if(project == null) return null;
             return project;
         } catch (Exception e) {
@@ -90,9 +90,9 @@ public class dbHandle {
         return null;
     }
 
-    public Projects getProjectByStatus(String status) {
+    public List<Projects> getProjectByStatus(String status) {
         try{
-            Projects project = projects.find.where().eq("status",status).findUnique();
+            List<Projects> project = projects.find.where().eq("status",status).findList();
             if(project == null) return null;
             return project;
         } catch (Exception e) {

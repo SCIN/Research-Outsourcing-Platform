@@ -6,6 +6,7 @@
 # Home page
 
 GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
+GET   /users/:username/serviceuserinfo       controllers.Application.getServiceUserByName(username: String)
 
 GET   /users/showProjects        			 controllers.Application.getProjects()
 
@@ -15,7 +16,6 @@ GET        /                                 controllers.Application.index()
 GET        /*file                            controllers.Assets.versioned(path="/public", file: Asset)
 
 # GET        /users                          controllers.Application.getUsers()
-
 POST  /users/login                           controllers.Application.loginSubmit()
 POST  /users/register                        controllers.Application.registerUser()
 
@@ -28,7 +28,6 @@ GET   /users/:username/userinfo	             controllers.Application.getUserInfo
 POST  /users/:username/publishProject        controllers.Application.publishProject(username: String)
 GET   /users/showProjects        			 controllers.Application.getProjects()
 
-GET   /users/:username/serviceuserinfo       controllers.Application.getServiceUserByName(username: String)
 POST  /users/:username/serviceuserinfo       controllers.Application.updateServiceUser(username: String)
 GET   /projects/publisher/:username          controllers.Application.getProjectByPublisher(username: String)
 GET   /projects/provider/:username           controllers.Application.getProjectByProvider(username: String)

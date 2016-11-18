@@ -155,13 +155,13 @@ public class Application extends Controller {
 
     public Result getProjectByPublisher(String username) {
 
-        Projects project = db.getProjectByPublisher(username);
+        List<Projects> project = db.getProjectByPublisher(username);
         return (project == null) ? notFound() : ok(Json.toJson(project));
     }
 
     public Result getProjectByProvider(String username) {
 
-        Projects project = db.getProjectByProvider(username);
+        List<Projects> project = db.getProjectByProvider(username);
         return (project == null) ? notFound() : ok(Json.toJson(project));
     }
 
@@ -171,7 +171,7 @@ public class Application extends Controller {
     }
 
     public Result getProjectByStatus(String status) {
-        Projects project = db.getProjectByStatus(status);
-        return (project == null) ? notFound() : ok(Json.toJson(project));
+        List<Projects> projects = db.getProjectByStatus(status);
+        return (projects == null) ? notFound() : ok(Json.toJson(projects));
     }
 }

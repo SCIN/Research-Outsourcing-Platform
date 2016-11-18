@@ -23,7 +23,7 @@ define([], function() {
                 url : '/users/'+ $scope.userName + '/serviceuserinfo',
             }).success(function(data, status, headers, config) {
                     $scope.userinfo = data;
-                    // console.log(data);
+                     console.log(data);
                 }
 
             ).error(function (data, status, headers, config) {
@@ -47,7 +47,7 @@ define([], function() {
 
 
         if($scope.role == 'serviceUser'){
-            // getUserInfo();
+             $scope.getUserInfo();
         }
         else{
             $scope.getProviderInfo();
