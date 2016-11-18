@@ -54,7 +54,7 @@ define([], function () {
                     $scope.ongoingProjects = [];
                     $timeout(function () {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].status != 'finished') {
+                            if (data[i].status == 'finished') {
                                 $scope.finishedProjects.push(data[i]);
                             }
                             else {
@@ -78,7 +78,7 @@ define([], function () {
                     $scope.ongoingProjects = [];
                     $timeout(function () {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].status != 'finished') {
+                            if (data[i].status == 'finished') {
                                 $scope.finishedProjects.push(data[i]);
                             }
                             else {
@@ -98,7 +98,7 @@ define([], function () {
         }
         else {
             $scope.getProviderInfo();
-            $scope.getProjectByProvider
+            $scope.getProjectByProvider();
         }
     }
 

@@ -181,6 +181,24 @@ public class dbHandle {
         return false;
     }
 
+    public boolean updateProjectStatus(String project, String status) {
+        try {
+            if (projects.find.where().eq("projectName", project).findUnique() != null) {
+                Projects proj = projects.find.where().eq("projectName", project).findUnique();
+                proj.status = status;
+                proj.update();
+            } else {
+                Projects proj = new Projects();
+                proj.projectName = project;
+                proj.status = status;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean updateProjects(String projectName, String username, String projectDescription, String requiredExpertise, String begintime, String endtime, String price, String status){
       try{
 

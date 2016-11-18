@@ -190,4 +190,20 @@ public class Application extends Controller {
             return badRequest("Bad update Request");
         }
     }
+
+    public Result updateProjectStatus(String status) {
+        DynamicForm form = Form.form().bindFromRequest();
+        String project = form.get("project");
+        try {
+            boolean update = db.updateProjectStatus(project, status);
+            if (update) {
+                return ok("Update Success");
+            } else {
+                return ok("Update Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad update Request");
+        }
+    }
 }
