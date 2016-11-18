@@ -140,7 +140,27 @@ public class dbHandle {
       return false;
     }
 
+    public boolean updateServiceUser(String username, String keywords) {
+        try{
 
+            if(su.find.where().eq("username",username).findUnique()!=null){
+                ServiceUser serviceUser= su.find.where().eq("username",username).findUnique();
+                serviceUser.keywords = keywords;
+                serviceUser.update();
+            }
+            else{
+                ServiceUser serviceUser = new ServiceUser();
+                serviceUser.username = username;
+                serviceUser.keywords = keywords;
+                serviceUser.save();
+            }
+
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public boolean updateProjects(String projectName, String username, String projectDescription, String requiredExpertise, String begintime, String endtime, String price, String status){
       try{

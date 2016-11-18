@@ -106,6 +106,22 @@ public class Application extends Controller {
         }
     }
 
+    public Result updateServiceUser(String username) {
+        DynamicForm form = Form.form().bindFromRequest();
+        String keywords = form.get("keywords");
+        try {
+            boolean update = db.updateServiceUser(username, keywords);
+            if (update) {
+                return ok("Update Success");
+            } else {
+                return ok("Update Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad update Request");
+        }
+    }
+
     public Result publishProject(String username) {
         DynamicForm form = Form.form().bindFromRequest();
         if (form.data().size() != 7) {

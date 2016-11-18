@@ -28,7 +28,8 @@ GET   /users/:username/userinfo	             controllers.Application.getUserInfo
 POST  /users/:username/publishProject        controllers.Application.publishProject(username: String)
 GET   /users/showProjects        			 controllers.Application.getProjects()
 
-GET   /serviceuser/:username                 controllers.Application.getServiceUserByName(username: String)
+GET   /users/:username/serviceuserinfo       controllers.Application.getServiceUserByName(username: String)
+POST  /users/:username/serviceuserinfo       controllers.Application.updateServiceUser(username: String)
 GET   /projects/publisher/:username          controllers.Application.getProjectByPublisher(username: String)
 GET   /projects/provider/:username           controllers.Application.getProjectByProvider(username: String)
 
