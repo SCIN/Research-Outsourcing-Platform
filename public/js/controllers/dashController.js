@@ -1,7 +1,7 @@
 /*global define */
 define([], function () {
     'use strict';
-    function dashController($scope, $http, $location, $rootScope) {
+    function dashController($scope, $http, $location, $rootScope, $timeout) {
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
@@ -52,9 +52,9 @@ define([], function () {
             }).success(function (data, status, headers, config) {
                     $scope.finishedProjects = [];
                     $scope.ongoingProjects = [];
-                    $scope.$apply(function () {
+                    $timeout(function () {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].status != 'finished ') {
+                            if (data[i].status != 'finished') {
                                 $scope.finishedProjects.push(data[i]);
                             }
                             else {
@@ -76,9 +76,9 @@ define([], function () {
             }).success(function (data, status, headers, config) {
                     $scope.finishedProjects = [];
                     $scope.ongoingProjects = [];
-                    $scope.$apply(function () {
+                    $timeout(function () {
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].status != 'finished ') {
+                            if (data[i].status != 'finished') {
                                 $scope.finishedProjects.push(data[i]);
                             }
                             else {
@@ -102,7 +102,7 @@ define([], function () {
         }
     }
 
-    dashController.$inject = ['$scope', '$http', '$location', '$rootScope'];
+    dashController.$inject = ['$scope', '$http', '$location', '$rootScope', '$timeout'];
 
     return dashController;
 });

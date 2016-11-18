@@ -31,7 +31,7 @@ define([], function() {
             }).success(function(data, status, headers, config) {
                 console.log("Create Project Success!");
                 console.log(data);
-                $location.path('/showProject');
+                $location.path('/dashboard');
                 }
             ).error(function (data, status, headers, config) {
                 console.log(data);

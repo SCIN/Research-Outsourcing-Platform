@@ -14,7 +14,7 @@ define([], function() {
                     begintime:"mock",
                     endtime: "mock",
                     price:"mock",
-                    status:"new"
+                    status:"In Market"
         };
 
         // Mock Data: Test for all projects
