@@ -8,7 +8,7 @@ import play.data.format.*;
 import play.data.validation.*;
 
 @Entity
-public class ServicePublications extends Model {
+public class ServiceProvider extends Model {
 /*
     @Id
     @Constraints.Min(10)
@@ -36,7 +36,7 @@ public class ServicePublications extends Model {
     @Formats.DateTime(pattern="dd/MM/yyyy")
     public Date dueDate = new Date();*/
 
-    public static Finder<String, ServicePublications> find = new Finder<String,ServicePublications>(ServicePublications.class);
+    public static Finder<String, ServiceProvider> find = new Finder<String,ServiceProvider>(ServiceProvider.class);
 
 
 }

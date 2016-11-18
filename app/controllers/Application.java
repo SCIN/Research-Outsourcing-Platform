@@ -74,7 +74,7 @@ public class Application extends Controller {
     }
 
     public Result getProviderInfo(String username) {
-        ServicePublications provider = db.getProviderInfo(username);
+        ServiceProvider provider = db.getProviderInfo(username);
 
         //return provider == null ? notFound() : ok(Json.toJson(provider));
 
@@ -135,10 +135,29 @@ public class Application extends Controller {
 
     public Result getProjects() {
         List<Projects> projects = db.getProject();
-
-        //return provider == null ? notFound() : ok(Json.toJson(provider));
-
         return (projects == null) ? notFound() : ok(Json.toJson(projects));
 
+    }
+
+    public Result getProjectByPublisher(String username) {
+
+        Projects project = db.getProjectByPublisher(username);
+        return (project == null) ? notFound() : ok(Json.toJson(project));
+    }
+
+    public Result getProjectByProvider(String username) {
+
+        Projects project = db.getProjectByProvider(username);
+        return (project == null) ? notFound() : ok(Json.toJson(project));
+    }
+
+    public Result getServiceUserByName(String username) {
+        ServiceUser serviceUser = db.getServiceUserByName(username);
+        return (serviceUser == null) ? notFound() : ok(Json.toJson(serviceUser));
+    }
+
+    public Result getProjectByStatus(String status) {
+        Projects project = db.getProjectByStatus(status);
+        return (project == null) ? notFound() : ok(Json.toJson(project));
     }
 }
