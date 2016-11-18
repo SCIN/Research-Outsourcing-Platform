@@ -7,7 +7,7 @@
 
 GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
 
-GET   /users/showProjects        			controllers.Application.getProjects()
+GET   /users/showProjects        			 controllers.Application.getProjects()
 
 GET        /                                 controllers.Application.index()
 
@@ -22,9 +22,15 @@ POST  /users/register                        controllers.Application.registerUse
 GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
 
 POST  /users/:username/providerinfo          controllers.Application.updateProviderInfo(username: String)
-# GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
 
 GET   /users/:username/userinfo	             controllers.Application.getUserInfo(username: String)
 
 POST  /users/:username/publishProject        controllers.Application.publishProject(username: String)
-GET   /users/showProjects        			controllers.Application.getProjects()
+GET   /users/showProjects        			 controllers.Application.getProjects()
+
+GET   /users/:username/serviceuserinfo       controllers.Application.getServiceUserByName(username: String)
+POST  /users/:username/serviceuserinfo       controllers.Application.updateServiceUser(username: String)
+GET   /projects/publisher/:username          controllers.Application.getProjectByPublisher(username: String)
+GET   /projects/provider/:username           controllers.Application.getProjectByProvider(username: String)
+
+GET   /projects/:status                      controllers.Application.getProjectByStatus(status: String)

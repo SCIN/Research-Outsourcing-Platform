@@ -74,7 +74,7 @@ public class Application extends Controller {
     }
 
     public Result getProviderInfo(String username) {
-        ServicePublications provider = db.getProviderInfo(username);
+        ServiceProvider provider = db.getProviderInfo(username);
 
         //return provider == null ? notFound() : ok(Json.toJson(provider));
 
@@ -103,6 +103,22 @@ public class Application extends Controller {
                 e.printStackTrace();
                 return badRequest("Bad update Request");
             }
+        }
+    }
+
+    public Result updateServiceUser(String username) {
+        DynamicForm form = Form.form().bindFromRequest();
+        String keywords = form.get("keywords");
+        try {
+            boolean update = db.updateServiceUser(username, keywords);
+            if (update) {
+                return ok("Update Success");
+            } else {
+                return ok("Update Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad update Request");
         }
     }
 
@@ -135,10 +151,29 @@ public class Application extends Controller {
 
     public Result getProjects() {
         List<Projects> projects = db.getProject();
-
-        //return provider == null ? notFound() : ok(Json.toJson(provider));
-
         return (projects == null) ? notFound() : ok(Json.toJson(projects));
 
+    }
+
+    public Result getProjectByPublisher(String username) {
+
+        Projects project = db.getProjectByPublisher(username);
+        return (project == null) ? notFound() : ok(Json.toJson(project));
+    }
+
+    public Result getProjectByProvider(String username) {
+
+        Projects project = db.getProjectByProvider(username);
+        return (project == null) ? notFound() : ok(Json.toJson(project));
+    }
+
+    public Result getServiceUserByName(String username) {
+        ServiceUser serviceUser = db.getServiceUserByName(username);
+        return (serviceUser == null) ? notFound() : ok(Json.toJson(serviceUser));
+    }
+
+    public Result getProjectByStatus(String status) {
+        Projects project = db.getProjectByStatus(status);
+        return (project == null) ? notFound() : ok(Json.toJson(project));
     }
 }

@@ -8,13 +8,18 @@ import play.mvc.*;
 import play.data.*;
 import play.data.format.*;
 import models.User.*;
-import models.ServicePublications.*;
+import models.ServiceProvider.*;
+import models.Projects.*;
+import models.ServiceUser.*;
+import models.Rates.*;
+
 import java.util.*;
 
 public class dbHandle {
     private User t = new User();
-    private ServicePublications sp = new ServicePublications();
+    private ServiceProvider sp = new ServiceProvider();
     private Projects projects = new Projects();
+    private ServiceUser su = new ServiceUser();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -52,22 +57,9 @@ public class dbHandle {
         return false;
     }
 
-   /* public User save(User obj){
-      if(obj.id != null){
-        obj.update();
-      }else{
-        obj.save();
-      }
-      return obj;
-    }*/
-/*
-    public void delete(Long id){
-      t.find.byId(id).delete();
-    }*/
-
-    public ServicePublications getProviderInfo(String username){
+    public ServiceProvider getProviderInfo(String username){
       try{
-        ServicePublications spublications = sp.find.where().eq("username",username).findUnique();
+          ServiceProvider spublications = sp.find.where().eq("username",username).findUnique();
         if(spublications == null) return null;
         return spublications;
       } catch (Exception e) {
@@ -75,11 +67,56 @@ public class dbHandle {
       }
       return null;
     }
+
+    public Projects getProjectByPublisher(String username) {
+        try{
+            Projects project = projects.find.where().eq("publisher",username).findUnique();
+            if(project == null) return null;
+            return project;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Projects getProjectByProvider(String username) {
+        try{
+            Projects project = projects.find.where().eq("provider",username).findUnique();
+            if(project == null) return null;
+            return project;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Projects getProjectByStatus(String status) {
+        try{
+            Projects project = projects.find.where().eq("status",status).findUnique();
+            if(project == null) return null;
+            return project;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ServiceUser getServiceUserByName(String username) {
+        try{
+            ServiceUser serviceUser = su.find.where().eq("username",username).findUnique();
+            if(serviceUser == null) return null;
+            return serviceUser;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices){
       try{
 
         if(sp.find.where().eq("username",username).findUnique()!=null){
-          ServicePublications spp= sp.find.where().eq("username",username).findUnique();
+            ServiceProvider spp= sp.find.where().eq("username",username).findUnique();
           spp.credential = credential;
           spp.researchAreas = researchAreas;
           spp.publications = publications;
@@ -87,7 +124,7 @@ public class dbHandle {
           spp.update();
         }
         else{
-          ServicePublications spp = new ServicePublications();
+            ServiceProvider spp = new ServiceProvider();
           spp.username = username;
           spp.credential = credential;
           spp.researchAreas = researchAreas;
@@ -103,7 +140,27 @@ public class dbHandle {
       return false;
     }
 
+    public boolean updateServiceUser(String username, String keywords) {
+        try{
 
+            if(su.find.where().eq("username",username).findUnique()!=null){
+                ServiceUser serviceUser= su.find.where().eq("username",username).findUnique();
+                serviceUser.keywords = keywords;
+                serviceUser.update();
+            }
+            else{
+                ServiceUser serviceUser = new ServiceUser();
+                serviceUser.username = username;
+                serviceUser.keywords = keywords;
+                serviceUser.save();
+            }
+
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public boolean updateProjects(String projectName, String username, String projectDescription, String requiredExpertise, String begintime, String endtime, String price, String status){
       try{
