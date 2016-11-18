@@ -31,4 +31,5 @@ GET   /users/showProjects        			 controllers.Application.getProjects()
 POST  /users/:username/serviceuserinfo       controllers.Application.updateServiceUser(username: String)
 
 GET   /projects/:status                      controllers.Application.getProjectByStatus(status: String)
+POST  /projects/projectname/:status           controllers.Application.updateProjectStatus(status: String)
 POST  /projects/provide/:username            controllers.Application.updateProjectProvider(username: String)
