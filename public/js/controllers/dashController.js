@@ -20,7 +20,7 @@ define([], function() {
         $scope.getUserInfo = function() {
             $http({
                 method : 'GET',
-                url : '/users/'+ $scope.userName + '/userinfo',
+                url : '/users/'+ $scope.userName + '/serviceuserinfo',
             }).success(function(data, status, headers, config) {
                     $scope.userinfo = data;
                     // console.log(data);
