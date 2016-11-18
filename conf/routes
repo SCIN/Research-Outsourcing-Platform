@@ -25,10 +25,10 @@ GET   /users/:username/providerinfo          controllers.Application.getProvider
 POST  /users/:username/providerinfo          controllers.Application.updateProviderInfo(username: String)
 
 GET   /users/:username/userinfo	             controllers.Application.getUserInfo(username: String)
-
 POST  /users/:username/publishProject        controllers.Application.publishProject(username: String)
 GET   /users/showProjects        			 controllers.Application.getProjects()
 
 POST  /users/:username/serviceuserinfo       controllers.Application.updateServiceUser(username: String)
 
 GET   /projects/:status                      controllers.Application.getProjectByStatus(status: String)
+POST  /projects/provide/:username            controllers.Application.updateProjectProvider(username: String)

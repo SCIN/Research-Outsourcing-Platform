@@ -162,6 +162,25 @@ public class dbHandle {
         return false;
     }
 
+    public boolean updateProjectProvider(String username, String project) {
+        try {
+            if (projects.find.where().eq("projectName", project).findUnique() != null) {
+                Projects proj = projects.find.where().eq("projectName", project).findUnique();
+                proj.provider = username;
+                proj.status = "pengding";
+                proj.update();
+            } else {
+                Projects proj = new Projects();
+                proj.provider = username;
+                proj.status = "pending";
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean updateProjects(String projectName, String username, String projectDescription, String requiredExpertise, String begintime, String endtime, String price, String status){
       try{
 
