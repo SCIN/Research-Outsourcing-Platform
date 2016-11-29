@@ -6,6 +6,7 @@ define([], function() {
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
         $scope.providerinfo = {
+            userName:"NA",
             credential: "NA",
             researchAreas:"NA",
             publications:"NA",
@@ -58,6 +59,8 @@ define([], function() {
         }
 
         $scope.updateProviderInfo = function() {
+            console.log("POST updateProviderInfo");
+            console.log($scope.providerinfo);
             $http({
                 method : 'POST',
                 url : '/users/'+ $scope.userName + '/providerinfo',

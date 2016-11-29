@@ -46,6 +46,7 @@ define([], function () {
         }
 
         $scope.getProjectByPublisher = function () {
+            //role:user
             $http({
                 method: 'GET',
                 url: '/projects/publisher/' + $scope.userName
@@ -70,6 +71,7 @@ define([], function () {
 
 
         $scope.getProjectByProvider = function () {
+            //role:provider
             $http({
                 method: 'GET',
                 url: '/projects/provider/' + $scope.userName

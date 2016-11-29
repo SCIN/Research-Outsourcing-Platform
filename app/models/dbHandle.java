@@ -167,12 +167,12 @@ public class dbHandle {
             if (projects.find.where().eq("projectName", project).findUnique() != null) {
                 Projects proj = projects.find.where().eq("projectName", project).findUnique();
                 proj.provider = username;
-                proj.status = "pengding";
+                proj.status = "Pending";
                 proj.update();
             } else {
                 Projects proj = new Projects();
                 proj.provider = username;
-                proj.status = "pending";
+                proj.status = "Pending";
             }
             return true;
         } catch (Exception e) {
