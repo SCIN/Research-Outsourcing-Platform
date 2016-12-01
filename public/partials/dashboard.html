@@ -74,7 +74,7 @@
                                                     <span class="caret"></span></button>
                                                 <ul class="dropdown-menu">
                                                     <li ng-click="changeProjectStatus({project:project.projectName,status:'In Market'})" ng-show="project.status=='Pending'">In Market</li>
-                                                    <li ng-click="changeProjectStatus({project:project.projectName,status:'Pending'})" ng-show="project.status=='In Market'">Pending</li>
+                                                    <!--<li ng-click="changeProjectStatus({project:project.projectName,status:'Pending'})" ng-show="project.status=='In Market'">Pending</li>-->
                                                     <li ng-click="changeProjectStatus({project:project.projectName,status:'Ongoing'})" ng-show="project.status=='Pending'">Ongoing</li>
                                                     <li ng-click="changeProjectStatus({project:project.projectName,status:'Finished'})" ng-show="project.status=='Ongoing'">Finished</li>
                                                 </ul>
@@ -134,7 +134,7 @@
                                         <td>{{project.begintime}}</td>
                                         <td>{{project.endtime}}</td>
                                         <td>{{project.price}}</td>
-                                        <td><a href="#/rating">{{project.provider}}</a></td>
+                                        <td><a href="#/rating">rate</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
