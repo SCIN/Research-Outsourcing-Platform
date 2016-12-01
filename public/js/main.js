@@ -30,6 +30,7 @@ require(['angular', 'controllers', 'services','angular-route'],
         $routeProvider.when('/editService', {templateUrl: 'partials/editInfo.html', controller: controllers.editProfileController});
         $routeProvider.when('/publishProject', {templateUrl: 'partials/publishProject.html', controller: controllers.publishProjectController});
         $routeProvider.when('/showProject', {templateUrl: 'partials/showProject.html', controller: controllers.showProjectController});
+        $routeProvider.when('/rating', {templateUrl: 'partials/rating.html', controller: controllers.showProjectController});
         $routeProvider.otherwise({redirectTo: '/login'});
       }]);
 

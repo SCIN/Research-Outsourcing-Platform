@@ -53,6 +53,7 @@ define([], function () {
             }).success(function (data, status, headers, config) {
                     $scope.finishedProjects = [];
                     $scope.ongoingProjects = [];
+                    console.log(data);
                     $timeout(function () {
                         for (var i = 0; i < data.length; i++) {
                             if (data[i].status == 'Finished') {

@@ -119,6 +119,10 @@
                                                 ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span
                                                 ng-show="reverseSort">v</span></span>
                                         </a></th>
+                                        <th><a ng-click="orderByField='price'; reverseSort = !reverseSort">provider<span
+                                                ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span
+                                                ng-show="reverseSort">v</span></span>
+                                        </a></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -130,6 +134,7 @@
                                         <td>{{project.begintime}}</td>
                                         <td>{{project.endtime}}</td>
                                         <td>{{project.price}}</td>
+                                        <td><a href="#/rating">{{project.provider}}</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
