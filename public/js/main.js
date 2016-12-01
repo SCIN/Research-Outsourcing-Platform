@@ -31,6 +31,7 @@ require(['angular', 'controllers', 'services','angular-route'],
         $routeProvider.when('/publishProject', {templateUrl: 'partials/publishProject.html', controller: controllers.publishProjectController});
         $routeProvider.when('/showProject', {templateUrl: 'partials/showProject.html', controller: controllers.showProjectController});
         $routeProvider.when('/rating', {templateUrl: 'partials/rating.html', controller: controllers.ratingController});
+        $routeProvider.when('/allProviders', {templateUrl: 'partials/allProviders.html', controller: controllers.allProvidersController});
         $routeProvider.otherwise({redirectTo: '/login'});
       }]);
 
@@ -51,6 +52,7 @@ require(['angular', 'controllers', 'services','angular-route'],
     app.controller("publishProjectController", controllers.publishProjectController);
     app.controller("showProjectController", controllers.showProjectController);
     app.controller("ratingController", controllers.ratingController);
+    app.controller("allProvidersController", controllers.allProvidersController);
     app.service('projectService', services.projectService);
 
 });
