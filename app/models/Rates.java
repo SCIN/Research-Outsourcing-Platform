@@ -10,24 +10,22 @@ import play.data.validation.*;
 @Entity
 public class Rates extends Model {
 
-    @Id
-    @Constraints.Min(10)
-    public Long id;
-
+    @Constraints.Required
+    public String project;
     @Constraints.Required
     public String user;
 
     @Constraints.Required
     public String provider;
 
-    @Column(name = "projectRate")
-    public String projectRate;
+    @Column(name = "projectrate")
+    public int projectrate;
 
-    @Column(name = "providerRecommend")
-    public String providerRecommend;
+    @Column(name = "providerrate")
+    public int providerrate;
 
-    @Column(name = "comments")
-    public String comments;
+    @Column(name = "comment")
+    public String comment;
 
     //public boolean done;
 
