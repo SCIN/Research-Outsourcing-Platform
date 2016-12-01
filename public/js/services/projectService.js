@@ -14,9 +14,22 @@ define([], function() {
           };
           return Project;
       }
-
+      var ratingProject = {
+          project:'',
+          provider:'',
+          user:''
+      }
+        
       return {
-          createProject : createProject
+          createProject : createProject,
+          getRatingProject : function () {
+              return ratingProject;
+          },
+          setRatingProject: function (projectName, publisher, provider) {
+              ratingProject.project = projectName;
+              ratingProject.provider = provider;
+              ratingProject.user = publisher;
+          }
       };
   }
 

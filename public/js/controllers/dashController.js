@@ -1,7 +1,7 @@
 /*global define */
 define([], function () {
     'use strict';
-    function dashController($scope, $http, $location, $rootScope, $timeout) {
+    function dashController($scope, $http, $location, $rootScope, $timeout, projectService) {
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
@@ -109,6 +109,7 @@ define([], function () {
                 console.log(data);
             });
         }
+        
         if ($scope.role == 'serviceUser') {
             $scope.getUserInfo();
             $scope.getProjectByPublisher();
@@ -117,9 +118,14 @@ define([], function () {
             $scope.getProviderInfo();
             $scope.getProjectByProvider();
         }
+        
+        $scope.rate = function (project) {
+            projectService.setRatingProject(project.projectName, project.publisher, project.provider);
+            $location.path("/rating");
+        }
     }
 
-    dashController.$inject = ['$scope', '$http', '$location', '$rootScope', '$timeout'];
+    dashController.$inject = ['$scope', '$http', '$location', '$rootScope', '$timeout', 'projectService'];
 
     return dashController;
 });
