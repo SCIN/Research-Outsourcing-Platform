@@ -10,7 +10,8 @@ define([], function() {
             credential: "NA",
             researchAreas:"NA",
             publications:"NA",
-            professionalServices:"NA"
+            professionalServices:"NA",
+            keyWord:""
         };
         $scope.userinfo = {
             keywords:""

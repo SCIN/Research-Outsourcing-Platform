@@ -8,16 +8,15 @@ define([], function() {
         // console.log($rootScope.user.role);
 
         // Mock Data: Test for all projects
+         $scope.allProviders =[];
 
-         $scope.allProjects =[];
 
-
-        $scope.getAllProjects = function() {
+        $scope.getAllProviders = function() {
             $http({
                 method : 'GET',
                 url : '/users/showProjects'
             }).success(function(data, status, headers, config) {
-                    $scope.allProjects = data;
+                    $scope.allProviders = data;
                     console.log($scope.allProjects);
                 }
 
@@ -41,7 +40,9 @@ define([], function() {
             });
         }
         if ($scope.role == 'serviceProvider'){
-            $scope.getAllProjects();
+            $scope.getAllProviders();
+        } else {
+            $scope.getAllProviders();
         }
     }
     editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
