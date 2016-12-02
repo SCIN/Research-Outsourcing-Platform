@@ -14,6 +14,8 @@ import play.data.format.*;
 import models.*;
 import java.util.*;
 
+import static play.libs.Json.toJson;
+
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
     public Result index() {
@@ -70,13 +72,13 @@ public class Application extends Controller {
 
     public Result getUserInfo(String username) {
         User user = db.getUser(username);
-        return user == null ? notFound() : ok(Json.toJson(user));
+        return user == null ? notFound() : ok(toJson(user));
     }
 
     public Result getProviderInfo(String username) {
         ServiceProvider provider = db.getProviderInfo(username);
 
-        return (provider == null) ? notFound() : ok(Json.toJson(provider));
+        return (provider == null) ? notFound() : ok(toJson(provider));
 
     }
 
@@ -149,30 +151,30 @@ public class Application extends Controller {
 
     public Result getProjects() {
         List<Projects> projects = db.getProject();
-        return (projects == null) ? notFound() : ok(Json.toJson(projects));
+        return (projects == null) ? notFound() : ok(toJson(projects));
 
     }
 
     public Result getProjectByPublisher(String username) {
 
         List<Projects> project = db.getProjectByPublisher(username);
-        return (project == null) ? notFound() : ok(Json.toJson(project));
+        return (project == null) ? notFound() : ok(toJson(project));
     }
 
     public Result getProjectByProvider(String username) {
 
         List<Projects> project = db.getProjectByProvider(username);
-        return (project == null) ? notFound() : ok(Json.toJson(project));
+        return (project == null) ? notFound() : ok(toJson(project));
     }
 
     public Result getServiceUserByName(String username) {
         ServiceUser serviceUser = db.getServiceUserByName(username);
-        return (serviceUser == null) ? notFound() : ok(Json.toJson(serviceUser));
+        return (serviceUser == null) ? notFound() : ok(toJson(serviceUser));
     }
 
     public Result getProjectByStatus(String status) {
         List<Projects> projects = db.getProjectByStatus(status);
-        return (projects == null) ? notFound() : ok(Json.toJson(projects));
+        return (projects == null) ? notFound() : ok(toJson(projects));
     }
 
     public Result updateProjectProvider(String username) {
@@ -196,6 +198,32 @@ public class Application extends Controller {
         String project = form.get("project");
         try {
             boolean update = db.updateProjectStatus(project, status);
+            if (update) {
+                return ok("Update Success");
+            } else {
+                return ok("Update Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad update Request");
+        }
+    }
+
+    public Result getRatingsByProject(String projectname) {
+        Rates rating = db.getRatingsByProject(projectname);
+        return (rating == null) ? notFound() : ok(toJson(rating));
+    }
+
+    public Result updateRating() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String project = form.get("project");
+        String user = form.get("user");
+        String provider = form.get("provider");
+        String projectrate = form.get("projectrate");
+        String providerrate = form.get("providerrate");
+        String comment = form.get("comment");
+        try {
+            boolean update = db.updateRating(project, user, provider, Integer.parseInt(projectrate), Integer.parseInt(providerrate), comment);
             if (update) {
                 return ok("Update Success");
             } else {

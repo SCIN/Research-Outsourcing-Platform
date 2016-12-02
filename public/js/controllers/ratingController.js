@@ -1,50 +1,50 @@
 /*global define */
 define([], function() {
     'use strict';
-    function editProfileController($scope, $http, $location, $rootScope){
-        console.log("rating controller");
+    function ratingController($scope, $http, $location, $rootScope, projectService){
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
 
-        // Mock Data: Test for all projects
+        $scope.rating ={
+            provider:'',
+            user:'',
+            project:'',
+            projectrate:5,
+            providerrate:5,
+            comment:''
+        };
 
-         $scope.allProjects =[];
+        $scope.rating.provider = projectService.getRatingProject().provider;
+        $scope.rating.user = projectService.getRatingProject().user;
+        $scope.rating.project = projectService.getRatingProject().project;
 
-
-        $scope.getAllProjects = function() {
-            $http({
-                method : 'GET',
-                url : '/users/showProjects'
-            }).success(function(data, status, headers, config) {
-                    $scope.allProjects = data;
-                    console.log($scope.allProjects);
-                }
-
-            ).error(function (data, status, headers, config) {
-                 console.log(data);
-            });
+        $http({
+            method: 'GET',
+            url: '/ratings/project/' + $scope.rating.project
+        }).success(function (data, status, headers, config) {
+           $scope.rating = data;
         }
+        ).error(function (data, status, headers, config) {
+            console.log(data);
+        });
 
-        $scope.provideProject = function(project){
+        $scope.submit = function () {
             $http({
                 method : 'POST',
-                url : '/projects/provide/'+$scope.userName,
-                data: {project:project}
+                url : '/ratings/update',
+                data: $scope.rating
             }).success(function(data, status, headers, config) {
-                    $scope.getAllProjects();
                     console.log(data);
                 }
-
             ).error(function (data, status, headers, config) {
                 console.log(data);
             });
-        }
-        if ($scope.role == 'serviceProvider'){
-            $scope.getAllProjects();
+            console.log($scope.rating);
+            $location.path('/dashboard');
         }
     }
-    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
+    ratingController.$inject=['$scope', '$http', '$location', '$rootScope', 'projectService'];
 
-    return editProfileController;
+    return ratingController;
 });

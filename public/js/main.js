@@ -43,8 +43,10 @@ require(['angular', 'controllers', 'services','angular-route'],
                 role:''
         };
     });
-
+    app.factory('projectService', services.projectService);
     angular.bootstrap(document, ['myApp']);
+
+
     app.controller("registerController", controllers.registerController);
     app.controller("loginController", controllers.loginController);
     app.controller("dashController", controllers.dashController);
@@ -53,6 +55,4 @@ require(['angular', 'controllers', 'services','angular-route'],
     app.controller("showProjectController", controllers.showProjectController);
     app.controller("ratingController", controllers.ratingController);
     app.controller("allProvidersController", controllers.allProvidersController);
-    app.service('projectService', services.projectService);
-
 });

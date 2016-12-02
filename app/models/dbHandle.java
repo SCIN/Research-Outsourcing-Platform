@@ -20,6 +20,7 @@ public class dbHandle {
     private ServiceProvider sp = new ServiceProvider();
     private Projects projects = new Projects();
     private ServiceUser su = new ServiceUser();
+    private Rates ra = new Rates();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -234,6 +235,37 @@ public class dbHandle {
       return false;
     }
 
+    public boolean updateRating(String project, String user, String provider, int projectrate, int providerrate, String comment) {
+        try{
+
+            if(ra.find.where().eq("project",project).eq("user",user).findUnique()!=null){
+                Rates rating= ra.find.where().eq("project",project).eq("user",user).findUnique();
+                rating.project = project;
+                rating.user = user;
+                rating.provider = provider;
+                rating.projectrate = projectrate;
+                rating.providerrate = providerrate;
+                rating.comment = comment;
+                rating.update();
+            }
+            else{
+                Rates rating = new Rates();
+                rating.project = project;
+                rating.user = user;
+                rating.provider = provider;
+                rating.projectrate = projectrate;
+                rating.providerrate = providerrate;
+                rating.comment = comment;
+                rating.update();
+                rating.save();
+            }
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public List<Projects> getProject(){
       try{
         List<Projects> proj = projects.find.all();
@@ -243,6 +275,17 @@ public class dbHandle {
         e.printStackTrace();
       }
       return null;
+    }
+
+    public Rates getRatingsByProject(String project) {
+        try{
+            Rates rating = ra.find.where().eq("project",project).findUnique();
+            if(rating == null) return null;
+            return rating;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

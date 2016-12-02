@@ -62,6 +62,7 @@
                                             Name <span ng-show="orderByField == 'projectName'"><span ng-show="!reverseSort">^</span><span
                                                     ng-show="reverseSort">v</span></span>
                                         </a></th>
+                                        <th>Provider</th>
                                         <th>projectDescription</th>
                                         <th>requiredExpertise</th>
                                         <th><a ng-click="orderByField='begintime'; reverseSort = !reverseSort">beginTime
@@ -85,6 +86,7 @@
                                     <tr ng-repeat="project in ongoingProjects|orderBy:orderByField:reverseSort">
                                         <td>{{project.status}}</td>
                                         <td>{{project.projectName}}</td>
+                                        <td>{{project.provider}}</td>
                                         <td>{{project.projectDescription}}</td>
                                         <td>{{project.requiredExpertise}}</td>
                                         <td>{{project.begintime}}</td>
@@ -96,7 +98,7 @@
                                                     <span class="caret"></span></button>
                                                 <ul class="dropdown-menu">
                                                     <li ng-click="changeProjectStatus({project:project.projectName,status:'In Market'})" ng-show="project.status=='Pending'">In Market</li>
-                                                    <li ng-click="changeProjectStatus({project:project.projectName,status:'Pending'})" ng-show="project.status=='In Market'">Pending</li>
+                                                    <!--<li ng-click="changeProjectStatus({project:project.projectName,status:'Pending'})" ng-show="project.status=='In Market'">Pending</li>-->
                                                     <li ng-click="changeProjectStatus({project:project.projectName,status:'Ongoing'})" ng-show="project.status=='Pending'">Ongoing</li>
                                                     <li ng-click="changeProjectStatus({project:project.projectName,status:'Finished'})" ng-show="project.status=='Ongoing'">Finished</li>
                                                 </ul>
@@ -126,6 +128,7 @@
                                             Name <span ng-show="orderByField == 'projectName'"><span ng-show="!reverseSort">^</span><span
                                                     ng-show="reverseSort">v</span></span>
                                         </a></th>
+                                        <th>Provider</th>
                                         <th>projectDescription</th>
                                         <th>requiredExpertise</th>
                                         <th><a ng-click="orderByField='begintime'; reverseSort = !reverseSort">beginTime
@@ -141,22 +144,20 @@
                                                 ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span
                                                 ng-show="reverseSort">v</span></span>
                                         </a></th>
-                                        <th><a ng-click="orderByField='price'; reverseSort = !reverseSort">provider<span
-                                                ng-show="orderByField == 'price'"><span ng-show="!reverseSort">^</span><span
-                                                ng-show="reverseSort">v</span></span>
-                                        </a></th>
+                                        <th>Rate</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="project in finishedProjects|orderBy:orderByField:reverseSort">
                                         <td>{{project.status}}</td>
                                         <td>{{project.projectName}}</td>
+                                        <td>{{project.provider}}</td>
                                         <td>{{project.projectDescription}}</td>
                                         <td>{{project.requiredExpertise}}</td>
                                         <td>{{project.begintime}}</td>
                                         <td>{{project.endtime}}</td>
                                         <td>{{project.price}}</td>
-                                        <td><a href="#/rating">{{project.provider}}</a></td>
+                                        <td><a ng-click="rate(project)">rate</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
