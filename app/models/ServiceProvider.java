@@ -32,6 +32,9 @@ public class ServiceProvider extends Model {
     public String professionalServices;
     //public boolean done;
 
+    @Column(name = "keyWord")
+    public String keyWord;
+
 /*
     @Formats.DateTime(pattern="dd/MM/yyyy")
     public Date dueDate = new Date();*/
