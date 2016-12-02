@@ -76,6 +76,35 @@ public class Application extends Controller {
         return user == null ? notFound() : ok(toJson(user));
     }
 
+    public Result getBugs() {
+        List<Bug> bugs = db.getBugs();
+        return (bugs == null) ? notFound() : ok(toJson(bugs));
+    }
+
+    public Result reportBug() {
+        DynamicForm form = Form.form().bindFromRequest();
+        if (form.data().size() != 3) {
+            System.out.println(form.data());
+            return badRequest("Bad report Request");
+        } else {
+            String bugname = form.get("bugname");
+            String description = form.get("description");
+            String status = form.get("status");
+            try {
+                boolean report = db.saveBug(bugname, description, status);
+                if (report) {
+                    return ok("Report Success");
+                } else {
+                    return ok("Bug Exists");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return badRequest("Bad Report Request");
+            }
+
+        }
+    }
+
     public Result getProviderInfo(String username) {
         ServiceProvider provider = db.getProviderInfo(username);
 
@@ -157,6 +186,22 @@ public class Application extends Controller {
         List<Projects> projects = db.getProject();
         return (projects == null) ? notFound() : ok(toJson(projects));
 
+    }
+
+    public Result deleteProject() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String project = form.get("project");
+        try {
+            boolean delete = db.deleteProjectByName(project);
+            if (delete) {
+                return ok("Delete Success");
+            } else {
+                return ok("Delete Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad delete Request");
+        }
     }
 
     public Result getProjectByPublisher(String username) {

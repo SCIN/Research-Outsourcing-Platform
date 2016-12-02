@@ -21,6 +21,7 @@ public class dbHandle {
     private Projects projects = new Projects();
     private ServiceUser su = new ServiceUser();
     private Rates ra = new Rates();
+    private Bug bg = new Bug();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -102,6 +103,20 @@ public class dbHandle {
         return null;
     }
 
+    public boolean deleteProjectByName(String projectName){
+      try{
+//        //projects.find.where().eq("projectName",projectName).findList();
+//          Projects p=projects.find.where().eq("projectName",projectName).findUnique();
+//          if(!p) return true;
+//          projects.delete(p);
+//          return true;
+      }catch(Exception e){
+          e.printStackTrace();
+      }
+      return false;
+    }
+
+
     public ServiceUser getServiceUserByName(String username) {
         try{
             ServiceUser serviceUser = su.find.where().eq("username",username).findUnique();
@@ -112,6 +127,7 @@ public class dbHandle {
         }
         return null;
     }
+
 
 
     public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices, String keyword){
@@ -281,22 +297,31 @@ public class dbHandle {
       return null;
     }
 
+    public List<Bug> getBugs() {
+        try{
+            List<Bug> bugs = bg.find.all();
+            if(bugs == null) return null;
+            return bugs;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-//    public List<ServiceProvider> getALLProviders(){
-//      try{
-//        List<ServiceProvider> providers = sp.find.all();
-//        List<Projects> projects = projects.find.all();
-//        List<Rates> rates =
-//
-//
-//        if(providers == null) return null;
-//        return providers;
-//      } catch (Exception e) {
-//        e.printStackTrace();
-//      }
-//      return null;
-//    }
-
+    public boolean saveBug(String bugname, String description, String status) {
+        try {
+            if (bg.find.where().eq("bugname", bugname).findUnique() != null) return false;
+            Bug bug = new Bug();
+            bug.bugname = bugname;
+            bug.description = description;
+            bug.status = status;
+            bug.save();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public List<ServiceProvider> getProviders() {
         try{

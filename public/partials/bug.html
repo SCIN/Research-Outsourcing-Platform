@@ -44,10 +44,10 @@
                         </div>
                         <div class="panel-body">
                             <div class="text-muted space-top-1">Bug Name</div> <br>
-                            <input class="form-control" type="text" placeholder="keywords" ng-model = "userinfo.keywords"><br>
+                            <input class="form-control" type="text" placeholder="bugName" ng-model = "bug.bugname"><br>
 
                             <div class="text-muted space-top-1">Bug Description</div> <br>
-                            <input class="form-control" type="text" placeholder="keywords" ng-model = "userinfo.keywords"><br>
+                            <input class="form-control" type="text" placeholder="description" ng-model = "bug.description"><br>
 
                             <div class = "editButton">
                                 <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click = "reportBug()">Report</button>

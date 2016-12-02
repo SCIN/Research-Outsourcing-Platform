@@ -8,7 +8,7 @@ define([], function() {
         $scope.bug = {
             bugname:"",
             description: "",
-            status:""
+            status:"open"
         };
 
         $scope.bugs =[];
