@@ -153,7 +153,9 @@ public class dbHandle {
             spp.update();
         }
         else{
+            String email = getUser(username).email;
             ServiceProvider spp = new ServiceProvider();
+            spp.email = email;
             spp.username = username;
             spp.credential = credential;
             spp.researchAreas = researchAreas;
@@ -180,7 +182,9 @@ public class dbHandle {
                 serviceUser.update();
             }
             else{
+                String email = getUser(username).email;
                 ServiceUser serviceUser = new ServiceUser();
+                serviceUser.email = email;
                 serviceUser.username = username;
                 serviceUser.keywords = keywords;
                 serviceUser.save();

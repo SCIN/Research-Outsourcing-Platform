@@ -33,6 +33,8 @@ public class ServiceProvider extends Model {
     //public boolean done;
     @Column(name= "keyword")
     public String keyword;
+    @Column(name = "email")
+    public String email;
 
 
 /*
