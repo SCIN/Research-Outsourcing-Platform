@@ -31,6 +31,7 @@ define([], function() {
                 url : '/serviceusers'
             }).success(function(data, status, headers, config) {
                     $scope.allUsers = data;
+                    console.log(data);
                 }
             ).error(function (data, status, headers, config) {
                 console.log(data);
