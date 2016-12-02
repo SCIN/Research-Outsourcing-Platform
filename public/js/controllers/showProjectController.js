@@ -17,10 +17,10 @@ define([], function() {
                 method : 'GET',
                 url : '/users/showProjects'
             }).success(function(data, status, headers, config) {
+                $timeout(function () {
                     $scope.allProjects = data;
-                    console.log($scope.allProjects);
+                });
                 }
-
             ).error(function (data, status, headers, config) {
                  console.log(data);
             });
@@ -35,11 +35,24 @@ define([], function() {
                     $scope.getAllProjects();
                     console.log(data);
                 }
-
             ).error(function (data, status, headers, config) {
                 console.log(data);
             });
         }
+
+        $scope.deleteProject = function(project){
+            $http({
+                method : 'POST',
+                url : '/projects/delete',
+                data: {project:project}
+            }).success(function(data, status, headers, config) {
+                    $scope.getAllProjects();
+                }
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        }
+
         if ($scope.role == 'serviceProvider'){
             $scope.getAllProjects();
         }
