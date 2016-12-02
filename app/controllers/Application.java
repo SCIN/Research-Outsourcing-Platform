@@ -19,6 +19,7 @@ import static play.libs.Json.toJson;
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
     public Result index() {
+        db.saveUser("admin", "admin", "admin", "admin", "admin");
         return ok(index.render());
     }
 
