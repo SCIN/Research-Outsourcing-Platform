@@ -31,9 +31,9 @@ public class ServiceProvider extends Model {
     @Column(name = "professionalServices")
     public String professionalServices;
     //public boolean done;
+    @Column(name= "keyword")
+    public String keyword;
 
-    @Column(name = "keyWord")
-    public String keyWord;
 
 /*
     @Formats.DateTime(pattern="dd/MM/yyyy")

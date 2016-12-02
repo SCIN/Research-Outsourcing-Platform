@@ -20,6 +20,7 @@ public class dbHandle {
     private ServiceProvider sp = new ServiceProvider();
     private Projects projects = new Projects();
     private ServiceUser su = new ServiceUser();
+    private Rates ra = new Rates();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -112,27 +113,30 @@ public class dbHandle {
         return null;
     }
 
-    public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices,String keyWord){
+
+    public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices, String keyword){
       try{
 
         if(sp.find.where().eq("username",username).findUnique()!=null){
             ServiceProvider spp= sp.find.where().eq("username",username).findUnique();
-          spp.credential = credential;
-          spp.researchAreas = researchAreas;
-          spp.publications = publications;
-          spp.professionalServices = professionalServices;
-          spp.keyWord = keyWord;
-          spp.update();
+
+            spp.credential = credential;
+            spp.researchAreas = researchAreas;
+            spp.publications = publications;
+            spp.professionalServices = professionalServices;
+            spp.keyword = keyword;
+            spp.update();
         }
         else{
             ServiceProvider spp = new ServiceProvider();
-          spp.username = username;
-          spp.credential = credential;
-          spp.researchAreas = researchAreas;
-          spp.publications = publications;
-          spp.professionalServices = professionalServices;
-          spp.keyWord = keyWord;
-          spp.save();
+            spp.username = username;
+            spp.credential = credential;
+            spp.researchAreas = researchAreas;
+            spp.publications = publications;
+            spp.professionalServices = professionalServices;
+            spp.keyword = keyword;
+            spp.save();
+
         }
 
         return true;
@@ -236,6 +240,36 @@ public class dbHandle {
       return false;
     }
 
+    public boolean updateRating(String project, String user, String provider, int projectrate, int providerrate, String comment) {
+        try{
+
+            if(ra.find.where().eq("project",project).eq("user",user).findUnique()!=null){
+                Rates rating= ra.find.where().eq("project",project).eq("user",user).findUnique();
+                rating.project = project;
+                rating.user = user;
+                rating.provider = provider;
+                rating.projectrate = projectrate;
+                rating.providerrate = providerrate;
+                rating.comment = comment;
+                rating.update();
+            }
+            else{
+                Rates rating = new Rates();
+                rating.project = project;
+                rating.user = user;
+                rating.provider = provider;
+                rating.projectrate = projectrate;
+                rating.providerrate = providerrate;
+                rating.comment = comment;
+                rating.save();
+            }
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public List<Projects> getProject(){
       try{
         List<Projects> proj = projects.find.all();
@@ -246,6 +280,7 @@ public class dbHandle {
       }
       return null;
     }
+
 
     public List<ServiceProvider> getALLProviders(){
       try{
@@ -263,5 +298,26 @@ public class dbHandle {
     }
 
 
+    public List<ServiceProvider> getProviders() {
+        try{
+            List<ServiceProvider> spp = sp.find.all();
+            if(spp == null) return null;
+            return spp;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Rates getRatingsByProject(String project) {
+        try{
+            Rates rating = ra.find.where().eq("project",project).findUnique();
+            if(rating == null) return null;
+            return rating;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

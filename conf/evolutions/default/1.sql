@@ -18,13 +18,12 @@ create table projects (
 ;
 
 create table rates (
-  id                        bigint auto_increment not null,
+  project                   varchar(255),
   user                      varchar(255),
   provider                  varchar(255),
-  projectRate               varchar(255),
-  providerRecommend         varchar(255),
-  comments                  varchar(255),
-  constraint pk_rates primary key (id))
+  projectrate               integer,
+  providerrate              integer,
+  comment                   varchar(255))
 ;
 
 create table service_provider (
