@@ -278,6 +278,17 @@ public class dbHandle {
       return null;
     }
 
+    public List<ServiceProvider> getProviders() {
+        try{
+            List<ServiceProvider> spp = sp.find.all();
+            if(spp == null) return null;
+            return spp;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Rates getRatingsByProject(String project) {
         try{
             Rates rating = ra.find.where().eq("project",project).findUnique();

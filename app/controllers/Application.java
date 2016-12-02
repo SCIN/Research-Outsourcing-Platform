@@ -215,6 +215,12 @@ public class Application extends Controller {
         return (rating == null) ? notFound() : ok(toJson(rating));
     }
 
+    public Result getAllProviders() {
+        List<ServiceProvider> sps = db.getProviders();
+        return (sps == null) ? notFound() : ok(toJson(sps));
+        // TODO: search
+    }
+
     public Result updateRating() {
         DynamicForm form = Form.form().bindFromRequest();
         String project = form.get("project");
@@ -235,4 +241,5 @@ public class Application extends Controller {
             return badRequest("Bad update Request");
         }
     }
+
 }
