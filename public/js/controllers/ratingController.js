@@ -21,9 +21,9 @@ define([], function() {
 
         $http({
             method: 'GET',
-            url: '/ratings/project' + $scope.rating.project
+            url: '/ratings/project/' + $scope.rating.project
         }).success(function (data, status, headers, config) {
-                $scope.rating = data;
+           $scope.rating = data;
         }
         ).error(function (data, status, headers, config) {
             console.log(data);
@@ -32,7 +32,7 @@ define([], function() {
         $scope.submit = function () {
             $http({
                 method : 'POST',
-                url : '/projects/projectname/',
+                url : '/ratings/update',
                 data: $scope.rating
             }).success(function(data, status, headers, config) {
                     console.log(data);
