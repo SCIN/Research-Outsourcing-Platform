@@ -412,4 +412,20 @@ public class dbHandle {
         return null;
     }
 
+
+    public List<Projects> getProjectsByKeyword(String[] words){
+        try{
+          List<Projects> pros = new ArrayList<Projects>();
+          for(String s: words){
+            List<Projects> temp=projects.find.where().eq("projectDescription",words).findList();
+            List<Projects> temp=projects.find.where().eq("price",words).findList();
+            pros.addAll(temp);
+          }
+          return pros;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
