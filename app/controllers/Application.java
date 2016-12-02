@@ -114,10 +114,7 @@ public class Application extends Controller {
 
     public Result updateProviderInfo(String username) {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 7) {
-            System.out.println(form.data());
-            return badRequest("Bad update length!");
-        } else {
+
             String credential = form.get("credential");
             String researchAreas = form.get("researchAreas");
             String publications = form.get("publications");
@@ -137,7 +134,7 @@ public class Application extends Controller {
                 e.printStackTrace();
                 return badRequest("Bad update Request");
             }
-        }
+
     }
 
     public Result getServiceUsers() {
