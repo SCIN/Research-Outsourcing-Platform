@@ -114,7 +114,7 @@ public class Application extends Controller {
 
     public Result updateProviderInfo(String username) {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 6) {
+        if (form.data().size() != 7) {
             System.out.println(form.data());
             return badRequest("Bad update length!");
         } else {
@@ -122,10 +122,11 @@ public class Application extends Controller {
             String researchAreas = form.get("researchAreas");
             String publications = form.get("publications");
             String professionalServices = form.get("professionalServices");
-
+            String university = form.get("university");
             String keyword = form.get("keyword");
+
             try {
-                boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices, keyword);
+                boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices, keyword, university);
 
                 if (register) {
                     return ok("Update Success");

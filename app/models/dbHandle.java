@@ -141,17 +141,17 @@ public class dbHandle {
 
 
 
-    public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices, String keyword){
+    public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices, String keyword, String university){
       try{
 
         if(sp.find.where().eq("username",username).findUnique()!=null){
             ServiceProvider spp= sp.find.where().eq("username",username).findUnique();
-
             spp.credential = credential;
             spp.researchAreas = researchAreas;
             spp.publications = publications;
             spp.professionalServices = professionalServices;
             spp.keyword = keyword;
+            spp.university = university;
             spp.update();
         }
         else{
@@ -164,8 +164,8 @@ public class dbHandle {
             spp.publications = publications;
             spp.professionalServices = professionalServices;
             spp.keyword = keyword;
+            spp.university = university;
             spp.save();
-
         }
 
         return true;
