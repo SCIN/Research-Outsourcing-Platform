@@ -38,3 +38,4 @@ POST  /projects/provide/:username            controllers.Application.updateProje
 POST  /projects/delete                       controllers.Application.deleteProject()
 POST  /ratings/update                        controllers.Application.updateRating()
 POST  /search/university                     controllers.Application.searchByUniversity()
+POST  /search/keywords                       controllers.Application.searchByKeywords()
