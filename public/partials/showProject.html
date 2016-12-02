@@ -13,14 +13,14 @@
                     <div class="col-lg-8 sub-info searchBar">
                         <div>
                             <div class="input-group form">
-                                <input type="text" class="form-control" placeholder="Search Project">
+                                <input type="text" class="form-control" placeholder="Search Project" ng-model = "search.keywords">
                                 <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Search</button>
+                                        <button class="btn btn-default" type="button" ng-click = "searchProject()">Search</button>
                                     </span>
                             </div> <br>
-                            <input type="radio" name="rating" value="1"> by Keywords
-                            <input type="radio" name="rating" value="2"> by Topic
-                            <input type="radio" name="rating" value="3"> by University
+                            <input type="radio" name="rating" value="keywords" ng-model = "search.searchBy"> by Keywords
+                            <input type="radio" name="rating" value="topic" ng-model = "search.searchBy"> by Topic
+                            <input type="radio" name="rating" value="university" ng-model = "search.searchBy"> by University
                         </div>
                     </div>
                 </div>

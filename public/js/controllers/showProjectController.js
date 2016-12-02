@@ -2,14 +2,14 @@
 define([], function() {
     'use strict';
     function editProfileController($scope, $http, $location, $rootScope,$timeout){
-        console.log("show Project for this controller");
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
-
-        // Mock Data: Test for all projects
-
-         $scope.allProjects =[];
+        $scope.allProjects =[];
+        $scope.search = {
+            keywords:"",
+            searchBy:""
+        }
 
 
         $scope.getAllProjects = function() {
@@ -53,7 +53,38 @@ define([], function() {
             });
         }
 
-            $scope.getAllProjects();
+        $scope.searchProject = function(project){
+            if ($scope.search.searchBy == "keywords") {
+                $http({
+                    method : 'POST',
+                    url : '/search/keywords',
+                    data: $scope.search
+                }).success(function(data, status, headers, config) {
+                        $scope.allProjects = data;
+                        console.log($scope.allProjects);
+                    }
+                ).error(function (data, status, headers, config) {
+                    console.log(data);
+                });
+            } else if ($scope.search.searchBy == "university") {
+                $http({
+                    method : 'POST',
+                    url : '/search/university',
+                    data: $scope.search
+                }).success(function(data, status, headers, config) {
+                        $scope.allProjects = data;
+                        console.log($scope.allProjects);
+                    }
+                ).error(function (data, status, headers, config) {
+                    console.log(data);
+                });
+            } else {
+                //TODO
+            }
+
+        }
+
+        $scope.getAllProjects();
     }
     editProfileController.$inject=['$scope', '$http', '$location', '$rootScope','$timeout'];
 

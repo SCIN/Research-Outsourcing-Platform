@@ -296,6 +296,7 @@ public class Application extends Controller {
     public Result searchByKeywords() {
         DynamicForm form = Form.form().bindFromRequest();
         String keywords = form.get("keywords");
+
         if (keywords == null) return badRequest("Empty Search");
         String[] strs = keywords.split("\\s+");
         List<Projects> projects = db.getProjectsByKeyword(strs);
