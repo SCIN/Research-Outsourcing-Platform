@@ -268,8 +268,9 @@ public class Application extends Controller {
     }
 
     public Result getAllProviders() {
-        List<ServiceProvider> sps = db.getProviders();
-        return (sps == null) ? notFound() : ok(toJson(sps));
+        //List<ServiceProvider> sps = db.getProviders();
+        List<List<String>> list = db.getALLProviders();
+        return (list == null) ? notFound() : ok(toJson(list));
         // TODO: search
     }
 
