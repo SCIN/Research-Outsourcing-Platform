@@ -109,7 +109,7 @@ public class dbHandle {
         //projects.find.where().eq("projectName",projectName).findList();
           Projects p=projects.find.where().eq("projectName",projectName).findUnique();
           if(p==null) return true;
-          projects.delete(projectName);
+          projects.find.where().eq("projectName",projectName).findUnique().delete();
           return true;
 
       }catch(Exception e){
