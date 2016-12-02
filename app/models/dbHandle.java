@@ -21,6 +21,7 @@ public class dbHandle {
     private Projects projects = new Projects();
     private ServiceUser su = new ServiceUser();
     private Rates ra = new Rates();
+    private Bug bg = new Bug();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -296,8 +297,36 @@ public class dbHandle {
       return null;
     }
 
+
+    public List<Bug> getBugs() {
+        try{
+            List<Bug> bugs = bg.find.all();
+            if(bugs == null) return null;
+            return bugs;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean saveBug(String bugname, String description, String status) {
+        try {
+            if (bg.find.where().eq("bugname", bugname).findUnique() != null) return false;
+            Bug bug = new Bug();
+            bug.bugname = bugname;
+            bug.description = description;
+            bug.status = status;
+            bug.save();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     /*
-    public List<List<String>> getALLProviders(){
+
+    public List<ServiceProvider> getALLProviders(){
       try{
         List<ServiceProvider> providers = sp.find.all();
         if(providers == null) return null;
