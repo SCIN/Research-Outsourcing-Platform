@@ -119,7 +119,7 @@ public class dbHandle {
     }
     public List<ServiceUser> getServiceUsers() {
         try{
-            List<ServiceUser> serviceUsers = su.find.all();
+            List<ServiceUser> serviceUsers = su.find.findList();;
             if(serviceUsers == null) return null;
             return serviceUsers;
         } catch (Exception e) {
@@ -428,8 +428,8 @@ public class dbHandle {
         try{
           List<Projects> pros = new ArrayList<Projects>();
           for(String s: words){
-            List<Projects> temp=projects.find.where().eq("projectDescription",s).findList();
-            List<Projects> temp2=projects.find.where().eq("price",s).findList();
+            List<Projects> temp=projects.find.where().like("projectDescription","%"+s+"%").findList();
+            List<Projects> temp2=projects.find.where().like("price","%"+s+"%").findList();
             pros.addAll(temp);
             pros.addAll(temp2);
           }
