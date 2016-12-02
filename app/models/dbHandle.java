@@ -102,6 +102,20 @@ public class dbHandle {
         return null;
     }
 
+    public boolean deleteProjectByName(String projectName){
+      try{
+        //projects.find.where().eq("projectName",projectName).findList();
+          Projects p=projects.find.where().eq("projectName",projectName).findUnique();
+          if(!p) return true;
+          projects.delete(p);
+          return true;
+      }catch(Exception e){
+          e.printStackTrace();
+      }
+      return false;
+    }
+
+
     public ServiceUser getServiceUserByName(String username) {
         try{
             ServiceUser serviceUser = su.find.where().eq("username",username).findUnique();
@@ -112,6 +126,7 @@ public class dbHandle {
         }
         return null;
     }
+
 
 
     public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices, String keyword){
@@ -281,15 +296,41 @@ public class dbHandle {
       return null;
     }
 
-
-    public List<ServiceProvider> getALLProviders(){
+    /*
+    public List<List<String>> getALLProviders(){
       try{
         List<ServiceProvider> providers = sp.find.all();
-        List<Projects> projects = projects.find.all();
-        List<Rates> rates = 
-
-
         if(providers == null) return null;
+       // List<Projects> pros = projects.find.all();
+        //List<Rates> rates = ra.find.all();
+        Map<String,Integer> popularity = new Map<String,Integer>();
+        for(int i=0;i<providers.size();i++){
+          List<Projects> pro2 = projects.find.where().eq("provider",providers.get(i).username).eq("status","Ongoing").findList();
+          List<Projects> pro3 = projects.find.where().eq("provider",providers.get(i).username).eq("status","Finished").findList();
+          popularity.put(providers.get(i),pro2.size()+pro3.size());
+        }
+        Map<String,Double> ratings = new Map<String,Double>();
+        for(int i=0;i<providers.size();i++){
+          List<Rates> rating2 = ra.find.where().eq("provider",providers.get(i).username).findList();
+          int sum=0;
+          for(int j=0;j<rating2.size();j++){
+            sum+=rating2.get(j).providerrate;
+          }
+
+          ratings.put(providers.get(i),sum/rating2.size());
+        }
+        List<List<String>> result = new ArrayList<List<String>>();
+        for(int i=0;i<providers.size();i++){
+          List<String> list = new ArrayList<String>();
+          String name = providers.get(i).username;
+          list.add(name);
+          list.add(popularity.get(name));
+          list.add(ratings.get(name));
+          list.add
+        }
+
+
+        
         return providers;
       } catch (Exception e) {
         e.printStackTrace();
@@ -297,7 +338,7 @@ public class dbHandle {
       return null;
     }
 
-
+    */
     public List<ServiceProvider> getProviders() {
         try{
             List<ServiceProvider> spp = sp.find.all();
