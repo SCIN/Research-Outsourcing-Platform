@@ -13,6 +13,7 @@ GET   /users/showProjects        			 controllers.Application.getProjects()
 GET   /users/getAllProviders                 controllers.Application.getAllProviders()
 GET   /ratings/project/:projectname          controllers.Application.getRatingsByProject(projectname: String)
 GET        /                                 controllers.Application.index()
+GET   /bug                                   controllers.Application.getBugs()
 
 # Map the JS resource paths
 GET        /*file                            controllers.Assets.versioned(path="/public", file: Asset)
@@ -30,7 +31,7 @@ POST  /users/:username/publishProject        controllers.Application.publishProj
 GET   /users/showProjects        			 controllers.Application.getProjects()
 
 POST  /users/:username/serviceuserinfo       controllers.Application.updateServiceUser(username: String)
-
+POST  /bug/report                            controllers.Application.reportBug()
 GET   /projects/:status                      controllers.Application.getProjectByStatus(status: String)
 POST  /projects/projectname/:status          controllers.Application.updateProjectStatus(status: String)
 POST  /projects/provide/:username            controllers.Application.updateProjectProvider(username: String)
