@@ -256,7 +256,6 @@ public class dbHandle {
                 rating.projectrate = projectrate;
                 rating.providerrate = providerrate;
                 rating.comment = comment;
-                rating.update();
                 rating.save();
             }
             return true;
