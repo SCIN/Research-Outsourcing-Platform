@@ -111,6 +111,7 @@ public class dbHandle {
           if(p==null) return true;
           projects.delete(projectName);
           return true;
+
       }catch(Exception e){
           e.printStackTrace();
       }
@@ -298,7 +299,6 @@ public class dbHandle {
       return null;
     }
 
-
     public List<Bug> getBugs() {
         try{
             List<Bug> bugs = bg.find.all();
@@ -324,6 +324,7 @@ public class dbHandle {
         }
         return false;
     }
+
 
     
 
@@ -375,6 +376,7 @@ public class dbHandle {
     }
 
     
+
     public List<ServiceProvider> getProviders() {
         try{
             List<ServiceProvider> spp = sp.find.all();

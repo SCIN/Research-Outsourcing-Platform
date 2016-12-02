@@ -8,7 +8,7 @@ define([], function() {
         // console.log($rootScope.user.role);
 
         // Mock Data: Test for all projects
-         $scope.allProviders =[];
+        $scope.allProviders =[];
 
 
         $scope.getAllProviders = function() {
