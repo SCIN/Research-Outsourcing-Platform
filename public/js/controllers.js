@@ -3,8 +3,8 @@
 'use strict';
 
 define([
-    'controllers/loginController','controllers/registerController','controllers/dashController', 'controllers/editProfileController', 'controllers/publishProjectController', 'controllers/showProjectController', 'controllers/ratingController', 'controllers/allProvidersController'
-], function(loginController, registerController,dashController, editProfileController, publishProjectController, showProjectController, ratingController, allProvidersController) {
+    'controllers/loginController','controllers/registerController','controllers/dashController', 'controllers/editProfileController', 'controllers/publishProjectController', 'controllers/showProjectController', 'controllers/ratingController', 'controllers/allProvidersController', 'controllers/reportBugController'
+], function(loginController, registerController,dashController, editProfileController, publishProjectController, showProjectController, ratingController, allProvidersController, reportBugController) {
 
 /* Controllers */
 
@@ -25,6 +25,8 @@ define([
     controllers.ratingController = ratingController;
 
     controllers.allProvidersController = allProvidersController;
+
+    controllers.reportBugController = reportBugController;
 
     return controllers;
 

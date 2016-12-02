@@ -8,16 +8,16 @@ define([], function() {
         // console.log($rootScope.user.role);
 
         // Mock Data: Test for all projects
-         $scope.allProviders =[];
+        $scope.allProviders =[];
 
 
         $scope.getAllProviders = function() {
             $http({
                 method : 'GET',
-                url : '/users/showProjects'
+                url : '/users/getAllProviders'
             }).success(function(data, status, headers, config) {
                     $scope.allProviders = data;
-                    console.log($scope.allProjects);
+                    console.log($scope.allProviders);
                 }
 
             ).error(function (data, status, headers, config) {
