@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table bug (
+  bugname                   varchar(255) not null,
+  description               varchar(255),
+  status                    varchar(255),
+  constraint pk_bug primary key (bugname))
+;
+
 create table projects (
   id                        bigint auto_increment not null,
   project_name              varchar(255),
@@ -57,6 +64,8 @@ create table user (
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table bug;
 
 drop table projects;
 

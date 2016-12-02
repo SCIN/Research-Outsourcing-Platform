@@ -107,8 +107,8 @@ public class dbHandle {
       try{
         //projects.find.where().eq("projectName",projectName).findList();
           Projects p=projects.find.where().eq("projectName",projectName).findUnique();
-          if(!p) return true;
-          projects.delete(p);
+          if(p==null) return true;
+          projects.delete(projectName);
           return true;
       }catch(Exception e){
           e.printStackTrace();

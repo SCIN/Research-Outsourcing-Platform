@@ -1,7 +1,7 @@
 /*global define */
 define([], function() {
     'use strict';
-    function editProfileController($scope, $http, $location, $rootScope){
+    function editProfileController($scope, $http, $location, $rootScope,$timeout){
         console.log("show Project for this controller");
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
@@ -53,11 +53,9 @@ define([], function() {
             });
         }
 
-        if ($scope.role == 'serviceProvider'){
             $scope.getAllProjects();
-        }
     }
-    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
+    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope','$timeout'];
 
     return editProfileController;
 });
