@@ -11,7 +11,8 @@ define([], function() {
             researchAreas:"NA",
             publications:"NA",
             professionalServices:"NA",
-            keyword:""
+            keyword:"",
+            university:""
         };
         $scope.userinfo = {
             keywords:""
@@ -51,7 +52,7 @@ define([], function() {
                 url : '/users/'+ $scope.userName + '/providerinfo'
             }).success(function(data, status, headers, config) {
                     $scope.providerinfo = data;
-                    // console.log(data);
+                    console.log(data);
                 }
 
             ).error(function (data, status, headers, config) {

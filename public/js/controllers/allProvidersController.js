@@ -1,7 +1,7 @@
 /*global define */
 define([], function() {
     'use strict';
-    function editProfileController($scope, $http, $location, $rootScope){
+    function editProfileController($scope, $http, $location, $rootScope, projectService){
         console.log("All Providers controller");
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
@@ -9,7 +9,7 @@ define([], function() {
 
         // Mock Data: Test for all projects
         $scope.allProviders =[];
-
+        $scope.allUsers = [];
 
         $scope.getAllProviders = function() {
             $http({
@@ -25,27 +25,35 @@ define([], function() {
             });
         }
 
-        $scope.provideProject = function(project){
+        $scope.getAllUsers = function() {
             $http({
-                method : 'POST',
-                url : '/projects/provide/'+$scope.userName,
-                data: {project:project}
+                method : 'GET',
+                url : '/serviceusers'
             }).success(function(data, status, headers, config) {
-                    $scope.getAllProjects();
-                    console.log(data);
+                    $scope.allUsers = data;
                 }
-
             ).error(function (data, status, headers, config) {
                 console.log(data);
             });
         }
+
+        $scope.getAllProviders();
+        $scope.getAllUsers();
+
+
+        $scope.checkUser = function (provider) {
+            projectService.setUserInfo(provider[0]);
+            $location.path("/userInfo");
+        }
+
+
         if ($scope.role == 'serviceProvider'){
             $scope.getAllProviders();
         } else {
             $scope.getAllProviders();
         }
     }
-    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
+    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope', 'projectService'];
 
     return editProfileController;
 });

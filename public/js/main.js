@@ -33,6 +33,8 @@ require(['angular', 'controllers', 'services','angular-route'],
         $routeProvider.when('/rating', {templateUrl: 'partials/rating.html', controller: controllers.ratingController});
         $routeProvider.when('/allProviders', {templateUrl: 'partials/allProviders.html', controller: controllers.allProvidersController});
         $routeProvider.when('/bug', {templateUrl: 'partials/bug.html', controller: controllers.reportBugController});
+        $routeProvider.when('/userInfo', {templateUrl: 'partials/userInfo.html', controller: controllers.userInfoController});
+
         $routeProvider.otherwise({redirectTo: '/login'});
       }]);
 
@@ -57,4 +59,6 @@ require(['angular', 'controllers', 'services','angular-route'],
     app.controller("ratingController", controllers.ratingController);
     app.controller("allProvidersController", controllers.allProvidersController);
     app.controller("reportBugController", controllers.reportBugController);
+    app.controller("userInfoController", controllers.userInfoController);
+
 });
