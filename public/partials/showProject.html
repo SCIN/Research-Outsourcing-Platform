@@ -45,6 +45,7 @@
                                         </a></th>
                                         <th><a ng-click="orderByField='action'; reverseSort = !reverseSort">action <span ng-show="orderByField == 'action'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
                                         </a></th>
+                                        <th ng-show="userName=='admin'">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,18 +58,13 @@
                                         <td>{{project.endtime}}</td>
                                         <td>{{project.price}}</td>
                                         <td><button type="button" class="btn btn-link btn-sm" ng-click="provideProject(project.projectName)" ng-disabled="project.status != 'In Market'">Provide</button> </td>
+                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="deleteProject(project.projectName)" ng-show="userName=='admin'">Delete</button></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!--<div class="panel panel-default">-->
-                        <!--<div class="panel-heading">Time frame requirements</div>-->
-                        <!--<div class="panel-body">-->
-                            <!--<input class="form-control" type="text" placeholder="Input your Publication" ng-model = "providerinfo.publications">-->
-                        <!--</div>-->
-                    <!--</div>-->
 
                 </div>
             </div>

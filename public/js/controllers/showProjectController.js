@@ -1,7 +1,7 @@
 /*global define */
 define([], function() {
     'use strict';
-    function editProfileController($scope, $http, $location, $rootScope){
+    function editProfileController($scope, $http, $location, $rootScope,$timeout){
         console.log("show Project for this controller");
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
@@ -17,10 +17,10 @@ define([], function() {
                 method : 'GET',
                 url : '/users/showProjects'
             }).success(function(data, status, headers, config) {
+                $timeout(function () {
                     $scope.allProjects = data;
-                    console.log($scope.allProjects);
+                });
                 }
-
             ).error(function (data, status, headers, config) {
                  console.log(data);
             });
@@ -35,16 +35,27 @@ define([], function() {
                     $scope.getAllProjects();
                     console.log(data);
                 }
-
             ).error(function (data, status, headers, config) {
                 console.log(data);
             });
         }
-        if ($scope.role == 'serviceProvider'){
-            $scope.getAllProjects();
+
+        $scope.deleteProject = function(project){
+            $http({
+                method : 'POST',
+                url : '/projects/delete',
+                data: {project:project}
+            }).success(function(data, status, headers, config) {
+                    $scope.getAllProjects();
+                }
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
         }
+
+            $scope.getAllProjects();
     }
-    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
+    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope','$timeout'];
 
     return editProfileController;
 });
