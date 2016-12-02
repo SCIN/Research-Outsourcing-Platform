@@ -139,6 +139,11 @@ public class Application extends Controller {
         }
     }
 
+    public Result getServiceUsers() {
+        List<ServiceUser> serviceUsers = db.getServiceUsers();
+        return (serviceUsers == null) ? notFound() : ok(toJson(serviceUsers));
+    }
+
     public Result updateServiceUser(String username) {
         DynamicForm form = Form.form().bindFromRequest();
         String keywords = form.get("keywords");
@@ -185,7 +190,6 @@ public class Application extends Controller {
     public Result getProjects() {
         List<Projects> projects = db.getProject();
         return (projects == null) ? notFound() : ok(toJson(projects));
-
     }
 
     public Result deleteProject() {

@@ -117,7 +117,16 @@ public class dbHandle {
       }
       return false;
     }
-
+    public List<ServiceUser> getServiceUsers() {
+        try{
+            List<ServiceUser> serviceUsers = su.find.all();
+            if(serviceUsers == null) return null;
+            return serviceUsers;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ServiceUser getServiceUserByName(String username) {
         try{

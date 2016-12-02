@@ -18,7 +18,7 @@ GET   /bug                                   controllers.Application.getBugs()
 # Map the JS resource paths
 GET        /*file                            controllers.Assets.versioned(path="/public", file: Asset)
 
-# GET        /users                          controllers.Application.getUsers()
+GET        /serviceusers                     controllers.Application.getServiceUsers()
 POST  /users/login                           controllers.Application.loginSubmit()
 POST  /users/register                        controllers.Application.registerUser()
 
