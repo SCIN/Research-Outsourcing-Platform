@@ -9,7 +9,7 @@ define([], function() {
 
         // Mock Data: Test for all projects
         $scope.allProviders =[];
-
+        $scope.allUsers = [];
 
         $scope.getAllProviders = function() {
             $http({
@@ -25,20 +25,20 @@ define([], function() {
             });
         }
 
-        $scope.provideProject = function(project){
+        $scope.getAllUsers = function() {
             $http({
-                method : 'POST',
-                url : '/projects/provide/'+$scope.userName,
-                data: {project:project}
+                method : 'GET',
+                url : '/serviceusers'
             }).success(function(data, status, headers, config) {
-                    $scope.getAllProjects();
-                    console.log(data);
+                    $scope.allUsers = data;
                 }
-
             ).error(function (data, status, headers, config) {
                 console.log(data);
             });
         }
+
+        $scope.getAllProviders();
+        $scope.getAllUsers();
 
 
         $scope.checkUser = function (provider) {
