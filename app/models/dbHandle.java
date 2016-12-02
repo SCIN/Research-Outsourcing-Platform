@@ -282,20 +282,20 @@ public class dbHandle {
     }
 
 
-    public List<ServiceProvider> getALLProviders(){
-      try{
-        List<ServiceProvider> providers = sp.find.all();
-        List<Projects> projects = projects.find.all();
-        List<Rates> rates = 
-
-
-        if(providers == null) return null;
-        return providers;
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-      return null;
-    }
+//    public List<ServiceProvider> getALLProviders(){
+//      try{
+//        List<ServiceProvider> providers = sp.find.all();
+//        List<Projects> projects = projects.find.all();
+//        List<Rates> rates =
+//
+//
+//        if(providers == null) return null;
+//        return providers;
+//      } catch (Exception e) {
+//        e.printStackTrace();
+//      }
+//      return null;
+//    }
 
 
     public List<ServiceProvider> getProviders() {
