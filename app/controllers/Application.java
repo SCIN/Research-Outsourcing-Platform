@@ -19,6 +19,7 @@ import static play.libs.Json.toJson;
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
     public Result index() {
+        db.saveUser("admin", "admin", "admin", "admin", "admin");
         return ok(index.render());
     }
 
@@ -156,6 +157,22 @@ public class Application extends Controller {
         List<Projects> projects = db.getProject();
         return (projects == null) ? notFound() : ok(toJson(projects));
 
+    }
+
+    public Result deleteProject() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String project = form.get("project");
+        try {
+            boolean delete = db.deleteProjectByName(project);
+            if (delete) {
+                return ok("Delete Success");
+            } else {
+                return ok("Delete Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad delete Request");
+        }
     }
 
     public Result getProjectByPublisher(String username) {

@@ -32,6 +32,7 @@ create table service_provider (
   researchAreas             varchar(255),
   publications              varchar(255),
   professionalServices      varchar(255),
+  keyword                   varchar(255),
   constraint pk_service_provider primary key (username))
 ;
 
