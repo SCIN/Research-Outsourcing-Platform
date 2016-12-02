@@ -34,5 +34,5 @@ POST  /users/:username/serviceuserinfo       controllers.Application.updateServi
 GET   /projects/:status                      controllers.Application.getProjectByStatus(status: String)
 POST  /projects/projectname/:status          controllers.Application.updateProjectStatus(status: String)
 POST  /projects/provide/:username            controllers.Application.updateProjectProvider(username: String)
-
+POST  /projects/delete                       controllers.Application.deleteProject()
 POST  /ratings/update                        controllers.Application.updateRating()
