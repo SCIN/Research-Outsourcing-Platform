@@ -312,6 +312,17 @@ public class dbHandle {
       return null;
     }
 
+    public List<ServiceProvider> getProvidersByUniversity(String university) {
+        try{
+            List<ServiceProvider> providers = sp.find.where().eq("university",university).findList();
+            if(providers == null) return null;
+            return providers;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Bug> getBugs() {
         try{
             List<Bug> bugs = bg.find.all();

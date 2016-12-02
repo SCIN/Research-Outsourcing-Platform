@@ -296,4 +296,11 @@ public class Application extends Controller {
         }
     }
 
+    public Result searchByUniversity() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String university = form.get("university");
+        List<ServiceProvider> providers = db.getProvidersByUniversity(university);
+        return (providers == null) ? notFound() : ok(toJson(providers));
+    }
+
 }
