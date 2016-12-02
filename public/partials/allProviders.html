@@ -41,11 +41,11 @@
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="provider in allProviders|orderBy:orderByField:reverseSort">
-                                        <td>{{provider.status}}</td>
-                                        <td>{{provider.projectName}}</td>
-                                        <td>{{provider.begintime}}</td>
-                                        <td>{{provider.endtime}}</td>
-                                        <td>{{provider.price}}</td>
+                                        <td>{{provider[0]}}</td>
+                                        <td>{{provider[1]}}</td>
+                                        <td>{{provider[2]}}</td>
+                                        <td>{{provider[3]}}</td>
+                                        <td>{{provider[4]}}</td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table bug (
+  bugname                   varchar(255) not null,
+  description               varchar(255),
+  status                    varchar(255),
+  constraint pk_bug primary key (bugname))
+;
+
 create table projects (
   id                        bigint auto_increment not null,
   project_name              varchar(255),
@@ -36,6 +43,15 @@ create table service_provider (
   constraint pk_service_provider primary key (username))
 ;
 
+create table service_publications (
+  username                  varchar(255) not null,
+  credential                varchar(255),
+  researchAreas             varchar(255),
+  publications              varchar(255),
+  professionalServices      varchar(255),
+  constraint pk_service_publications primary key (username))
+;
+
 create table service_user (
   username                  varchar(255) not null,
   keywords                  varchar(255),
@@ -58,11 +74,15 @@ create table user (
 
 SET FOREIGN_KEY_CHECKS=0;
 
+drop table bug;
+
 drop table projects;
 
 drop table rates;
 
 drop table service_provider;
+
+drop table service_publications;
 
 drop table service_user;
 
