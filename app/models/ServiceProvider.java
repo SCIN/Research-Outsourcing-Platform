@@ -34,6 +34,7 @@ public class ServiceProvider extends Model {
     @Column(name= "keyword")
     public String keyword;
 
+
 /*
     @Formats.DateTime(pattern="dd/MM/yyyy")
     public Date dueDate = new Date();*/

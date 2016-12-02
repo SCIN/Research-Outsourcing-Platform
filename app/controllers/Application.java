@@ -19,6 +19,7 @@ import static play.libs.Json.toJson;
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
     public Result index() {
+        db.saveUser("admin", "admin", "admin", "admin", "admin");
         return ok(index.render());
     }
 
@@ -92,9 +93,11 @@ public class Application extends Controller {
             String researchAreas = form.get("researchAreas");
             String publications = form.get("publications");
             String professionalServices = form.get("professionalServices");
+
             String keyword = form.get("keyword");
             try {
                 boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices, keyword);
+
                 if (register) {
                     return ok("Update Success");
                 } else {
@@ -215,6 +218,12 @@ public class Application extends Controller {
         return (rating == null) ? notFound() : ok(toJson(rating));
     }
 
+    public Result getAllProviders() {
+        List<ServiceProvider> sps = db.getProviders();
+        return (sps == null) ? notFound() : ok(toJson(sps));
+        // TODO: search
+    }
+
     public Result updateRating() {
         DynamicForm form = Form.form().bindFromRequest();
         String project = form.get("project");
@@ -235,4 +244,5 @@ public class Application extends Controller {
             return badRequest("Bad update Request");
         }
     }
+
 }

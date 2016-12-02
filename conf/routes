@@ -10,6 +10,7 @@ GET   /users/:username/serviceuserinfo       controllers.Application.getServiceU
 GET   /projects/publisher/:username          controllers.Application.getProjectByPublisher(username: String)
 GET   /projects/provider/:username           controllers.Application.getProjectByProvider(username: String)
 GET   /users/showProjects        			 controllers.Application.getProjects()
+GET   /users/getAllProviders                 controllers.Application.getAllProviders()
 GET   /ratings/project/:projectname          controllers.Application.getRatingsByProject(projectname: String)
 GET        /                                 controllers.Application.index()
 
