@@ -40,13 +40,14 @@ create table service_provider (
   publications              varchar(255),
   professionalServices      varchar(255),
   keyword                   varchar(255),
+  email                     varchar(255),
   constraint pk_service_provider primary key (username))
 ;
-
 
 create table service_user (
   username                  varchar(255) not null,
   keywords                  varchar(255),
+  email                     varchar(255),
   constraint pk_service_user primary key (username))
 ;
 
@@ -73,8 +74,6 @@ drop table projects;
 drop table rates;
 
 drop table service_provider;
-
-drop table service_publications;
 
 drop table service_user;
 

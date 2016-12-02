@@ -1,7 +1,7 @@
 /*global define */
 define([], function() {
     'use strict';
-    function editProfileController($scope, $http, $location, $rootScope){
+    function editProfileController($scope, $http, $location, $rootScope, projectService){
         console.log("All Providers controller");
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
@@ -39,13 +39,21 @@ define([], function() {
                 console.log(data);
             });
         }
+
+
+        $scope.checkUser = function (provider) {
+            projectService.setUserInfo(provider[0]);
+            $location.path("/userInfo");
+        }
+
+
         if ($scope.role == 'serviceProvider'){
             $scope.getAllProviders();
         } else {
             $scope.getAllProviders();
         }
     }
-    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
+    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope', 'projectService'];
 
     return editProfileController;
 });
