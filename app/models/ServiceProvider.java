@@ -35,6 +35,8 @@ public class ServiceProvider extends Model {
     public String keyword;
     @Column(name = "email")
     public String email;
+    @Column(name = "university")
+    public String university;
 
 
 /*

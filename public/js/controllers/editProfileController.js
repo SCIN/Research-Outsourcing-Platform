@@ -11,7 +11,8 @@ define([], function() {
             researchAreas:"NA",
             publications:"NA",
             professionalServices:"NA",
-            keyword:""
+            keyword:"",
+            university:""
         };
         $scope.userinfo = {
             keywords:""

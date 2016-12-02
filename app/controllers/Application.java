@@ -114,18 +114,16 @@ public class Application extends Controller {
 
     public Result updateProviderInfo(String username) {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 6) {
-            System.out.println(form.data());
-            return badRequest("Bad update length!");
-        } else {
+
             String credential = form.get("credential");
             String researchAreas = form.get("researchAreas");
             String publications = form.get("publications");
             String professionalServices = form.get("professionalServices");
-
+            String university = form.get("university");
             String keyword = form.get("keyword");
+
             try {
-                boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices, keyword);
+                boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices, keyword, university);
 
                 if (register) {
                     return ok("Update Success");
@@ -136,7 +134,7 @@ public class Application extends Controller {
                 e.printStackTrace();
                 return badRequest("Bad update Request");
             }
-        }
+
     }
 
     public Result getServiceUsers() {
@@ -293,6 +291,22 @@ public class Application extends Controller {
             e.printStackTrace();
             return badRequest("Bad update Request");
         }
+    }
+
+    public Result searchByKeywords() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String keywords = form.get("keywords");
+        if (keywords == null) return badRequest("Empty Search");
+        String[] strs = keywords.split("\\s+");
+        List<Projects> projects = db.getProjectsByKeyword(strs);
+        return (projects == null) ? notFound() : ok(toJson(projects));
+    }
+
+    public Result searchByUniversity() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String university = form.get("university");
+        List<ServiceProvider> providers = db.getProvidersByUniversity(university);
+        return (providers == null) ? notFound() : ok(toJson(providers));
     }
 
 }

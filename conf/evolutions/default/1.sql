@@ -41,6 +41,7 @@ create table service_provider (
   professionalServices      varchar(255),
   keyword                   varchar(255),
   email                     varchar(255),
+  university                varchar(255),
   constraint pk_service_provider primary key (username))
 ;
 
