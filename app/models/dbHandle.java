@@ -113,25 +113,27 @@ public class dbHandle {
         return null;
     }
 
-    public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices){
+    public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices, String keyword){
       try{
 
         if(sp.find.where().eq("username",username).findUnique()!=null){
             ServiceProvider spp= sp.find.where().eq("username",username).findUnique();
-          spp.credential = credential;
-          spp.researchAreas = researchAreas;
-          spp.publications = publications;
-          spp.professionalServices = professionalServices;
-          spp.update();
+            spp.credential = credential;
+            spp.researchAreas = researchAreas;
+            spp.publications = publications;
+            spp.professionalServices = professionalServices;
+            spp.keyword = keyword;
+            spp.update();
         }
         else{
             ServiceProvider spp = new ServiceProvider();
-          spp.username = username;
-          spp.credential = credential;
-          spp.researchAreas = researchAreas;
-          spp.publications = publications;
-          spp.professionalServices = professionalServices;
-          spp.save();
+            spp.username = username;
+            spp.credential = credential;
+            spp.researchAreas = researchAreas;
+            spp.publications = publications;
+            spp.professionalServices = professionalServices;
+            spp.keyword = keyword;
+            spp.save();
         }
 
         return true;
