@@ -113,11 +113,13 @@ public class dbHandle {
         return null;
     }
 
+
     public boolean updateProviderInfo(String username, String credential,String researchAreas, String publications, String professionalServices, String keyword){
       try{
 
         if(sp.find.where().eq("username",username).findUnique()!=null){
             ServiceProvider spp= sp.find.where().eq("username",username).findUnique();
+
             spp.credential = credential;
             spp.researchAreas = researchAreas;
             spp.publications = publications;
@@ -134,6 +136,7 @@ public class dbHandle {
             spp.professionalServices = professionalServices;
             spp.keyword = keyword;
             spp.save();
+
         }
 
         return true;
@@ -277,6 +280,23 @@ public class dbHandle {
       }
       return null;
     }
+
+
+    public List<ServiceProvider> getALLProviders(){
+      try{
+        List<ServiceProvider> providers = sp.find.all();
+        List<Projects> projects = projects.find.all();
+        List<Rates> rates = 
+
+
+        if(providers == null) return null;
+        return providers;
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return null;
+    }
+
 
     public List<ServiceProvider> getProviders() {
         try{

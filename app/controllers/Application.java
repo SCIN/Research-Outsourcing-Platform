@@ -93,9 +93,11 @@ public class Application extends Controller {
             String researchAreas = form.get("researchAreas");
             String publications = form.get("publications");
             String professionalServices = form.get("professionalServices");
+
             String keyword = form.get("keyword");
             try {
                 boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices, keyword);
+
                 if (register) {
                     return ok("Update Success");
                 } else {
