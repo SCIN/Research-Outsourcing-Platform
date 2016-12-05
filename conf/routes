@@ -39,3 +39,4 @@ POST  /projects/delete                       controllers.Application.deleteProje
 POST  /ratings/update                        controllers.Application.updateRating()
 POST  /search/university                     controllers.Application.searchByUniversity()
 POST  /search/keywords                       controllers.Application.searchByKeywords()
+POST  /files                                 controllers.Application.upload()

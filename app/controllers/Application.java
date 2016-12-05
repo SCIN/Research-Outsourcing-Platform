@@ -13,6 +13,7 @@ import play.data.*;
 import play.data.format.*;
 import models.*;
 import java.util.*;
+import java.io.*;
 
 import static play.libs.Json.toJson;
 
@@ -21,6 +22,25 @@ public class Application extends Controller {
     public Result index() {
         db.saveUser("admin", "admin", "admin", "admin", "admin");
         return ok(index.render());
+    }
+
+    public Result upload() {
+      Http.MultipartFormData body = request().body().asMultipartFormData();
+      Http.MultipartFormData.FilePart picture = body.getFile("file");
+      System.out.println("file upload");
+      if (picture != null) {
+        String fileName = picture.getFilename();
+        System.out.println("file name"+fileName);
+        String contentType = picture.getContentType(); 
+        
+        File file = picture.getFile();
+        file.renameTo(new File("/files", fileName));
+        return ok("File uploaded");
+      } else {
+        System.out.println("file no name");
+        flash("error", "Missing file");
+        return redirect(routes.Application.index());    
+      }
     }
 
     public Result getName() {

@@ -39,7 +39,7 @@ define([], function () {
             });
         }
         $scope.myFile = null;
-        $scope.upload = function () {
+        $scope.uploadFile = function () {
             var fd = new FormData();
             fd.append('file', $scope.myFile);
 

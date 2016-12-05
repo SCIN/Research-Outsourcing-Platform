@@ -119,7 +119,7 @@ public class dbHandle {
     }
     public List<ServiceUser> getServiceUsers() {
         try{
-            List<ServiceUser> serviceUsers = su.find.findList();;
+            List<ServiceUser> serviceUsers = su.find.all();;
             if(serviceUsers == null) return null;
             return serviceUsers;
         } catch (Exception e) {
