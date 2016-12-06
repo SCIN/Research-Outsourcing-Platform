@@ -33,10 +33,10 @@ public class Application extends Controller {
         System.out.println("file name"+fileName);
         //String contentType = picture.getContentType(); 
         
-        File file = picture.getFile();
+        java.io.File file = picture.getFile();
 
-        file.renameTo(new File("files/", fileName));
-        saveFileToServer(sender,receiver,fileName);
+        file.renameTo(new java.io.File("files/", fileName));
+        db.saveFileToServer(sender,receiver,fileName);
         return ok("File uploaded");
       } else {
         System.out.println("file no name");
@@ -46,14 +46,14 @@ public class Application extends Controller {
     }
 
     public Result download(String filename) {
-        return ok(new File("files/"+filename));
+        return ok(new java.io.File("files/"+filename));
     }
 
     public Result getReceivedFiles(){
         DynamicForm form = Form.form().bindFromRequest();
         String username = form.get("username");
-        List<File> result=getFiles(username);
-        return ok(result);
+        List<models.File> result=db.getFiles(username);
+        return ok(toJson(result));
     }
 
     public Result getName() {
