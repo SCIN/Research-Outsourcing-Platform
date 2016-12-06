@@ -10,16 +10,19 @@
                         <img src="http://golfes.info/wp-content/uploads/2016/01/14762-NPRV4K123.jpg" alt="..." class="img-thumbnail">
                     </div>
 
-                        <div class="col-lg-8 sub-info searchBar">
-                            <div>
-                                <div class="input-group form">
-                                    <input type="text" class="form-control" placeholder="Search Project">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Search</button>
+                    <div class="col-lg-8 sub-info searchBar">
+                        <div>
+                            <div class="input-group form">
+                                <input type="text" class="form-control" placeholder="Search Project" ng-model = "search.keywords">
+                                <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click = "searchProject()">Search</button>
                                     </span>
-                                </div>
-                            </div>
+                            </div> <br>
+                            <input type="radio" name="rating" value="keywords" ng-model = "search.searchBy"> by Keywords
+                            <input type="radio" name="rating" value="topic" ng-model = "search.searchBy"> by Topic
+                            <input type="radio" name="rating" value="university" ng-model = "search.searchBy"> by University
                         </div>
+                    </div>
                 </div>
 
                 <div class="sub-info">
@@ -45,6 +48,7 @@
                                         </a></th>
                                         <th><a ng-click="orderByField='action'; reverseSort = !reverseSort">action <span ng-show="orderByField == 'action'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
                                         </a></th>
+                                        <th ng-show="userName=='admin'">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,18 +61,13 @@
                                         <td>{{project.endtime}}</td>
                                         <td>{{project.price}}</td>
                                         <td><button type="button" class="btn btn-link btn-sm" ng-click="provideProject(project.projectName)" ng-disabled="project.status != 'In Market'">Provide</button> </td>
+                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="deleteProject(project.projectName)" ng-show="userName=='admin'">Delete</button></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!--<div class="panel panel-default">-->
-                        <!--<div class="panel-heading">Time frame requirements</div>-->
-                        <!--<div class="panel-body">-->
-                            <!--<input class="form-control" type="text" placeholder="Input your Publication" ng-model = "providerinfo.publications">-->
-                        <!--</div>-->
-                    <!--</div>-->
 
                 </div>
             </div>

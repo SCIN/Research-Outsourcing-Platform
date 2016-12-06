@@ -30,6 +30,12 @@ require(['angular', 'controllers', 'services','angular-route'],
         $routeProvider.when('/editService', {templateUrl: 'partials/editInfo.html', controller: controllers.editProfileController});
         $routeProvider.when('/publishProject', {templateUrl: 'partials/publishProject.html', controller: controllers.publishProjectController});
         $routeProvider.when('/showProject', {templateUrl: 'partials/showProject.html', controller: controllers.showProjectController});
+        $routeProvider.when('/rating', {templateUrl: 'partials/rating.html', controller: controllers.ratingController});
+        $routeProvider.when('/allProviders', {templateUrl: 'partials/allProviders.html', controller: controllers.allProvidersController});
+        $routeProvider.when('/bug', {templateUrl: 'partials/bug.html', controller: controllers.reportBugController});
+        $routeProvider.when('/userInfo', {templateUrl: 'partials/userInfo.html', controller: controllers.userInfoController});
+        $routeProvider.when('/interaction', {templateUrl: 'partials/interaction.html', controller: controllers.interactionController});
+
         $routeProvider.otherwise({redirectTo: '/login'});
       }]);
 
@@ -41,14 +47,19 @@ require(['angular', 'controllers', 'services','angular-route'],
                 role:''
         };
     });
-
+    app.factory('projectService', services.projectService);
     angular.bootstrap(document, ['myApp']);
+
+
     app.controller("registerController", controllers.registerController);
     app.controller("loginController", controllers.loginController);
     app.controller("dashController", controllers.dashController);
     app.controller("editProfileController", controllers.editProfileController);
     app.controller("publishProjectController", controllers.publishProjectController);
     app.controller("showProjectController", controllers.showProjectController);
-    app.service('projectService', services.projectService);
-
+    app.controller("ratingController", controllers.ratingController);
+    app.controller("allProvidersController", controllers.allProvidersController);
+    app.controller("reportBugController", controllers.reportBugController);
+    app.controller("userInfoController", controllers.userInfoController);
+    app.controller("interactionController", controllers.interactionController);
 });

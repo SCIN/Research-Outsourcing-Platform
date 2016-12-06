@@ -3,6 +3,21 @@
 
 # --- !Ups
 
+create table bug (
+  bugname                   varchar(255) not null,
+  description               varchar(255),
+  status                    varchar(255),
+  constraint pk_bug primary key (bugname))
+;
+
+create table file (
+  id                        bigint auto_increment not null,
+  sender                    varchar(255),
+  receiver                  varchar(255),
+  file_name                 varchar(255),
+  constraint pk_file primary key (id))
+;
+
 create table projects (
   id                        bigint auto_increment not null,
   project_name              varchar(255),
@@ -18,13 +33,12 @@ create table projects (
 ;
 
 create table rates (
-  id                        bigint auto_increment not null,
+  project                   varchar(255),
   user                      varchar(255),
   provider                  varchar(255),
-  projectRate               varchar(255),
-  providerRecommend         varchar(255),
-  comments                  varchar(255),
-  constraint pk_rates primary key (id))
+  projectrate               integer,
+  providerrate              integer,
+  comment                   varchar(255))
 ;
 
 create table service_provider (
@@ -33,12 +47,16 @@ create table service_provider (
   researchAreas             varchar(255),
   publications              varchar(255),
   professionalServices      varchar(255),
+  keyword                   varchar(255),
+  email                     varchar(255),
+  university                varchar(255),
   constraint pk_service_provider primary key (username))
 ;
 
 create table service_user (
   username                  varchar(255) not null,
   keywords                  varchar(255),
+  email                     varchar(255),
   constraint pk_service_user primary key (username))
 ;
 
@@ -57,6 +75,10 @@ create table user (
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table bug;
+
+drop table file;
 
 drop table projects;
 

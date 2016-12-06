@@ -13,11 +13,51 @@ import play.data.*;
 import play.data.format.*;
 import models.*;
 import java.util.*;
+import java.io.*;
+
+import static play.libs.Json.toJson;
 
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
     public Result index() {
+        db.saveUser("admin", "admin", "admin", "admin", "admin");
         return ok(index.render());
+    }
+
+    public Result upload(String sender,String receiver) {
+      Http.MultipartFormData body = request().body().asMultipartFormData();
+      Http.MultipartFormData.FilePart picture = body.getFile("file");
+      System.out.println("file upload");
+      if (picture != null) {
+        String fileName = picture.getFilename();
+        System.out.println("file name"+fileName);
+        //String contentType = picture.getContentType(); 
+        
+        java.io.File file = picture.getFile();
+
+        file.renameTo(new java.io.File("files/", fileName));
+        db.saveFileToServer(sender,receiver,fileName);
+        return redirect("http://localhost:9000/#/allProviders");
+      } else {
+        System.out.println("file no name");
+        flash("error", "Missing file");
+        return redirect(routes.Application.index());    
+      }
+    }
+
+    public Result download(String filename) {
+
+        return ok(new java.io.File("files/"+filename));
+    }
+
+    public Result getReceivedFiles(){
+        System.out.println("hereallfilw1");
+        DynamicForm form = Form.form().bindFromRequest();
+
+        String username = form.get("username");
+        System.out.println("hereallfilw"+username);
+        List<models.File> result=db.getFiles(username);
+        return ok(toJson(result));
     }
 
     public Result getName() {
@@ -70,28 +110,58 @@ public class Application extends Controller {
 
     public Result getUserInfo(String username) {
         User user = db.getUser(username);
-        return user == null ? notFound() : ok(Json.toJson(user));
+        return user == null ? notFound() : ok(toJson(user));
+    }
+
+    public Result getBugs() {
+        List<Bug> bugs = db.getBugs();
+        return (bugs == null) ? notFound() : ok(toJson(bugs));
+    }
+
+    public Result reportBug() {
+        DynamicForm form = Form.form().bindFromRequest();
+        if (form.data().size() != 3) {
+            System.out.println(form.data());
+            return badRequest("Bad report Request");
+        } else {
+            String bugname = form.get("bugname");
+            String description = form.get("description");
+            String status = form.get("status");
+            try {
+                boolean report = db.saveBug(bugname, description, status);
+                if (report) {
+                    return ok("Report Success");
+                } else {
+                    return ok("Bug Exists");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return badRequest("Bad Report Request");
+            }
+
+        }
     }
 
     public Result getProviderInfo(String username) {
         ServiceProvider provider = db.getProviderInfo(username);
 
-        return (provider == null) ? notFound() : ok(Json.toJson(provider));
+        return (provider == null) ? notFound() : ok(toJson(provider));
 
     }
 
     public Result updateProviderInfo(String username) {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 5) {
-            System.out.println(form.data());
-            return badRequest("Bad update length!");
-        } else {
+
             String credential = form.get("credential");
             String researchAreas = form.get("researchAreas");
             String publications = form.get("publications");
             String professionalServices = form.get("professionalServices");
+            String university = form.get("university");
+            String keyword = form.get("keyword");
+
             try {
-                boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices);
+                boolean register = db.updateProviderInfo(username, credential, researchAreas, publications, professionalServices, keyword, university);
+
                 if (register) {
                     return ok("Update Success");
                 } else {
@@ -101,7 +171,12 @@ public class Application extends Controller {
                 e.printStackTrace();
                 return badRequest("Bad update Request");
             }
-        }
+
+    }
+
+    public Result getServiceUsers() {
+        List<ServiceUser> serviceUsers = db.getServiceUsers();
+        return (serviceUsers == null) ? notFound() : ok(toJson(serviceUsers));
     }
 
     public Result updateServiceUser(String username) {
@@ -149,30 +224,45 @@ public class Application extends Controller {
 
     public Result getProjects() {
         List<Projects> projects = db.getProject();
-        return (projects == null) ? notFound() : ok(Json.toJson(projects));
+        return (projects == null) ? notFound() : ok(toJson(projects));
+    }
 
+    public Result deleteProject() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String project = form.get("project");
+        try {
+            boolean delete = db.deleteProjectByName(project);
+            if (delete) {
+                return ok("Delete Success");
+            } else {
+                return ok("Delete Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad delete Request");
+        }
     }
 
     public Result getProjectByPublisher(String username) {
 
         List<Projects> project = db.getProjectByPublisher(username);
-        return (project == null) ? notFound() : ok(Json.toJson(project));
+        return (project == null) ? notFound() : ok(toJson(project));
     }
 
     public Result getProjectByProvider(String username) {
 
         List<Projects> project = db.getProjectByProvider(username);
-        return (project == null) ? notFound() : ok(Json.toJson(project));
+        return (project == null) ? notFound() : ok(toJson(project));
     }
 
     public Result getServiceUserByName(String username) {
         ServiceUser serviceUser = db.getServiceUserByName(username);
-        return (serviceUser == null) ? notFound() : ok(Json.toJson(serviceUser));
+        return (serviceUser == null) ? notFound() : ok(toJson(serviceUser));
     }
 
     public Result getProjectByStatus(String status) {
         List<Projects> projects = db.getProjectByStatus(status);
-        return (projects == null) ? notFound() : ok(Json.toJson(projects));
+        return (projects == null) ? notFound() : ok(toJson(projects));
     }
 
     public Result updateProjectProvider(String username) {
@@ -206,4 +296,55 @@ public class Application extends Controller {
             return badRequest("Bad update Request");
         }
     }
+
+    public Result getRatingsByProject(String projectname) {
+        Rates rating = db.getRatingsByProject(projectname);
+        return (rating == null) ? notFound() : ok(toJson(rating));
+    }
+
+    public Result getAllProviders() {
+        //List<ServiceProvider> sps = db.getProviders();
+        List<List<String>> list = db.getALLProviders();
+        return (list == null) ? notFound() : ok(toJson(list));
+        // TODO: search
+    }
+
+    public Result updateRating() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String project = form.get("project");
+        String user = form.get("user");
+        String provider = form.get("provider");
+        String projectrate = form.get("projectrate");
+        String providerrate = form.get("providerrate");
+        String comment = form.get("comment");
+        try {
+            boolean update = db.updateRating(project, user, provider, Integer.parseInt(projectrate), Integer.parseInt(providerrate), comment);
+            if (update) {
+                return ok("Update Success");
+            } else {
+                return ok("Update Failure");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return badRequest("Bad update Request");
+        }
+    }
+
+    public Result searchByKeywords() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String keywords = form.get("keywords");
+
+        if (keywords == null) return badRequest("Empty Search");
+        String[] strs = keywords.split("\\s+");
+        List<Projects> projects = db.getProjectsByKeyword(strs);
+        return (projects == null) ? notFound() : ok(toJson(projects));
+    }
+
+    public Result searchByUniversity() {
+        DynamicForm form = Form.form().bindFromRequest();
+        String university = form.get("university");
+        List<ServiceProvider> providers = db.getProvidersByUniversity(university);
+        return (providers == null) ? notFound() : ok(toJson(providers));
+    }
+
 }

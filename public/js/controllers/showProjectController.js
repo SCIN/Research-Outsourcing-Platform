@@ -1,15 +1,15 @@
 /*global define */
 define([], function() {
     'use strict';
-    function editProfileController($scope, $http, $location, $rootScope){
-        console.log("show Project for this controller");
+    function editProfileController($scope, $http, $location, $rootScope,$timeout){
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
-
-        // Mock Data: Test for all projects
-
-         $scope.allProjects =[];
+        $scope.allProjects =[];
+        $scope.search = {
+            keywords:"",
+            searchBy:""
+        }
 
 
         $scope.getAllProjects = function() {
@@ -17,10 +17,10 @@ define([], function() {
                 method : 'GET',
                 url : '/users/showProjects'
             }).success(function(data, status, headers, config) {
+                $timeout(function () {
                     $scope.allProjects = data;
-                    console.log($scope.allProjects);
+                });
                 }
-
             ).error(function (data, status, headers, config) {
                  console.log(data);
             });
@@ -35,16 +35,58 @@ define([], function() {
                     $scope.getAllProjects();
                     console.log(data);
                 }
-
             ).error(function (data, status, headers, config) {
                 console.log(data);
             });
         }
-        if ($scope.role == 'serviceProvider'){
-            $scope.getAllProjects();
+
+        $scope.deleteProject = function(project){
+            $http({
+                method : 'POST',
+                url : '/projects/delete',
+                data: {project:project}
+            }).success(function(data, status, headers, config) {
+                    $scope.getAllProjects();
+                }
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
         }
+
+        $scope.searchProject = function(project){
+            if ($scope.search.searchBy == "keywords") {
+                $http({
+                    method : 'POST',
+                    url : '/search/keywords',
+                    data: $scope.search
+                }).success(function(data, status, headers, config) {
+                        $scope.allProjects = data;
+                        console.log($scope.allProjects);
+                    }
+                ).error(function (data, status, headers, config) {
+                    console.log(data);
+                });
+            } else if ($scope.search.searchBy == "university") {
+                $http({
+                    method : 'POST',
+                    url : '/search/university',
+                    data: $scope.search
+                }).success(function(data, status, headers, config) {
+                        $scope.allProjects = data;
+                        console.log($scope.allProjects);
+                    }
+                ).error(function (data, status, headers, config) {
+                    console.log(data);
+                });
+            } else {
+                //TODO
+            }
+
+        }
+
+        $scope.getAllProjects();
     }
-    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope'];
+    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope','$timeout'];
 
     return editProfileController;
 });

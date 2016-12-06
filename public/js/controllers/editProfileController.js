@@ -6,10 +6,13 @@ define([], function() {
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
         $scope.providerinfo = {
+            userName:"NA",
             credential: "NA",
             researchAreas:"NA",
             publications:"NA",
-            professionalServices:"NA"
+            professionalServices:"NA",
+            keyword:"",
+            university:""
         };
         $scope.userinfo = {
             keywords:""
@@ -49,7 +52,7 @@ define([], function() {
                 url : '/users/'+ $scope.userName + '/providerinfo'
             }).success(function(data, status, headers, config) {
                     $scope.providerinfo = data;
-                    // console.log(data);
+                    console.log(data);
                 }
 
             ).error(function (data, status, headers, config) {
@@ -58,6 +61,8 @@ define([], function() {
         }
 
         $scope.updateProviderInfo = function() {
+            console.log("POST updateProviderInfo");
+            console.log($scope.providerinfo);
             $http({
                 method : 'POST',
                 url : '/users/'+ $scope.userName + '/providerinfo',

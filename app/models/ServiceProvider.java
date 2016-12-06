@@ -31,6 +31,13 @@ public class ServiceProvider extends Model {
     @Column(name = "professionalServices")
     public String professionalServices;
     //public boolean done;
+    @Column(name= "keyword")
+    public String keyword;
+    @Column(name = "email")
+    public String email;
+    @Column(name = "university")
+    public String university;
+
 
 /*
     @Formats.DateTime(pattern="dd/MM/yyyy")
