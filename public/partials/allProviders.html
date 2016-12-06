@@ -41,7 +41,7 @@
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="provider in allProviders|orderBy:orderByField:reverseSort">
-                                        <td><a ng-click="checkUser(provider)">{{provider[0]}}</a></td>
+                                        <td><a ng-click="checkUser(provider[0])">{{provider[0]}}</a></td>
                                         <td>{{provider[1]}}</td>
                                         <td>{{provider[2]}}</td>
                                         <td>{{provider[3]}}</td>
@@ -75,7 +75,7 @@
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="user in allUsers|orderBy:orderByField:reverseSort">
-                                        <td>{{user.userName}}</td>
+                                        <td><a ng-click="checkUser(user.username)">{{user.username}}</a></td>
                                         <td>{{user.keywords}}</td>
                                     </tr>
                                     </tbody>

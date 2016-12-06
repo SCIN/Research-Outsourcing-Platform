@@ -23,6 +23,7 @@ public class dbHandle {
     private ServiceUser su = new ServiceUser();
     private Rates ra = new Rates();
     private Bug bg = new Bug();
+    private File file = new File();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -119,7 +120,7 @@ public class dbHandle {
     }
     public List<ServiceUser> getServiceUsers() {
         try{
-            List<ServiceUser> serviceUsers = su.find.findList();;
+            List<ServiceUser> serviceUsers = su.find.all();;
             if(serviceUsers == null) return null;
             return serviceUsers;
         } catch (Exception e) {
@@ -439,5 +440,41 @@ public class dbHandle {
         }
         return null;
     }
+
+    public boolean saveFileToServer(String sender,String receiver, String fileName){
+      try{
+          if(file.find.where().eq("sender",sender).eq("fileName",fileName).findUnique()!=null){
+              File filetemp= file.find.where().eq("sender",sender).eq("fileName",fileName).findUnique();
+              filetemp.sender = sender;
+              filetemp.receiver = receiver;
+              filetemp.fileName = fileName;
+              filetemp.update();
+          }
+          else{
+              File filetemp = new File();
+              filetemp.sender = sender;
+              filetemp.receiver = receiver;
+              filetemp.fileName = fileName;
+              filetemp.save();
+          }
+
+          return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public List<File> getFiles(String username) {
+        try{
+            List<File> filetemp = file.find.where().eq("receiver",username).findList();
+            if(filetemp == null) return null;
+            return filetemp;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

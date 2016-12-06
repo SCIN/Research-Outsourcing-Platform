@@ -13,6 +13,7 @@ import play.data.*;
 import play.data.format.*;
 import models.*;
 import java.util.*;
+import java.io.*;
 
 import static play.libs.Json.toJson;
 
@@ -21,6 +22,42 @@ public class Application extends Controller {
     public Result index() {
         db.saveUser("admin", "admin", "admin", "admin", "admin");
         return ok(index.render());
+    }
+
+    public Result upload(String sender,String receiver) {
+      Http.MultipartFormData body = request().body().asMultipartFormData();
+      Http.MultipartFormData.FilePart picture = body.getFile("file");
+      System.out.println("file upload");
+      if (picture != null) {
+        String fileName = picture.getFilename();
+        System.out.println("file name"+fileName);
+        //String contentType = picture.getContentType(); 
+        
+        java.io.File file = picture.getFile();
+
+        file.renameTo(new java.io.File("files/", fileName));
+        db.saveFileToServer(sender,receiver,fileName);
+        return redirect("http://localhost:9000/#/allProviders");
+      } else {
+        System.out.println("file no name");
+        flash("error", "Missing file");
+        return redirect(routes.Application.index());    
+      }
+    }
+
+    public Result download(String filename) {
+
+        return ok(new java.io.File("files/"+filename));
+    }
+
+    public Result getReceivedFiles(){
+        System.out.println("hereallfilw1");
+        DynamicForm form = Form.form().bindFromRequest();
+
+        String username = form.get("username");
+        System.out.println("hereallfilw"+username);
+        List<models.File> result=db.getFiles(username);
+        return ok(toJson(result));
     }
 
     public Result getName() {

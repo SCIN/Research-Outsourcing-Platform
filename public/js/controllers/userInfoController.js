@@ -1,7 +1,7 @@
 /*global define */
-define([], function() {
+define([], function () {
     'use strict';
-    function userInfoController($scope, $http, $location, $rootScope, projectService){
+    function userInfoController($scope, $http, $location, $rootScope, projectService) {
         console.log("user Info controller!");
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
@@ -11,13 +11,13 @@ define([], function() {
         };
 
         $scope.providerinfo = {
-            userName:"NA",
+            userName: "NA",
             credential: "NA",
-            researchAreas:"NA",
-            publications:"NA",
-            professionalServices:"NA",
-            keyword:"",
-            email:""
+            researchAreas: "NA",
+            publications: "NA",
+            professionalServices: "NA",
+            keyword: "",
+            email: ""
         };
 
         $scope.checkedUser.userName = projectService.getUserInfo().userName;
@@ -26,38 +26,40 @@ define([], function() {
 //        $scope.rating.user = projectService.getRatingProject().user;
 //        $scope.rating.project = projectService.getRatingProject().project;
 
-        $scope.getProviderInfo = function() {
+        $scope.getProviderInfo = function () {
             $http({
-                method : 'GET',
-                url : '/users/'+ $scope.checkedUser.userName + '/providerinfo'
-            }).success(function(data, status, headers, config) {
+                method: 'GET',
+                url: '/users/' + $scope.checkedUser.userName + '/providerinfo'
+            }).success(function (data, status, headers, config) {
                     $scope.providerinfo = data;
                     console.log(data);
                 }
-
             ).error(function (data, status, headers, config) {
                 // console.log(data);
             });
         }
+        $scope.myFile = null;
+        $scope.uploadFile = function () {
+            var fd = new FormData();
+            fd.append('file', $scope.myFile);
+            $http.post("/files", fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined},
+                enctype: "multipart/form-data"
+            })
 
-        $scope.submit = function () {
-            $http({
-                method : 'POST',
-                url : '/ratings/update',
-                data: $scope.rating
-            }).success(function(data, status, headers, config) {
-                    console.log(data);
-                }
-            ).error(function (data, status, headers, config) {
-                console.log(data);
-            });
-            console.log($scope.rating);
-            $location.path('/dashboard');
+                .success(function () {
+                })
+
+                .error(function () {
+                });
         }
 
         $scope.getProviderInfo();
+
     }
-    userInfoController.$inject=['$scope', '$http', '$location', '$rootScope', 'projectService'];
+
+    userInfoController.$inject = ['$scope', '$http', '$location', '$rootScope', 'projectService'];
 
     return userInfoController;
 });
