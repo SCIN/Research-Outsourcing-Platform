@@ -384,6 +384,15 @@ public class dbHandle {
           ratings.put(providers.get(i).username,(sum*1.0)/rating2.size());
         }
         System.out.println("ratings:"+ratings.size());
+        Map<String,String> anon = new HashMap<String,String>();
+        for(int i=0;i<providers.size();i++){
+          User us = t.find.where().eq("name",providers.get(i).username).findUnique();
+         // System.out.println("rating2:"+rating2.size());
+        
+
+          anon.put(providers.get(i).username,us.anonymous);
+        }
+
         List<List<String>> result = new ArrayList<List<String>>();
         for(int i=0;i<providers.size();i++){
           List<String> list = new ArrayList<String>();
@@ -393,6 +402,7 @@ public class dbHandle {
           list.add(String.format("%.1f", ratings.get(name)));
           list.add(providers.get(i).professionalServices);
           list.add(providers.get(i).keyword);
+          list.add(anon.get(name));
           result.add(list);
         }
         System.out.println("herelalal"+result.size());
