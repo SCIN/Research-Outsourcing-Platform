@@ -31,7 +31,7 @@ public class User extends Model {
     public String secureAnswer;
 
     @Column(name = "anonymous")
-    public int anonymous;
+    public String anonymous;
 
     //public boolean done;
 
