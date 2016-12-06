@@ -20,7 +20,7 @@ import static play.libs.Json.toJson;
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
     public Result index() {
-        db.saveUser("admin", "admin", "admin", "admin", "admin");
+        db.saveUser("admin", "admin", "admin", "admin", "admin",1);
         return ok(index.render());
     }
 
@@ -93,8 +93,9 @@ public class Application extends Controller {
             String email = form.get("email");
             String question = form.get("question");
             String answer = form.get("answer");
+            String anonymous = form.get("anonymous");
             try {
-                boolean register = db.saveUser(userName, password, email, question, answer);
+                boolean register = db.saveUser(userName, password, email, question, answer,Integer.parseInt(anonymous));
                 if (register) {
                     return ok("Register Success");
                 } else {

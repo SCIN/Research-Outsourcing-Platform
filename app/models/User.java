@@ -30,6 +30,9 @@ public class User extends Model {
     @Column(name = "secureAnswer")
     public String secureAnswer;
 
+    @Column(name = "anonymous")
+    public int anonymous;
+
     //public boolean done;
 
 /*
