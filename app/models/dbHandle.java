@@ -444,7 +444,7 @@ public class dbHandle {
     public boolean saveFileToServer(String sender,String receiver, String fileName){
       try{
           if(file.find.where().eq("sender",sender).eq("fileName",fileName).findUnique()!=null){
-              File filetemp= sp.find.where().eq("sender",sender).eq("fileName",fileName).findUnique();
+              File filetemp= file.find.where().eq("sender",sender).eq("fileName",fileName).findUnique();
               filetemp.sender = sender;
               filetemp.receiver = receiver;
               filetemp.fileName = fileName;
