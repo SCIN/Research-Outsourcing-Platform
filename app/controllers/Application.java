@@ -24,7 +24,7 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
-    public Result upload() {
+    public Result upload(String sender,String receiver) {
       Http.MultipartFormData body = request().body().asMultipartFormData();
       Http.MultipartFormData.FilePart picture = body.getFile("file");
       System.out.println("file upload");
@@ -34,13 +34,26 @@ public class Application extends Controller {
         //String contentType = picture.getContentType(); 
         
         File file = picture.getFile();
-        file.renameTo(new File("../files/", fileName));
+
+        file.renameTo(new File("files/", fileName));
+        saveFileToServer(sender,receiver,fileName);
         return ok("File uploaded");
       } else {
         System.out.println("file no name");
         flash("error", "Missing file");
         return redirect(routes.Application.index());    
       }
+    }
+
+    public Result download(String filename) {
+        return ok(new File("files/"+filename));
+    }
+
+    public Result getReceivedFiles(){
+        DynamicForm form = Form.form().bindFromRequest();
+        String username = form.get("username");
+        List<File> result=getFiles(username);
+        return ok(result);
     }
 
     public Result getName() {

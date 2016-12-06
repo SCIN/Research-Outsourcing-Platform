@@ -8,27 +8,24 @@ import play.data.format.*;
 import play.data.validation.*;
 
 @Entity
-public class User extends Model {
+public class File extends Model {
 /*
     @Id
     @Constraints.Min(10)
     public Long id;*/
 
     @Id
-    @Constraints.Required
-    public String name;
+    @Constraints.Min(10)
+    public Long id;
 
     @Constraints.Required
-    public String password;
+    public String sender;
 
-    @Column(name = "email")
-    public String email;
+    @Constraints.Required
+    public String receiver;
 
-    @Column(name = "secureQuestion")
-    public String secureQuestion;
-
-    @Column(name = "secureAnswer")
-    public String secureAnswer;
+    @Constraints.Required
+    public String fileName;
 
     //public boolean done;
 
@@ -36,7 +33,7 @@ public class User extends Model {
     @Formats.DateTime(pattern="dd/MM/yyyy")
     public Date dueDate = new Date();*/
 
-    public static Finder<String, User> find = new Finder<String,User>(User.class);
+    public static Finder<String, File> find = new Finder<String,File>(File.class);
 
 
 }
