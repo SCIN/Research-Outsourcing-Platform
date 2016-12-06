@@ -3,6 +3,7 @@ package models;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Transaction;
+import com.avaje.ebean.annotation.ConcurrencyMode;
 import play.*;
 import play.mvc.*;
 import play.data.*;
@@ -24,6 +25,7 @@ public class dbHandle {
     private Rates ra = new Rates();
     private Bug bg = new Bug();
     private File file = new File();
+    private Contract contract = new Contract();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -424,6 +426,32 @@ public class dbHandle {
         return null;
     }
 
+    public Contract getContractByProject(String project) {
+        try{
+            Contract cc = contract.find.where().eq("project",project).findUnique();
+            if(cc == null) return null;
+            return cc;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean saveContract(String project, String provider, String user, String content) {
+        try {
+            if (contract.find.where().eq("project", project).findUnique() != null) return false;
+            Contract cc = new Contract();
+            cc.project = project;
+            cc.provider = provider;
+            cc.user = user;
+            cc.content = content;
+            cc.save();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public List<Projects> getProjectsByKeyword(String[] words){
         try{

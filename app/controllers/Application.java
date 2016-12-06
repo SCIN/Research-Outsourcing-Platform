@@ -347,4 +347,32 @@ public class Application extends Controller {
         return (providers == null) ? notFound() : ok(toJson(providers));
     }
 
+    public Result saveContract() {
+        DynamicForm form = Form.form().bindFromRequest();
+        if (form.data().size() != 4) {
+            System.out.println(form.data());
+            return badRequest("Bad report Request");
+        } else {
+            String project = form.get("project");
+            String provider = form.get("provider");
+            String user = form.get("user");
+            String content = form.get("content");
+            try {
+                boolean contract = db.saveContract(project, provider, user, content);
+                if (contract) {
+                    return ok("Save Success");
+                } else {
+                    return ok("Contract Exists");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return badRequest("Bad Save Request");
+            }
+        }
+    }
+    public Result getContractByProject(String project) {
+        Contract cc = db.getContractByProject(project);
+        return (cc == null) ? notFound() : ok(toJson(cc));
+    }
+
 }
