@@ -15,10 +15,19 @@ define([], function() {
             comment:''
         };
 
+        $scope.contract = {
+            project :'',
+            provider:'',
+            user:'',
+            content:'This Contract is made effective as service information, by and between provider and user. User will pay provider upon completion of the service.'
+        }
+
         $scope.rating.provider = projectService.getRatingProject().provider;
         $scope.rating.user = projectService.getRatingProject().user;
         $scope.rating.project = projectService.getRatingProject().project;
-
+        $scope.contract.provider = projectService.getRatingProject().provider;
+        $scope.contract.user = projectService.getRatingProject().user;
+        $scope.contract.project = projectService.getRatingProject().project;
         $http({
             method: 'GET',
             url: '/ratings/project/' + $scope.rating.project
@@ -28,6 +37,30 @@ define([], function() {
         ).error(function (data, status, headers, config) {
             console.log(data);
         });
+
+        $scope.submitContract = function () {
+            $http({
+                method : 'POST',
+                url : '/projects/provide/'+$scope.userName,
+                data: {project:$scope.contract.project}
+            }).success(function(data, status, headers, config) {
+                    console.log(data);
+                }
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+            $http({
+                method : 'POST',
+                url : '/contract',
+                data: $scope.contract
+            }).success(function(data, status, headers, config) {
+                    console.log(data);
+                }
+            ).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+            $location.path('/showProject');
+        }
 
         $scope.submit = function () {
             $http({
