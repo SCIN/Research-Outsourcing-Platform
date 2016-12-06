@@ -46,7 +46,7 @@ public class dbHandle {
         return null;
     }
 
-    public boolean saveUser(String name, String password, String email, String secureQuestion, String secureAnswer) {
+    public boolean saveUser(String name, String password, String email, String secureQuestion, String secureAnswer,Integer anonymous) {
         try {
             if (t.find.where().eq("name", name).findUnique() != null) return false;
             User user = new User();
@@ -55,6 +55,7 @@ public class dbHandle {
             user.email = email;
             user.secureQuestion = secureQuestion;
             user.secureAnswer = secureAnswer;
+            user.anonymous = anonymous;
             user.save();
             return true;
         } catch (Exception e) {
