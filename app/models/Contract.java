@@ -8,6 +8,7 @@ import play.data.validation.*;
 /**
  * Created by Fengnan on 12/5/16.
  */
+@Entity
 public class Contract extends Model {
     @Id
     @Constraints.Required
