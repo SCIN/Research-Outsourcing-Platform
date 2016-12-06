@@ -84,7 +84,7 @@ public class Application extends Controller {
 
     public Result registerUser() {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 5) {
+        if (form.data().size() != 6) {
             System.out.println(form.data());
             return badRequest("Bad Register Request");
         } else {
@@ -95,7 +95,7 @@ public class Application extends Controller {
             String answer = form.get("answer");
             String anonymous = form.get("anonymous");
             try {
-                boolean register = db.saveUser(userName, password, email, question, answer,Integer.parseInt(anonymous));
+                boolean register = db.saveUser(userName, password, email, question, answer,anonymous);
                 if (register) {
                     return ok("Register Success");
                 } else {

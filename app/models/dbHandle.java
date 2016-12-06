@@ -46,7 +46,7 @@ public class dbHandle {
         return null;
     }
 
-    public boolean saveUser(String name, String password, String email, String secureQuestion, String secureAnswer,Integer anonymous) {
+    public boolean saveUser(String name, String password, String email, String secureQuestion, String secureAnswer, String anonymous) {
         try {
             if (t.find.where().eq("name", name).findUnique() != null) return false;
             User user = new User();
@@ -85,6 +85,8 @@ public class dbHandle {
         }
         return null;
     }
+
+
 
     public List<Projects> getProjectByProvider(String username) {
         try{
