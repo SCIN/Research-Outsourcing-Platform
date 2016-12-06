@@ -9,12 +9,12 @@ import play.data.validation.*;
 
 @Entity
 public class User extends Model {
-/*
-    @Id
-    @Constraints.Min(10)
-    public Long id;*/
 
     @Id
+    @Constraints.Min(10)
+    public Long id;
+
+    
     @Constraints.Required
     public String name;
 
