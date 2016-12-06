@@ -25,9 +25,10 @@ define([], function() {
         $scope.rating.provider = projectService.getRatingProject().provider;
         $scope.rating.user = projectService.getRatingProject().user;
         $scope.rating.project = projectService.getRatingProject().project;
-        $scope.contract.provider = projectService.getRatingProject().provider;
+        $scope.contract.provider = $scope.userName;
         $scope.contract.user = projectService.getRatingProject().user;
         $scope.contract.project = projectService.getRatingProject().project;
+        
         $http({
             method: 'GET',
             url: '/ratings/project/' + $scope.rating.project
@@ -41,20 +42,19 @@ define([], function() {
         $scope.submitContract = function () {
             $http({
                 method : 'POST',
-                url : '/projects/provide/'+$scope.userName,
-                data: {project:$scope.contract.project}
-            }).success(function(data, status, headers, config) {
-                    console.log(data);
-                }
-            ).error(function (data, status, headers, config) {
-                console.log(data);
-            });
-            $http({
-                method : 'POST',
                 url : '/contract',
                 data: $scope.contract
             }).success(function(data, status, headers, config) {
+                $http({
+                    method : 'POST',
+                    url : '/projects/provide/'+$scope.userName,
+                    data: $scope.contract
+                }).success(function(data, status, headers, config) {
+                        console.log(data);
+                    }
+                ).error(function (data, status, headers, config) {
                     console.log(data);
+                });
                 }
             ).error(function (data, status, headers, config) {
                 console.log(data);
