@@ -10,6 +10,14 @@ create table bug (
   constraint pk_bug primary key (bugname))
 ;
 
+create table file (
+  id                        bigint auto_increment not null,
+  sender                    varchar(255),
+  receiver                  varchar(255),
+  file_name                 varchar(255),
+  constraint pk_file primary key (id))
+;
+
 create table projects (
   id                        bigint auto_increment not null,
   project_name              varchar(255),
@@ -69,6 +77,8 @@ create table user (
 SET FOREIGN_KEY_CHECKS=0;
 
 drop table bug;
+
+drop table file;
 
 drop table projects;
 

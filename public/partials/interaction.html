@@ -23,9 +23,9 @@
                                         </thead>
                                         <tbody>
                                         <tr ng-repeat="file in fileList">
+                                            <td>{{file.fileName}}</td>
                                             <td>{{file.sender}}</td>
-                                            <td>{{file.filename}}</td>
-                                            <td><a href="http://localhost/download/{{file.filename}}">Download</a></td>
+                                            <td><a href="{{'download/'+file.fileName}}" download>Download</a></td>
                                         </tr>
                                         </tbody>
                                     </table>

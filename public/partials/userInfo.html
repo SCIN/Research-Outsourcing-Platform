@@ -15,7 +15,9 @@
                                     <li class="list-group-item">{{checkedUser.userName}}</li>
                                     <li class="list-group-item"><a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">{{providerinfo.email}}</a></li>
                                     <li class="list-group-item">{{providerinfo.keyword}}</li>
-                                    <form action="http://localhost:9000/files/{{userName}}/{{checkedUser.userName}}" method="post" enctype="multipart/form-data">
+                                    <!--<input type = "file" file-model = "myFile"/>-->
+                                    <!--<button ng-click = "uploadFile()">upload</button>-->
+                                    <form action="{{'http://localhost:9000/files/'+userName+'/'+checkedUser.userName}}" method="post" enctype="multipart/form-data">
                                         <p><input type="file" name="file">
                                         <p><button type="submit">Submit</button>
                                     </form>

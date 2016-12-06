@@ -37,7 +37,7 @@ public class Application extends Controller {
 
         file.renameTo(new java.io.File("files/", fileName));
         db.saveFileToServer(sender,receiver,fileName);
-        return ok("File uploaded");
+        return redirect("http://localhost:9000/#/allProviders");
       } else {
         System.out.println("file no name");
         flash("error", "Missing file");
@@ -46,12 +46,16 @@ public class Application extends Controller {
     }
 
     public Result download(String filename) {
+
         return ok(new java.io.File("files/"+filename));
     }
 
     public Result getReceivedFiles(){
+        System.out.println("hereallfilw1");
         DynamicForm form = Form.form().bindFromRequest();
+
         String username = form.get("username");
+        System.out.println("hereallfilw"+username);
         List<models.File> result=db.getFiles(username);
         return ok(toJson(result));
     }

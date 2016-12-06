@@ -42,10 +42,10 @@ define([], function () {
         $scope.uploadFile = function () {
             var fd = new FormData();
             fd.append('file', $scope.myFile);
-
             $http.post("/files", fd, {
                 transformRequest: angular.identity,
-                headers: {'Content-Type': undefined}
+                headers: {'Content-Type': undefined},
+                enctype: "multipart/form-data"
             })
 
                 .success(function () {

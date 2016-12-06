@@ -4,6 +4,7 @@
 
 
 # Home page
+GET  /download/:filename                     controllers.Application.download(filename:String)
 GET        /serviceusers                     controllers.Application.getServiceUsers()
 GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
 GET   /users/:username/serviceuserinfo       controllers.Application.getServiceUserByName(username: String)
@@ -30,7 +31,7 @@ POST  /users/:username/providerinfo          controllers.Application.updateProvi
 GET   /users/:username/userinfo	             controllers.Application.getUserInfo(username: String)
 POST  /users/:username/publishProject        controllers.Application.publishProject(username: String)
 GET   /users/showProjects        			 controllers.Application.getProjects()
-
+POST   /allReceivedFiles					 controllers.Application.getReceivedFiles()
 POST  /users/:username/serviceuserinfo       controllers.Application.updateServiceUser(username: String)
 POST  /bug/report                            controllers.Application.reportBug()
 GET   /projects/:status                      controllers.Application.getProjectByStatus(status: String)
@@ -40,6 +41,6 @@ POST  /projects/delete                       controllers.Application.deleteProje
 POST  /ratings/update                        controllers.Application.updateRating()
 POST  /search/university                     controllers.Application.searchByUniversity()
 POST  /search/keywords                       controllers.Application.searchByKeywords()
-POST  /files/:sender/:receiver                                controllers.Application.upload(sender:String,receiver:String)
-GET  /download/:filename                    controllers.Application.download(filename:String)
-POST   /allReceivedFiles/					 controllers.Application.getReceivedFiles()
+POST  /files/:sender/:receiver               controllers.Application.upload(sender:String,receiver:String)
+
+
