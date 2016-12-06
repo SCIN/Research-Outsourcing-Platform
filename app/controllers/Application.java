@@ -34,7 +34,7 @@ public class Application extends Controller {
         String contentType = picture.getContentType(); 
         
         File file = picture.getFile();
-        file.renameTo(new File("/files", fileName));
+        file.renameTo(new File("files/", fileName));
         return ok("File uploaded");
       } else {
         System.out.println("file no name");
