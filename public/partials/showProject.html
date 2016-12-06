@@ -60,8 +60,8 @@
                                         <td>{{project.begintime}}</td>
                                         <td>{{project.endtime}}</td>
                                         <td>{{project.price}}</td>
-                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="provideProject(project.projectName)" ng-disabled="project.status != 'In Market'">Provide</button> </td>
-                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="deleteProject(project.projectName)" ng-show="userName=='admin'">Delete</button></td>
+                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="provideProject(project)" ng-disabled="project.status != 'In Market'">Provide</button> </td>
+                                        <td ng-show="userName=='admin'"><button type="button" class="btn btn-link btn-sm" ng-click="deleteProject(project.projectName)">Delete</button></td>
                                     </tr>
                                 </tbody>
                             </table>
