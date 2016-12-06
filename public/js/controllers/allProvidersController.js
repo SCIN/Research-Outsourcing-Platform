@@ -42,16 +42,9 @@ define([], function() {
         $scope.getAllUsers();
 
 
-        $scope.checkUser = function (provider) {
-            projectService.setUserInfo(provider[0]);
+        $scope.checkUser = function (username) {
+            projectService.setUserInfo(username);
             $location.path("/userInfo");
-        }
-
-
-        if ($scope.role == 'serviceProvider'){
-            $scope.getAllProviders();
-        } else {
-            $scope.getAllProviders();
         }
     }
     editProfileController.$inject=['$scope', '$http', '$location', '$rootScope', 'projectService'];
