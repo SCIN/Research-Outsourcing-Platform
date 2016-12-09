@@ -7,7 +7,7 @@ define([], function() {
 			email:'',
 			username: '',
 			password:'',
-			anonymous:''
+			anonymous:'false'
 		};
 		$scope.questions = ['What is the last name of the teacher who gave you your first failing grade?',
 							'What was the name of your elementary / primary school?',
