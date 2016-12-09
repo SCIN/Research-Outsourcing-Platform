@@ -336,7 +336,12 @@ public class dbHandle {
             map.put("begintime",proj.get(i).begintime);
             map.put("endtime",proj.get(i).endtime);
             map.put("publisherAnonymous",an.anonymous);
-            map.put("providerAnonymous",bn.anonymous);
+            if(bn == null){
+                map.put("providerAnonymous","false");
+            }
+            else {
+                map.put("providerAnonymous",bn.anonymous);
+            }
             result.add(map);
 
         }
