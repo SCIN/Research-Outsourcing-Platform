@@ -4,6 +4,7 @@
 
 
 # Home page
+GET   /getChat/:sender/:receiver             controllers.Application.getChat(sender:String,receiver:String)
 GET  /download/:filename                     controllers.Application.download(filename:String)
 GET        /serviceusers                     controllers.Application.getServiceUsers()
 GET   /users/:username/providerinfo          controllers.Application.getProviderInfo(username: String)
@@ -43,5 +44,7 @@ POST  /search/university                     controllers.Application.searchByUni
 POST  /search/keywords                       controllers.Application.searchByKeywords()
 POST  /files/:sender/:receiver               controllers.Application.upload(sender:String,receiver:String)
 POST  /contract                              controllers.Application.saveContract()
-POST  /LDASearch							 controllers.Application.searchLDA()
+
+POST  /sendChat/:sender                      controllers.Application.sendChat(sender:String)
+
 
