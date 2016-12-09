@@ -17,6 +17,7 @@ define([], function() {
                 method : 'GET',
                 url : '/users/showProjects'
             }).success(function(data, status, headers, config) {
+                console.log(data);
                 $timeout(function () {
                     $scope.allProjects = data;
                 });

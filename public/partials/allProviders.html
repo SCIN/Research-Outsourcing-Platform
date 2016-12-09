@@ -41,7 +41,8 @@
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="provider in allProviders|orderBy:orderByField:reverseSort">
-                                        <td><a ng-click="checkUser(provider[0])">{{provider[0]}}</a></td>
+                                        <td ng-show="provider[5]=='false' || provider[0]==userName"><a ng-click="checkUser(provider[0])">{{provider[0]}}</a></td>
+                                        <td ng-show="provider[5]=='true' && provider[0] !=userName">*****</td>
                                         <td>{{provider[1]}}</td>
                                         <td>{{provider[2]}}</td>
                                         <td>{{provider[3]}}</td>
@@ -75,8 +76,8 @@
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat="user in allUsers|orderBy:orderByField:reverseSort">
-                                        <td><a ng-click="checkUser(user.username)">{{user.username}}</a></td>
-                                        <td>*****</td>
+                                        <td ng-show="user.anonymous=='false' || user.username==userName"><a ng-click="checkUser(user.username)">{{user.username}}</a></td>
+                                        <td ng-show="user.anonymous=='true' && user.username !=userName">*****</td>
                                         <td>{{user.keywords}}</td>
                                     </tr>
                                     </tbody>
