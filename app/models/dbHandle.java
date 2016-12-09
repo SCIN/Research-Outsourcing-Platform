@@ -138,7 +138,7 @@ public class dbHandle {
                 map.put("anonymous",an.anonymous);
                 result.add(map);
             }
-            
+
             return result;
         } catch (Exception e) {
             e.printStackTrace();
@@ -391,7 +391,7 @@ public class dbHandle {
     }
 
 
-    
+
 
     public List<List<String>> getALLProviders(){
       try{
@@ -425,7 +425,7 @@ public class dbHandle {
         for(int i=0;i<providers.size();i++){
           User us = t.find.where().eq("name",providers.get(i).username).findUnique();
          // System.out.println("rating2:"+rating2.size());
-        
+
 
           anon.put(providers.get(i).username,us.anonymous);
         }
@@ -450,7 +450,7 @@ public class dbHandle {
       return null;
     }
 
-    
+
 
     public List<ServiceProvider> getProviders() {
         try{
