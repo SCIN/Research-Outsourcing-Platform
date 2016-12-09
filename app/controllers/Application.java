@@ -176,7 +176,7 @@ public class Application extends Controller {
     }
 
     public Result getServiceUsers() {
-        List<ServiceUser> serviceUsers = db.getServiceUsers();
+        List<Map<String,String>> serviceUsers = db.getServiceUsers();
         return (serviceUsers == null) ? notFound() : ok(toJson(serviceUsers));
     }
 
