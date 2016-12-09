@@ -43,4 +43,5 @@ POST  /search/university                     controllers.Application.searchByUni
 POST  /search/keywords                       controllers.Application.searchByKeywords()
 POST  /files/:sender/:receiver               controllers.Application.upload(sender:String,receiver:String)
 POST  /contract                              controllers.Application.saveContract()
+POST  /LDASearch							 controllers.Application.searchLDA()
 
