@@ -318,11 +318,29 @@ public class dbHandle {
         return false;
     }
 
-    public List<Projects> getProject(){
+    public List<Map<String,String>> getProject(){
       try{
         List<Projects> proj = projects.find.all();
         if(proj == null) return null;
-        return proj;
+        List<Map<String,String>> result = new ArrayList<Map<String,String>>();
+        for(int i=0;i<proj.size();i++){
+            User an = t.find.where().eq("name",proj.get(i).publisher).findUnique();
+            User bn = t.find.where().eq("name",proj.get(i).provider).findUnique();
+            Map<String,String> map = new HashMap<String,String>();
+            map.put("projectName",proj.get(i).projectName);
+            map.put("publisher",proj.get(i).publisher);
+            map.put("provider",proj.get(i).provider);
+            map.put("status",proj.get(i).status);
+            map.put("projectDescription",proj.get(i).projectDescription);
+            map.put("requiredExpertise",proj.get(i).requiredExpertise);
+            map.put("begintime",proj.get(i).begintime);
+            map.put("endtime",proj.get(i).endtime);
+            map.put("publisherAnonymous",an.anonymous);
+            map.put("providerAnonymous",bn.anonymous);
+            result.add(map);
+
+        }
+        return result;
       } catch (Exception e) {
         e.printStackTrace();
       }
