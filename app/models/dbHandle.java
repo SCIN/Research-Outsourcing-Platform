@@ -26,6 +26,7 @@ public class dbHandle {
     private Bug bg = new Bug();
     private File file = new File();
     private Contract contract = new Contract();
+    private chatMessage chatMe = new chatMessage();
 
     public User get(Long id) {
         return t.find.where().eq("id", id).findUnique();
@@ -137,7 +138,7 @@ public class dbHandle {
                 map.put("anonymous",an.anonymous);
                 result.add(map);
             }
-            
+
             return result;
         } catch (Exception e) {
             e.printStackTrace();
@@ -390,7 +391,7 @@ public class dbHandle {
     }
 
 
-    
+
 
     public List<List<String>> getALLProviders(){
       try{
@@ -424,7 +425,7 @@ public class dbHandle {
         for(int i=0;i<providers.size();i++){
           User us = t.find.where().eq("name",providers.get(i).username).findUnique();
          // System.out.println("rating2:"+rating2.size());
-        
+
 
           anon.put(providers.get(i).username,us.anonymous);
         }
@@ -449,7 +450,7 @@ public class dbHandle {
       return null;
     }
 
-    
+
 
     public List<ServiceProvider> getProviders() {
         try{
@@ -551,5 +552,30 @@ public class dbHandle {
         return null;
     }
 
+     public List<chatMessage> getChat(String sender,String receiver) {
+        try{
+            List<chatMessage> chats = chatMe.find.where().eq("sender",sender).eq("receiver",receiver).findList();
+            if(chats == null) return null;
+            return chats;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean saveChat(String sender, String receiver, String message) {
+        try {
+           // if (chatMe.find.where().eq("bugname", bugname).findUnique() != null) return false;
+            chatMessage chat = new chatMessage();
+            chat.sender = sender;
+            chat.receiver = receiver;
+            chat.message = message;
+            chat.save();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }

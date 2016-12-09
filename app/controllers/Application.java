@@ -19,6 +19,9 @@ import static play.libs.Json.toJson;
 
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
+
+   
+
     public Result index() {
         db.saveUser("admin", "admin", "admin", "admin", "admin","false");
         return ok(index.render());
@@ -375,5 +378,21 @@ public class Application extends Controller {
         Contract cc = db.getContractByProject(project);
         return (cc == null) ? notFound() : ok(toJson(cc));
     }
+
+    public Result sendChat(String sender) {
+        DynamicForm form = Form.form().bindFromRequest();
+        String receiver = form.get("checkedUser");
+        String message = form.get("chatMessage");
+
+        if (receiver == null||message==null) return badRequest("null");
+        db.saveChat(sender,receiver,message);
+        return ok("Success");
+    }
+
+    public Result getChat(String sender, String receiver){
+        List<chatMessage> chat = db.getChat(sender,receiver);
+        return (chat == null) ? notFound() : ok(toJson(chat));
+    }
+
 
 }

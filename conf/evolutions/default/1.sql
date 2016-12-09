@@ -61,6 +61,15 @@ create table service_provider (
   constraint pk_service_provider primary key (username))
 ;
 
+create table service_publications (
+  username                  varchar(255) not null,
+  credential                varchar(255),
+  researchAreas             varchar(255),
+  publications              varchar(255),
+  professionalServices      varchar(255),
+  constraint pk_service_publications primary key (username))
+;
+
 create table service_user (
   username                  varchar(255) not null,
   keywords                  varchar(255),
@@ -77,6 +86,14 @@ create table user (
   secureAnswer              varchar(255),
   anonymous                 varchar(255),
   constraint pk_user primary key (id))
+;
+
+create table chat_message (
+  id                        bigint auto_increment not null,
+  sender                    varchar(255),
+  receiver                  varchar(255),
+  message                   varchar(255),
+  constraint pk_chat_message primary key (id))
 ;
 
 
@@ -98,9 +115,13 @@ drop table rates;
 
 drop table service_provider;
 
+drop table service_publications;
+
 drop table service_user;
 
 drop table user;
+
+drop table chat_message;
 
 SET FOREIGN_KEY_CHECKS=1;
 
