@@ -123,11 +123,22 @@ public class dbHandle {
       }
       return false;
     }
-    public List<ServiceUser> getServiceUsers() {
+    public List<Map<String,String>> getServiceUsers() {
         try{
-            List<ServiceUser> serviceUsers = su.find.all();;
+            List<ServiceUser> serviceUsers = su.find.all();
             if(serviceUsers == null) return null;
-            return serviceUsers;
+            List<Map<String,String>> result = new ArrayList<Map<String,String>>();
+            for(int i=0;i<serviceUsers.size();i++){
+                User an = t.find.where().eq("name",serviceUsers.get(i).username).findUnique();
+                Map<String,String> map = new HashMap<String,String>();
+                map.put("username",serviceUsers.get(i).username);
+                map.put("keywords",serviceUsers.get(i).keywords);
+                map.put("email",serviceUsers.get(i).email);
+                map.put("anonymous",an.anonymous);
+                result.add(map);
+            }
+            
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
