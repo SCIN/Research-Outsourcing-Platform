@@ -224,7 +224,7 @@ public class Application extends Controller {
     }
 
     public Result getProjects() {
-        List<Projects> projects = db.getProject();
+        List<Map<String,String>> projects = db.getProject();
         return (projects == null) ? notFound() : ok(toJson(projects));
     }
 
