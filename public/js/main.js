@@ -31,6 +31,7 @@ require(['angular', 'controllers', 'services','angular-route'],
         $routeProvider.when('/publishProject', {templateUrl: 'partials/publishProject.html', controller: controllers.publishProjectController});
         $routeProvider.when('/showProject', {templateUrl: 'partials/showProject.html', controller: controllers.showProjectController});
         $routeProvider.when('/rating', {templateUrl: 'partials/rating.html', controller: controllers.ratingController});
+        $routeProvider.when('/contract', {templateUrl: 'partials/contract.html', controller: controllers.ratingController});
         $routeProvider.when('/allProviders', {templateUrl: 'partials/allProviders.html', controller: controllers.allProvidersController});
         $routeProvider.when('/bug', {templateUrl: 'partials/bug.html', controller: controllers.reportBugController});
         $routeProvider.when('/userInfo', {templateUrl: 'partials/userInfo.html', controller: controllers.userInfoController});

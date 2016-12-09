@@ -10,6 +10,14 @@ create table bug (
   constraint pk_bug primary key (bugname))
 ;
 
+create table contract (
+  project                   varchar(255) not null,
+  provider                  varchar(255),
+  user                      varchar(255),
+  content                   varchar(255),
+  constraint pk_contract primary key (project))
+;
+
 create table file (
   id                        bigint auto_increment not null,
   sender                    varchar(255),
@@ -61,12 +69,14 @@ create table service_user (
 ;
 
 create table user (
-  name                      varchar(255) not null,
+  id                        bigint auto_increment not null,
+  name                      varchar(255),
   password                  varchar(255),
   email                     varchar(255),
   secureQuestion            varchar(255),
   secureAnswer              varchar(255),
-  constraint pk_user primary key (name))
+  anonymous                 varchar(255),
+  constraint pk_user primary key (id))
 ;
 
 
@@ -77,6 +87,8 @@ create table user (
 SET FOREIGN_KEY_CHECKS=0;
 
 drop table bug;
+
+drop table contract;
 
 drop table file;
 

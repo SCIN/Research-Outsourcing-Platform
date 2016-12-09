@@ -25,6 +25,9 @@
                 <span ng-show="form.answer.$dirty && form.answer.$error.required" class="help-block">Security question answer is required</span>
             </div>
         </div>
+        <div class="checkbox">
+            <label><input type="checkbox" ng-model="user.anonymous">Anonymous Account</label>
+        </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Register</button>
             <a href="#/login" class="btn btn-link">Cancel</a>

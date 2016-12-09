@@ -1,7 +1,7 @@
 /*global define */
 define([], function() {
     'use strict';
-    function editProfileController($scope, $http, $location, $rootScope,$timeout){
+    function editProfileController($scope, $http, $location, $rootScope,$timeout,projectService){
         $scope.userName = $rootScope.user.userName;
         $scope.role = $rootScope.user.role;
         // console.log($rootScope.user.role);
@@ -17,6 +17,7 @@ define([], function() {
                 method : 'GET',
                 url : '/users/showProjects'
             }).success(function(data, status, headers, config) {
+                console.log(data);
                 $timeout(function () {
                     $scope.allProjects = data;
                 });
@@ -27,17 +28,8 @@ define([], function() {
         }
 
         $scope.provideProject = function(project){
-            $http({
-                method : 'POST',
-                url : '/projects/provide/'+$scope.userName,
-                data: {project:project}
-            }).success(function(data, status, headers, config) {
-                    $scope.getAllProjects();
-                    console.log(data);
-                }
-            ).error(function (data, status, headers, config) {
-                console.log(data);
-            });
+            projectService.setRatingProject(project.projectName, project.publisher, project.provider);
+            $location.path('/contract');
         }
 
         $scope.deleteProject = function(project){
@@ -86,7 +78,7 @@ define([], function() {
 
         $scope.getAllProjects();
     }
-    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope','$timeout'];
+    editProfileController.$inject=['$scope', '$http', '$location', '$rootScope','$timeout', 'projectService'];
 
     return editProfileController;
 });

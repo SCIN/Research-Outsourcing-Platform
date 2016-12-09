@@ -46,7 +46,7 @@ public class dbHandle {
         return null;
     }
 
-    public boolean saveUser(String name, String password, String email, String secureQuestion, String secureAnswer) {
+    public boolean saveUser(String name, String password, String email, String secureQuestion, String secureAnswer, String anonymous) {
         try {
             if (t.find.where().eq("name", name).findUnique() != null) return false;
             User user = new User();
@@ -55,6 +55,7 @@ public class dbHandle {
             user.email = email;
             user.secureQuestion = secureQuestion;
             user.secureAnswer = secureAnswer;
+            user.anonymous = anonymous;
             user.save();
             return true;
         } catch (Exception e) {
@@ -84,6 +85,8 @@ public class dbHandle {
         }
         return null;
     }
+
+
 
     public List<Projects> getProjectByProvider(String username) {
         try{
@@ -120,11 +123,22 @@ public class dbHandle {
       }
       return false;
     }
-    public List<ServiceUser> getServiceUsers() {
+    public List<Map<String,String>> getServiceUsers() {
         try{
-            List<ServiceUser> serviceUsers = su.find.all();;
+            List<ServiceUser> serviceUsers = su.find.all();
             if(serviceUsers == null) return null;
-            return serviceUsers;
+            List<Map<String,String>> result = new ArrayList<Map<String,String>>();
+            for(int i=0;i<serviceUsers.size();i++){
+                User an = t.find.where().eq("name",serviceUsers.get(i).username).findUnique();
+                Map<String,String> map = new HashMap<String,String>();
+                map.put("username",serviceUsers.get(i).username);
+                map.put("keywords",serviceUsers.get(i).keywords);
+                map.put("email",serviceUsers.get(i).email);
+                map.put("anonymous",an.anonymous);
+                result.add(map);
+            }
+
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -304,11 +318,34 @@ public class dbHandle {
         return false;
     }
 
-    public List<Projects> getProject(){
+    public List<Map<String,String>> getProject(){
       try{
         List<Projects> proj = projects.find.all();
         if(proj == null) return null;
-        return proj;
+        List<Map<String,String>> result = new ArrayList<Map<String,String>>();
+        for(int i=0;i<proj.size();i++){
+            User an = t.find.where().eq("name",proj.get(i).publisher).findUnique();
+            User bn = t.find.where().eq("name",proj.get(i).provider).findUnique();
+            Map<String,String> map = new HashMap<String,String>();
+            map.put("projectName",proj.get(i).projectName);
+            map.put("publisher",proj.get(i).publisher);
+            map.put("provider",proj.get(i).provider);
+            map.put("status",proj.get(i).status);
+            map.put("projectDescription",proj.get(i).projectDescription);
+            map.put("requiredExpertise",proj.get(i).requiredExpertise);
+            map.put("begintime",proj.get(i).begintime);
+            map.put("endtime",proj.get(i).endtime);
+            map.put("publisherAnonymous",an.anonymous);
+            if(bn == null){
+                map.put("providerAnonymous","false");
+            }
+            else {
+                map.put("providerAnonymous",bn.anonymous);
+            }
+            result.add(map);
+
+        }
+        return result;
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -353,7 +390,7 @@ public class dbHandle {
     }
 
 
-    
+
 
     public List<List<String>> getALLProviders(){
       try{
@@ -383,6 +420,15 @@ public class dbHandle {
           ratings.put(providers.get(i).username,(sum*1.0)/rating2.size());
         }
         System.out.println("ratings:"+ratings.size());
+        Map<String,String> anon = new HashMap<String,String>();
+        for(int i=0;i<providers.size();i++){
+          User us = t.find.where().eq("name",providers.get(i).username).findUnique();
+         // System.out.println("rating2:"+rating2.size());
+
+
+          anon.put(providers.get(i).username,us.anonymous);
+        }
+
         List<List<String>> result = new ArrayList<List<String>>();
         for(int i=0;i<providers.size();i++){
           List<String> list = new ArrayList<String>();
@@ -392,6 +438,7 @@ public class dbHandle {
           list.add(String.format("%.1f", ratings.get(name)));
           list.add(providers.get(i).professionalServices);
           list.add(providers.get(i).keyword);
+          list.add(anon.get(name));
           result.add(list);
         }
         System.out.println("herelalal"+result.size());
@@ -402,7 +449,7 @@ public class dbHandle {
       return null;
     }
 
-    
+
 
     public List<ServiceProvider> getProviders() {
         try{

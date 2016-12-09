@@ -38,6 +38,8 @@
                                         </a></th>
                                         <th><a ng-click="orderByField='projectName'; reverseSort = !reverseSort">Project Name <span ng-show="orderByField == 'projectName'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
                                         </a></th>
+                                        <th>Publisher</th>
+                                        <th>Provider</th>
                                         <th>projectDescription</th>
                                         <th>requiredExpertise</th>
                                         <th><a ng-click="orderByField='begintime'; reverseSort = !reverseSort">beginTime <span ng-show="orderByField == 'begintime'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
@@ -55,13 +57,17 @@
                                     <tr ng-repeat="project in allProjects|orderBy:orderByField:reverseSort">
                                         <td>{{project.status}}</td>
                                         <td>{{project.projectName}}</td>
+                                        <td ng-show="project.publisherAnonymous=='false' || project.publisher==userName">{{project.publisher}}</td>
+                                        <td ng-show="project.publisherAnonymous=='true' && project.publisher !=userName">*****</td>
+                                        <td ng-show="project.providerAnonymous=='false' || project.provider==userName">{{project.provider}}</td>
+                                        <td ng-show="project.providerAnonymous=='true' && project.provider !=userName">*****</td>
                                         <td>{{project.projectDescription}}</td>
                                         <td>{{project.requiredExpertise}}</td>
                                         <td>{{project.begintime}}</td>
                                         <td>{{project.endtime}}</td>
                                         <td>{{project.price}}</td>
-                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="provideProject(project.projectName)" ng-disabled="project.status != 'In Market'">Provide</button> </td>
-                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="deleteProject(project.projectName)" ng-show="userName=='admin'">Delete</button></td>
+                                        <td><button type="button" class="btn btn-link btn-sm" ng-click="provideProject(project)" ng-disabled="project.status != 'In Market'">Provide</button> </td>
+                                        <td ng-show="userName=='admin'"><button type="button" class="btn btn-link btn-sm" ng-click="deleteProject(project.projectName)">Delete</button></td>
                                     </tr>
                                 </tbody>
                             </table>

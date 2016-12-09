@@ -20,7 +20,7 @@ import static play.libs.Json.toJson;
 public class Application extends Controller {
     private dbHandle db = new dbHandle();
     public Result index() {
-        db.saveUser("admin", "admin", "admin", "admin", "admin");
+        db.saveUser("admin", "admin", "admin", "admin", "admin","false");
         return ok(index.render());
     }
 
@@ -84,7 +84,7 @@ public class Application extends Controller {
 
     public Result registerUser() {
         DynamicForm form = Form.form().bindFromRequest();
-        if (form.data().size() != 5) {
+        if (form.data().size() != 6) {
             System.out.println(form.data());
             return badRequest("Bad Register Request");
         } else {
@@ -93,8 +93,9 @@ public class Application extends Controller {
             String email = form.get("email");
             String question = form.get("question");
             String answer = form.get("answer");
+            String anonymous = form.get("anonymous");
             try {
-                boolean register = db.saveUser(userName, password, email, question, answer);
+                boolean register = db.saveUser(userName, password, email, question, answer,anonymous);
                 if (register) {
                     return ok("Register Success");
                 } else {
@@ -175,7 +176,7 @@ public class Application extends Controller {
     }
 
     public Result getServiceUsers() {
-        List<ServiceUser> serviceUsers = db.getServiceUsers();
+        List<Map<String,String>> serviceUsers = db.getServiceUsers();
         return (serviceUsers == null) ? notFound() : ok(toJson(serviceUsers));
     }
 
@@ -223,7 +224,7 @@ public class Application extends Controller {
     }
 
     public Result getProjects() {
-        List<Projects> projects = db.getProject();
+        List<Map<String,String>> projects = db.getProject();
         return (projects == null) ? notFound() : ok(toJson(projects));
     }
 
